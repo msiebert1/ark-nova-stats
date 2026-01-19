@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ark Nova Stats Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Ark Nova Stats Tracker</h1>
+        <p class="subtitle">Weekly Game Statistics</p>
+    </header>
+
+    <main>
+        <section id="summary" class="stats-section">
+            <h2>Overview</h2>
+            <div class="summary-cards">
+                <div class="card">
+                    <span class="card-value" id="total-games">0</span>
+                    <span class="card-label">Games Played</span>
+                </div>
+                <div class="card">
+                    <span class="card-value" id="total-players">0</span>
+                    <span class="card-label">Players</span>
+                </div>
+                <div class="card">
+                    <span class="card-value" id="avg-score">0</span>
+                    <span class="card-label">Avg Score</span>
+                </div>
+                <div class="card">
+                    <span class="card-value" id="avg-turns">0</span>
+                    <span class="card-label">Avg Turns</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="leaderboard" class="stats-section">
+            <h2>Leaderboard</h2>
+            <table id="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>Wins</th>
+                        <th>Games</th>
+                        <th>Win Rate</th>
+                        <th>Avg Score</th>
+                        <th>Best Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="performance" class="stats-section">
+            <h2>Performance Metric</h2>
+            <p class="section-desc">10×1st + 6×2nd + 3×3rd + 1×4th</p>
+            <table id="performance-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Player</th>
+                        <th>1st (×10)</th>
+                        <th>2nd (×6)</th>
+                        <th>3rd (×3)</th>
+                        <th>4th (×1)</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="score-trends" class="stats-section">
+            <h2>Score Over Time</h2>
+            <div class="chart-container">
+                <canvas id="score-time-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="turns-over-time" class="stats-section">
+            <h2>Turns Per Game Over Time</h2>
+            <div class="chart-container">
+                <canvas id="turns-time-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="winner-efficiency" class="stats-section">
+            <h2>Winner Points Per Turn Over Time</h2>
+            <div class="chart-container">
+                <canvas id="winner-ppt-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="score-histograms" class="stats-section">
+            <h2>Score Distribution</h2>
+            <div class="histogram-grid">
+                <div class="histogram-item">
+                    <h3>Matt</h3>
+                    <canvas id="histogram-matt"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Mark</h3>
+                    <canvas id="histogram-mark"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Callie</h3>
+                    <canvas id="histogram-callie"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Keith</h3>
+                    <canvas id="histogram-keith"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="placement" class="stats-section">
+            <h2>Placement Distribution</h2>
+            <div id="placement-chart" class="chart-container">
+                <table id="placement-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>1st</th>
+                            <th>2nd</th>
+                            <th>3rd</th>
+                            <th>4th</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="maps" class="stats-section">
+            <h2>Performance by Map</h2>
+            <p class="section-desc">Average placement when playing this map (1.0 = always 1st, 4.0 = always 4th)</p>
+            <table id="maps-table">
+                <thead>
+                    <tr>
+                        <th>Map</th>
+                        <th>Times Played</th>
+                        <th>Avg Placement</th>
+                        <th>Avg Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="efficiency" class="stats-section">
+            <h2>Player Efficiency</h2>
+            <p class="section-desc">Points per turn - higher is better</p>
+            <table id="efficiency-table">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Avg Points/Turn</th>
+                        <th>Best Points/Turn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="history" class="stats-section">
+            <h2>Game History</h2>
+            <div class="controls">
+                <label for="filter-player">Filter by Player:</label>
+                <select id="filter-player">
+                    <option value="">All Players</option>
+                </select>
+                <label for="filter-map">Filter by Map:</label>
+                <select id="filter-map">
+                    <option value="">All Maps</option>
+                </select>
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="date-desc">Date (Newest)</option>
+                    <option value="date-asc">Date (Oldest)</option>
+                    <option value="score-desc">High Score</option>
+                    <option value="turns-asc">Fewest Turns</option>
+                </select>
+            </div>
+            <table id="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Map</th>
+                        <th>Turns</th>
+                        <th>Winner</th>
+                        <th>Results</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data sourced from <a href="https://boardgamearena.com" target="_blank">Board Game Arena</a></p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
