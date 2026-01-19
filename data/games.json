@@ -1,0 +1,131 @@
+{
+  "lastUpdated": "2025-01-16T12:00:00Z",
+  "games": [
+    {
+      "id": "501234567",
+      "date": "2025-01-15",
+      "map": "Map A",
+      "turns": 47,
+      "players": [
+        { "name": "Marcus", "score": 98, "rank": 1 },
+        { "name": "Elena", "score": 91, "rank": 2 },
+        { "name": "Jake", "score": 85, "rank": 3 },
+        { "name": "Sarah", "score": 79, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501234567"
+    },
+    {
+      "id": "501234123",
+      "date": "2025-01-12",
+      "map": "Map 0",
+      "turns": 52,
+      "players": [
+        { "name": "Elena", "score": 105, "rank": 1 },
+        { "name": "Marcus", "score": 94, "rank": 2 },
+        { "name": "Sarah", "score": 88, "rank": 3 },
+        { "name": "Jake", "score": 82, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501234123"
+    },
+    {
+      "id": "501233890",
+      "date": "2025-01-08",
+      "map": "Map A",
+      "turns": 45,
+      "players": [
+        { "name": "Jake", "score": 92, "rank": 1 },
+        { "name": "Marcus", "score": 89, "rank": 2 },
+        { "name": "Elena", "score": 86, "rank": 3 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501233890"
+    },
+    {
+      "id": "501233456",
+      "date": "2025-01-05",
+      "map": "Map 5",
+      "turns": 49,
+      "players": [
+        { "name": "Sarah", "score": 101, "rank": 1 },
+        { "name": "Elena", "score": 97, "rank": 2 },
+        { "name": "Marcus", "score": 90, "rank": 3 },
+        { "name": "Jake", "score": 84, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501233456"
+    },
+    {
+      "id": "501232999",
+      "date": "2025-01-01",
+      "map": "Map A",
+      "turns": 44,
+      "players": [
+        { "name": "Marcus", "score": 96, "rank": 1 },
+        { "name": "Jake", "score": 88, "rank": 2 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501232999"
+    },
+    {
+      "id": "501232500",
+      "date": "2024-12-28",
+      "map": "Map 0",
+      "turns": 51,
+      "players": [
+        { "name": "Elena", "score": 108, "rank": 1 },
+        { "name": "Sarah", "score": 99, "rank": 2 },
+        { "name": "Marcus", "score": 95, "rank": 3 },
+        { "name": "Jake", "score": 87, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501232500"
+    },
+    {
+      "id": "501232100",
+      "date": "2024-12-25",
+      "map": "Map A",
+      "turns": 46,
+      "players": [
+        { "name": "Marcus", "score": 94, "rank": 1 },
+        { "name": "Elena", "score": 92, "rank": 2 },
+        { "name": "Jake", "score": 85, "rank": 3 },
+        { "name": "Sarah", "score": 80, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501232100"
+    },
+    {
+      "id": "501231700",
+      "date": "2024-12-22",
+      "map": "Map 5",
+      "turns": 48,
+      "players": [
+        { "name": "Jake", "score": 97, "rank": 1 },
+        { "name": "Sarah", "score": 93, "rank": 2 },
+        { "name": "Elena", "score": 91, "rank": 3 },
+        { "name": "Marcus", "score": 86, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501231700"
+    },
+    {
+      "id": "501231300",
+      "date": "2024-12-19",
+      "map": "Map A",
+      "turns": 43,
+      "players": [
+        { "name": "Elena", "score": 89, "rank": 1 },
+        { "name": "Marcus", "score": 87, "rank": 2 },
+        { "name": "Sarah", "score": 82, "rank": 3 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501231300"
+    },
+    {
+      "id": "501230900",
+      "date": "2024-12-15",
+      "map": "Map 0",
+      "turns": 50,
+      "players": [
+        { "name": "Marcus", "score": 102, "rank": 1 },
+        { "name": "Jake", "score": 95, "rank": 2 },
+        { "name": "Elena", "score": 93, "rank": 3 },
+        { "name": "Sarah", "score": 88, "rank": 4 }
+      ],
+      "url": "https://boardgamearena.com/table?table=501230900"
+    }
+  ]
+}

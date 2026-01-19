@@ -1,0 +1,21 @@
+
+========================================
+Ark Nova Stats Scraper
+Started: 2026-01-18 14:03:00
+========================================
+2026-01-18 14:03:01 - INFO - Starting Ark Nova stats scraper at 2026-01-18T14:03:01.139733
+2026-01-18 14:03:01 - INFO - Logging in to Board Game Arena...
+2026-01-18 14:03:02 - ERROR - Login failed with status 404
+2026-01-18 14:03:02 - ERROR - Failed to log in to BGA
+
+========================================
+Ark Nova Stats Scraper
+Started: 2026-01-19 14:07:59
+========================================
+2026-01-19 14:08:00 - INFO - Starting Ark Nova stats scraper at 2026-01-19T14:08:00.569337
+2026-01-19 14:08:00 - INFO - Using cookie-based authentication from /Users/msiebert/ark-nova-stats/scraper/cookies.json
+2026-01-19 14:08:00 - INFO - Loaded 5 cookies from /Users/msiebert/ark-nova-stats/scraper/cookies.json
+2026-01-19 14:08:00 - INFO - Verifying session authentication...
+2026-01-19 14:08:03 - ERROR - Session verification failed - cookies may be expired
+2026-01-19 14:08:03 - ERROR - Cookie session is not valid or expired
+2026-01-19 14:08:03 - ERROR - Please re-export cookies from your browser after logging in

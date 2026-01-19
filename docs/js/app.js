@@ -86,6 +86,7 @@
         renderWinnerPPTOverTime();
         renderScoreHistograms();
         renderPlacement();
+        renderPlayerBestMaps();
         renderMaps();
         renderEfficiency();
         renderHistory();
@@ -605,6 +606,56 @@
         `).join('');
     }
 
+    // Best map per player
+    function renderPlayerBestMaps() {
+        const playerMapWins = {};
+
+        TRACKED_PLAYERS.forEach(player => {
+            playerMapWins[player] = {};
+        });
+
+        gamesData.forEach(game => {
+            const maps = game.stats['Map'] || {};
+            const results = game.stats['Game result'] || {};
+
+            Object.entries(maps).forEach(([player, mapName]) => {
+                if (!TRACKED_PLAYERS.includes(player)) return;
+                if (!mapName || mapName === '-') return;
+
+                const result = results[player];
+                if (result && result.startsWith('1st')) {
+                    playerMapWins[player][mapName] = (playerMapWins[player][mapName] || 0) + 1;
+                }
+            });
+        });
+
+        const tbody = document.querySelector('#player-maps-table tbody');
+        tbody.innerHTML = TRACKED_PLAYERS.map(player => {
+            const mapWins = playerMapWins[player];
+            const entries = Object.entries(mapWins);
+
+            if (entries.length === 0) {
+                return `
+                    <tr>
+                        <td>${getDisplayName(player)}</td>
+                        <td>-</td>
+                        <td>0</td>
+                    </tr>
+                `;
+            }
+
+            // Find map with most wins
+            const [bestMap, wins] = entries.sort((a, b) => b[1] - a[1])[0];
+            return `
+                <tr>
+                    <td>${getDisplayName(player)}</td>
+                    <td>${bestMap}</td>
+                    <td>${wins}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
     // Maps stats - tracks performance of each map regardless of who played it
     function renderMaps() {
         const mapStats = {};
@@ -620,6 +671,7 @@
                 if (!mapStats[mapName]) {
                     mapStats[mapName] = {
                         timesPlayed: 0,
+                        wins: 0,
                         totalPlacement: 0,
                         totalScore: 0
                     };
@@ -632,7 +684,11 @@
                 if (result) {
                     const placeMatch = result.match(/^(\d)/);
                     if (placeMatch) {
-                        mapStats[mapName].totalPlacement += parseInt(placeMatch[1]);
+                        const place = parseInt(placeMatch[1]);
+                        mapStats[mapName].totalPlacement += place;
+                        if (place === 1) {
+                            mapStats[mapName].wins++;
+                        }
                     }
 
                     const scoreMatch = result.match(/\((\d+)\)/);
@@ -643,10 +699,11 @@
             });
         });
 
-        // Sort by average placement (best first)
+        // Sort by wins (most first), then by average placement
         const sorted = Object.entries(mapStats)
             .filter(([_, stats]) => stats.timesPlayed >= 1)
             .sort((a, b) => {
+                if (b[1].wins !== a[1].wins) return b[1].wins - a[1].wins;
                 const aAvg = a[1].totalPlacement / a[1].timesPlayed;
                 const bAvg = b[1].totalPlacement / b[1].timesPlayed;
                 return aAvg - bAvg;
@@ -661,6 +718,7 @@
                 <tr>
                     <td>${map}</td>
                     <td>${stats.timesPlayed}</td>
+                    <td>${stats.wins}</td>
                     <td>${avgPlacement}</td>
                     <td>${avgScore}</td>
                 </tr>

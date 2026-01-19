@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.arknova.stats</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/msiebert/ark-nova-stats/scraper/run_scraper.sh</string>
+    </array>
+
+    <key>StartCalendarInterval</key>
+    <array>
+        <!-- Sunday at 2:00 PM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>0</integer>
+            <key>Hour</key>
+            <integer>14</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+        <!-- Monday at 2:00 PM -->
+        <dict>
+            <key>Weekday</key>
+            <integer>1</integer>
+            <key>Hour</key>
+            <integer>14</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
+
+    <key>StandardOutPath</key>
+    <string>/Users/msiebert/ark-nova-stats/scraper/logs/scraper.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/msiebert/ark-nova-stats/scraper/logs/scraper.log</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/msiebert/ark-nova-stats/scraper</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/Users/msiebert/miniconda3/bin</string>
+    </dict>
+</dict>
+</plist>

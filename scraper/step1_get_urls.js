@@ -1,0 +1,1 @@
+urls=[...new Set([...document.querySelectorAll('a[href*="table="]')].map(a=>a.href))];localStorage.setItem('arkNovaUrls',JSON.stringify(urls));localStorage.setItem('arkNovaGames','[]');alert(urls.length+' games found. Will open 10 at a time.');urls.slice(0,10).forEach(u=>window.open(u))
