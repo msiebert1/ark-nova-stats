@@ -96,9 +96,16 @@
         renderMoneyKDE();
         renderMoneyByPlayerKDE();
         renderAdditionalStats();
+        renderPointDisparity();
+        renderDisparityDistribution();
+        renderDisparityByPlayer();
         renderPlacement();
+        renderAnimalIconTotals();
+        renderContinentIconTotals();
         renderPlayerBestMaps();
         renderMaps();
+        renderMapSelectionTotal();
+        renderMapSelectionByPlayer();
         renderEfficiency();
         renderHistory();
     }
@@ -135,6 +142,58 @@
         document.getElementById('total-games').textContent = totalGames;
         document.getElementById('avg-score').textContent = scoreCount ? Math.round(totalScore / scoreCount) : 0;
         document.getElementById('avg-turns').textContent = turnsCount ? Math.round(totalTurns / turnsCount) : 0;
+
+        // Recent game summary
+        const sortedGames = sortGamesChronologically(gamesData);
+        const recentGame = sortedGames[sortedGames.length - 1];
+
+        if (recentGame) {
+            const results = recentGame.stats['Game result'] || {};
+            const maps = recentGame.stats['Map'] || {};
+            const turns = recentGame.stats['Number of turns'] || {};
+
+            const turnCount = Object.values(turns)[0] || '?';
+            const date = recentGame.date;
+            const formattedDate = date ? (() => {
+                const [year, month, day] = date.split('-');
+                return `${parseInt(month)}/${parseInt(day)}/${year}`;
+            })() : 'Unknown';
+
+            // Sort results by placement
+            const sortedResults = Object.entries(results)
+                .map(([player, result]) => {
+                    const placeMatch = result.match(/^(\d)/);
+                    const scoreMatch = result.match(/\((\d+)\)/);
+                    return {
+                        player,
+                        place: placeMatch ? parseInt(placeMatch[1]) : 99,
+                        score: scoreMatch ? parseInt(scoreMatch[1]) : 0,
+                        map: maps[player] || 'Unknown'
+                    };
+                })
+                .sort((a, b) => a.place - b.place);
+
+            const winner = sortedResults[0];
+
+            const recentEl = document.getElementById('recent-game');
+            recentEl.innerHTML = `
+                <h3>Most Recent Game</h3>
+                <div class="recent-game-info">
+                    <span><strong>Date:</strong> ${formattedDate}</span>
+                    <span><strong>Turns:</strong> ${turnCount}</span>
+                    <a href="${recentGame.url}" target="_blank" class="game-link">View Game</a>
+                </div>
+                <div class="recent-game-results">
+                    ${sortedResults.map(r => {
+                        const isWinner = r.place === 1;
+                        const color = PLAYER_COLORS[r.player];
+                        return `<span class="recent-game-player ${isWinner ? 'winner' : ''}" style="color: ${color};">
+                            ${r.place}. ${getDisplayName(r.player)} (${r.score}) - ${r.map}
+                        </span>`;
+                    }).join('')}
+                </div>
+            `;
+        }
     }
 
     // Accolades
@@ -159,6 +218,8 @@
                 const appealVal = parseInt(appeal[player]) || 0;
                 const conservationVal = parseInt(conservation[player]) || 0;
                 const isWinner = result.startsWith('1st');
+                const placeMatch = result.match(/^(\d)/);
+                const placement = placeMatch ? parseInt(placeMatch[1]) : 0;
 
                 performances.push({
                     player,
@@ -168,7 +229,8 @@
                     conservation: conservationVal,
                     date,
                     url,
-                    isWinner
+                    isWinner,
+                    placement
                 });
             });
         });
@@ -184,15 +246,18 @@
         function renderList(elementId, sorted, valueKey, valueFormat) {
             const top3 = sorted.slice(0, 3);
             const el = document.getElementById(elementId);
-            el.innerHTML = top3.map(p => `
+            const placeSuffix = ['', 'st', 'nd', 'rd', 'th'];
+            el.innerHTML = top3.map(p => {
+                const placeStr = p.placement ? `${p.placement}${placeSuffix[p.placement]}` : '';
+                return `
                 <li>
                     <div class="accolade-info">
                         <span class="accolade-value">${valueFormat(p[valueKey])}</span>
-                        <span class="accolade-detail">${getDisplayName(p.player)} - ${formatDate(p.date)}</span>
+                        <span class="accolade-detail">${getDisplayName(p.player)} (${placeStr}) - ${formatDate(p.date)}</span>
                     </div>
                     <a href="${p.url}" target="_blank" class="accolade-link game-link">View</a>
                 </li>
-            `).join('');
+            `}).join('');
         }
 
         // Highest scores
@@ -211,6 +276,58 @@
         // Most conservation
         const byConservation = [...performances].sort((a, b) => b.conservation - a.conservation);
         renderList('most-conservation', byConservation, 'conservation', v => `${v} conservation`);
+
+        // Best win streak
+        const sortedGames = sortGamesChronologically(gamesData);
+        const playerStreaks = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerStreaks[player] = { current: 0, best: 0, bestEndDate: null, bestEndUrl: null };
+        });
+
+        sortedGames.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            const date = game.date || 'Unknown';
+            const url = game.url;
+
+            TRACKED_PLAYERS.forEach(player => {
+                const result = results[player];
+                if (result && result.startsWith('1st')) {
+                    playerStreaks[player].current++;
+                    if (playerStreaks[player].current > playerStreaks[player].best) {
+                        playerStreaks[player].best = playerStreaks[player].current;
+                        playerStreaks[player].bestEndDate = date;
+                        playerStreaks[player].bestEndUrl = url;
+                    }
+                } else {
+                    playerStreaks[player].current = 0;
+                }
+            });
+        });
+
+        // Find the maximum streak
+        const maxStreak = Math.max(...TRACKED_PLAYERS.map(p => playerStreaks[p].best));
+
+        // Get all players with the max streak (ties)
+        const streakWinners = TRACKED_PLAYERS
+            .filter(p => playerStreaks[p].best === maxStreak)
+            .map(p => ({
+                player: p,
+                streak: playerStreaks[p].best,
+                date: playerStreaks[p].bestEndDate,
+                url: playerStreaks[p].bestEndUrl
+            }));
+
+        // Render win streak list
+        const streakEl = document.getElementById('best-win-streak');
+        streakEl.innerHTML = streakWinners.map(s => `
+            <li>
+                <div class="accolade-info">
+                    <span class="accolade-value">${s.streak} wins</span>
+                    <span class="accolade-detail">${getDisplayName(s.player)} - ended ${formatDate(s.date)}</span>
+                </div>
+                <a href="${s.url}" target="_blank" class="accolade-link game-link">View</a>
+            </li>
+        `).join('');
     }
 
     // Leaderboard
@@ -1537,6 +1654,241 @@
         renderStatKDE('Played animals', 'animals-player-kde', 1);
     }
 
+    // Point disparity (appeal vs conservation)
+    function renderPointDisparity() {
+        // Appeal points = appeal
+        // Conservation points = 10*2 + (conservation - 10)*3 = 3*conservation - 10
+        const playerStats = {};
+
+        TRACKED_PLAYERS.forEach(player => {
+            playerStats[player] = {
+                totalAppealPts: 0,
+                totalConservationPts: 0,
+                games: 0
+            };
+        });
+
+        gamesData.forEach(game => {
+            const appeal = game.stats['Appeal'] || {};
+            const conservation = game.stats['Conservation'] || {};
+
+            TRACKED_PLAYERS.forEach(player => {
+                const appealVal = parseInt(appeal[player]) || 0;
+                const conservationVal = parseInt(conservation[player]) || 0;
+
+                const appealPts = appealVal;
+                const conservationPts = 3 * conservationVal - 10;
+
+                playerStats[player].totalAppealPts += appealPts;
+                playerStats[player].totalConservationPts += conservationPts;
+                playerStats[player].games++;
+            });
+        });
+
+        // Sort by disparity (appeal - conservation)
+        const sorted = TRACKED_PLAYERS
+            .map(player => {
+                const stats = playerStats[player];
+                const avgAppeal = stats.games > 0 ? stats.totalAppealPts / stats.games : 0;
+                const avgConservation = stats.games > 0 ? stats.totalConservationPts / stats.games : 0;
+                const disparity = avgAppeal - avgConservation;
+                return { player, avgAppeal, avgConservation, disparity };
+            })
+            .sort((a, b) => b.disparity - a.disparity);
+
+        const tbody = document.querySelector('#disparity-table tbody');
+        tbody.innerHTML = sorted.map(s => {
+            const color = PLAYER_COLORS[s.player];
+            const disparityColor = s.disparity >= 0 ? '#ef4444' : '#22c55e';
+            const disparitySign = s.disparity >= 0 ? '+' : '';
+            return `
+                <tr>
+                    <td style="color: ${color}; font-weight: bold;">${getDisplayName(s.player)}</td>
+                    <td>${s.avgAppeal.toFixed(1)}</td>
+                    <td>${s.avgConservation.toFixed(1)}</td>
+                    <td style="color: ${disparityColor}; font-weight: bold;">${disparitySign}${s.disparity.toFixed(1)}</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Disparity distribution (all players vs winners)
+    function renderDisparityDistribution() {
+        const allDisparities = [];
+        const winnerDisparities = [];
+
+        gamesData.forEach(game => {
+            const appeal = game.stats['Appeal'] || {};
+            const conservation = game.stats['Conservation'] || {};
+            const results = game.stats['Game result'] || {};
+
+            TRACKED_PLAYERS.forEach(player => {
+                const appealVal = parseInt(appeal[player]) || 0;
+                const conservationVal = parseInt(conservation[player]) || 0;
+
+                const appealPts = appealVal;
+                const conservationPts = 3 * conservationVal - 10;
+                const disparity = appealPts - conservationPts;
+
+                allDisparities.push(disparity);
+
+                const result = results[player];
+                if (result && result.startsWith('1st')) {
+                    winnerDisparities.push(disparity);
+                }
+            });
+        });
+
+        // Find global range
+        const allValues = [...allDisparities, ...winnerDisparities];
+        const globalMin = Math.min(...allValues);
+        const globalMax = Math.max(...allValues);
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = globalMin - padding;
+        const xMax = globalMax + padding;
+
+        // Compute KDEs
+        const bandwidth = 5;
+        const kdeAll = computeKDE(allDisparities, xMin, xMax, bandwidth, 100);
+        const kdeWinners = computeKDE(winnerDisparities, xMin, xMax, bandwidth, 100);
+
+        const datasets = [
+            {
+                label: 'All Players',
+                data: kdeAll.x.map((x, i) => ({ x: x, y: kdeAll.y[i] })),
+                borderColor: '#6b7280',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            },
+            {
+                label: 'Winners Only',
+                data: kdeWinners.x.map((x, i) => ({ x: x, y: kdeWinners.y[i] })),
+                borderColor: '#ffd700',
+                backgroundColor: '#ffd70040',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: true
+            }
+        ];
+
+        const ctx = document.getElementById('disparity-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Point Disparity (+ = more appeal, - = more conservation)' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Disparity histograms by player
+    function renderDisparityByPlayer() {
+        const playerDisparities = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerDisparities[player] = [];
+        });
+
+        gamesData.forEach(game => {
+            const appeal = game.stats['Appeal'] || {};
+            const conservation = game.stats['Conservation'] || {};
+
+            TRACKED_PLAYERS.forEach(player => {
+                const appealVal = parseInt(appeal[player]) || 0;
+                const conservationVal = parseInt(conservation[player]) || 0;
+
+                const appealPts = appealVal;
+                const conservationPts = 3 * conservationVal - 10;
+                const disparity = appealPts - conservationPts;
+
+                playerDisparities[player].push(disparity);
+            });
+        });
+
+        // Find global min/max for consistent binning
+        const allDisparities = Object.values(playerDisparities).flat();
+        const minDisparity = Math.min(...allDisparities);
+        const maxDisparity = Math.max(...allDisparities);
+
+        // Create bins (width of 10)
+        const binWidth = 10;
+        const binStart = Math.floor(minDisparity / binWidth) * binWidth;
+        const binEnd = Math.ceil(maxDisparity / binWidth) * binWidth;
+
+        const binLabels = [];
+        for (let i = binStart; i < binEnd; i += binWidth) {
+            binLabels.push(`${i}`);
+        }
+
+        const playerCanvasMap = {
+            'msiebert': 'disparity-matt',
+            'marksbrt': 'disparity-mark',
+            'AstroHood': 'disparity-callie',
+            'siebert23': 'disparity-keith'
+        };
+
+        TRACKED_PLAYERS.forEach(player => {
+            const disparities = playerDisparities[player];
+            const bins = new Array(binLabels.length).fill(0);
+
+            disparities.forEach(d => {
+                const binIndex = Math.floor((d - binStart) / binWidth);
+                if (binIndex >= 0 && binIndex < bins.length) {
+                    bins[binIndex]++;
+                }
+            });
+
+            const ctx = document.getElementById(playerCanvasMap[player]).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: binLabels,
+                    datasets: [{
+                        label: 'Games',
+                        data: bins,
+                        backgroundColor: PLAYER_COLORS[player] + 'CC',
+                        borderColor: PLAYER_COLORS[player],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 },
+                            title: { display: true, text: 'Games' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Disparity' }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
     // Placement distribution
     function renderPlacement() {
         const placements = {};
@@ -1575,6 +1927,107 @@
                 <td>${p[4]}</td>
             </tr>
         `).join('');
+    }
+
+    // Total animal icons by player
+    function renderAnimalIconTotals() {
+        const animalTypes = [
+            { key: 'Bird icons', label: 'Birds' },
+            { key: 'Predator icons', label: 'Predators' },
+            { key: 'Herbivore icons', label: 'Herbivores' },
+            { key: 'Reptile icons', label: 'Reptiles' },
+            { key: 'Primate icons', label: 'Primates' },
+            { key: 'Sea Animal icons', label: 'Sea Animals' },
+            { key: 'Petting Zoo icons', label: 'Petting Zoo' },
+            { key: 'Bear icons', label: 'Bears' }
+        ];
+
+        // Calculate totals per player per category
+        const playerTotals = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerTotals[player] = {};
+            animalTypes.forEach(type => {
+                playerTotals[player][type.key] = 0;
+            });
+        });
+
+        gamesData.forEach(game => {
+            animalTypes.forEach(type => {
+                const iconStats = game.stats[type.key] || {};
+                TRACKED_PLAYERS.forEach(player => {
+                    playerTotals[player][type.key] += parseInt(iconStats[player]) || 0;
+                });
+            });
+        });
+
+        // Build table rows - each row is a category with players sorted by count
+        const tbody = document.querySelector('#animal-totals-table tbody');
+        tbody.innerHTML = animalTypes.map(type => {
+            // Sort players by their total for this category
+            const sortedPlayers = [...TRACKED_PLAYERS].sort((a, b) =>
+                playerTotals[b][type.key] - playerTotals[a][type.key]
+            );
+
+            return `
+                <tr>
+                    <td><strong>${type.label}</strong></td>
+                    ${sortedPlayers.map((player) => {
+                        const count = playerTotals[player][type.key];
+                        const color = PLAYER_COLORS[player];
+                        return `<td style="color: ${color}; font-weight: bold;">${getDisplayName(player)} (${count})</td>`;
+                    }).join('')}
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Total continent icons by player
+    function renderContinentIconTotals() {
+        const continentTypes = [
+            { key: 'Africa icons', label: 'Africa' },
+            { key: 'Americas icons', label: 'Americas' },
+            { key: 'Asia icons', label: 'Asia' },
+            { key: 'Europe icons', label: 'Europe' },
+            { key: 'Australia icons', label: 'Australia' }
+        ];
+
+        // Calculate totals per player per category
+        const playerTotals = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerTotals[player] = {};
+            continentTypes.forEach(type => {
+                playerTotals[player][type.key] = 0;
+            });
+        });
+
+        gamesData.forEach(game => {
+            continentTypes.forEach(type => {
+                const iconStats = game.stats[type.key] || {};
+                TRACKED_PLAYERS.forEach(player => {
+                    playerTotals[player][type.key] += parseInt(iconStats[player]) || 0;
+                });
+            });
+        });
+
+        // Build table rows - each row is a category with players sorted by count
+        const tbody = document.querySelector('#continent-totals-table tbody');
+        tbody.innerHTML = continentTypes.map(type => {
+            // Sort players by their total for this category
+            const sortedPlayers = [...TRACKED_PLAYERS].sort((a, b) =>
+                playerTotals[b][type.key] - playerTotals[a][type.key]
+            );
+
+            return `
+                <tr>
+                    <td><strong>${type.label}</strong></td>
+                    ${sortedPlayers.map((player) => {
+                        const count = playerTotals[player][type.key];
+                        const color = PLAYER_COLORS[player];
+                        return `<td style="color: ${color}; font-weight: bold;">${getDisplayName(player)} (${count})</td>`;
+                    }).join('')}
+                </tr>
+            `;
+        }).join('');
     }
 
     // Best map per player
@@ -1695,6 +2148,190 @@
                 </tr>
             `;
         }).join('');
+    }
+
+    // Convert win rate (0-1) to color (red to green)
+    function winRateToColor(winRate) {
+        // 0% = red, 25% = orange, 50% = yellow, 75%+ = green
+        const r = Math.round(255 * Math.max(0, Math.min(1, 2 - 4 * winRate)));
+        const g = Math.round(255 * Math.max(0, Math.min(1, 4 * winRate - 0)));
+        const b = 0;
+        return `rgba(${r}, ${g}, ${b}, 0.8)`;
+    }
+
+    // Total map selection histogram
+    function renderMapSelectionTotal() {
+        const mapCounts = {};
+        const mapWins = {};
+
+        gamesData.forEach(game => {
+            const maps = game.stats['Map'] || {};
+            const results = game.stats['Game result'] || {};
+
+            Object.entries(maps).forEach(([player, mapName]) => {
+                if (mapName && mapName !== '-') {
+                    mapCounts[mapName] = (mapCounts[mapName] || 0) + 1;
+                    if (!mapWins[mapName]) mapWins[mapName] = 0;
+
+                    const result = results[player];
+                    if (result && result.startsWith('1st')) {
+                        mapWins[mapName]++;
+                    }
+                }
+            });
+        });
+
+        // Sort by count descending
+        const sorted = Object.entries(mapCounts).sort((a, b) => b[1] - a[1]);
+        const labels = sorted.map(([name]) => name);
+        const data = sorted.map(([, count]) => count);
+        const colors = sorted.map(([name, count]) => {
+            const winRate = count > 0 ? (mapWins[name] || 0) / count : 0;
+            return winRateToColor(winRate);
+        });
+
+        const ctx = document.getElementById('map-selection-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Times Selected',
+                    data: data,
+                    backgroundColor: colors,
+                    borderColor: colors.map(c => c.replace('0.8', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            afterLabel: function(context) {
+                                const mapName = context.label;
+                                const count = mapCounts[mapName];
+                                const wins = mapWins[mapName] || 0;
+                                const winRate = count > 0 ? ((wins / count) * 100).toFixed(0) : 0;
+                                return `Win rate: ${winRate}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 },
+                        title: { display: true, text: 'Times Selected' }
+                    },
+                    x: {
+                        title: { display: true, text: 'Map' }
+                    }
+                }
+            }
+        });
+    }
+
+    // Map selection by player
+    function renderMapSelectionByPlayer() {
+        // Collect all map names first
+        const allMapsSet = new Set();
+        const playerMapCounts = {};
+        const playerMapWins = {};
+
+        TRACKED_PLAYERS.forEach(player => {
+            playerMapCounts[player] = {};
+            playerMapWins[player] = {};
+        });
+
+        gamesData.forEach(game => {
+            const maps = game.stats['Map'] || {};
+            const results = game.stats['Game result'] || {};
+
+            Object.entries(maps).forEach(([player, mapName]) => {
+                if (!TRACKED_PLAYERS.includes(player)) return;
+                if (mapName && mapName !== '-') {
+                    allMapsSet.add(mapName);
+                    playerMapCounts[player][mapName] = (playerMapCounts[player][mapName] || 0) + 1;
+                    if (!playerMapWins[player][mapName]) playerMapWins[player][mapName] = 0;
+
+                    const result = results[player];
+                    if (result && result.startsWith('1st')) {
+                        playerMapWins[player][mapName]++;
+                    }
+                }
+            });
+        });
+
+        // Sort maps by total usage
+        const mapTotals = {};
+        allMapsSet.forEach(map => {
+            mapTotals[map] = TRACKED_PLAYERS.reduce((sum, player) =>
+                sum + (playerMapCounts[player][map] || 0), 0);
+        });
+        const sortedMaps = [...allMapsSet].sort((a, b) => mapTotals[b] - mapTotals[a]);
+
+        const playerCanvasMap = {
+            'msiebert': 'map-selection-matt',
+            'marksbrt': 'map-selection-mark',
+            'AstroHood': 'map-selection-callie',
+            'siebert23': 'map-selection-keith'
+        };
+
+        TRACKED_PLAYERS.forEach(player => {
+            const data = sortedMaps.map(map => playerMapCounts[player][map] || 0);
+            const colors = sortedMaps.map(map => {
+                const count = playerMapCounts[player][map] || 0;
+                const wins = playerMapWins[player][map] || 0;
+                const winRate = count > 0 ? wins / count : 0;
+                return winRateToColor(winRate);
+            });
+
+            const ctx = document.getElementById(playerCanvasMap[player]).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedMaps,
+                    datasets: [{
+                        label: 'Times Selected',
+                        data: data,
+                        backgroundColor: colors,
+                        borderColor: colors.map(c => c.replace('0.8', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const mapName = context.label;
+                                    const count = playerMapCounts[player][mapName] || 0;
+                                    const wins = playerMapWins[player][mapName] || 0;
+                                    const winRate = count > 0 ? ((wins / count) * 100).toFixed(0) : 0;
+                                    return `Win rate: ${winRate}%`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 },
+                            title: { display: true, text: 'Times Selected' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Map' }
+                        }
+                    }
+                }
+            });
+        });
     }
 
     // Efficiency stats

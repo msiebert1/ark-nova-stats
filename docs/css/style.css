@@ -99,6 +99,52 @@ main {
     margin-top: 0.25rem;
 }
 
+/* Recent Game Summary */
+.recent-game-summary {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--bg-color);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.recent-game-summary h3 {
+    margin: 0 0 0.75rem 0;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.recent-game-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.recent-game-info span {
+    font-size: 0.9rem;
+}
+
+.recent-game-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.recent-game-player {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.recent-game-player.winner {
+    background: linear-gradient(135deg, #fff9e6, #fff3cc);
+    border: 1px solid var(--gold);
+}
+
 /* Tables */
 table {
     width: 100%;

@@ -30,6 +30,7 @@
                     <span class="card-label">Avg Turns</span>
                 </div>
             </div>
+            <div id="recent-game" class="recent-game-summary"></div>
         </section>
 
         <section id="accolades" class="stats-section">
@@ -50,6 +51,10 @@
                 <div class="accolade-category">
                     <h3>Most Conservation</h3>
                     <ol id="most-conservation" class="accolade-list"></ol>
+                </div>
+                <div class="accolade-category">
+                    <h3>Best Win Streak</h3>
+                    <ol id="best-win-streak" class="accolade-list"></ol>
                 </div>
             </div>
         </section>
@@ -324,6 +329,55 @@
             </div>
         </section>
 
+        <section id="point-disparity" class="stats-section">
+            <h2>Appeal vs Conservation Point Disparity</h2>
+            <p class="section-desc">Appeal points - Conservation points (positive = more from appeal, negative = more from conservation)<br>
+            Appeal pts = Appeal | Conservation pts = 10×2 + (Conservation-10)×3</p>
+            <table id="disparity-table">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Avg Appeal Pts</th>
+                        <th>Avg Conservation Pts</th>
+                        <th>Avg Disparity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="disparity-distribution" class="stats-section">
+            <h2>Point Disparity Distribution</h2>
+            <p class="section-desc">Comparing disparity of all players vs winners only</p>
+            <div class="chart-container">
+                <canvas id="disparity-kde-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="disparity-by-player" class="stats-section">
+            <h2>Point Disparity by Player</h2>
+            <p class="section-desc">Individual disparity distributions (+ = more appeal, - = more conservation)</p>
+            <div class="histogram-grid">
+                <div class="histogram-item">
+                    <h3>Matt</h3>
+                    <canvas id="disparity-matt"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Mark</h3>
+                    <canvas id="disparity-mark"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Callie</h3>
+                    <canvas id="disparity-callie"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Keith</h3>
+                    <canvas id="disparity-keith"></canvas>
+                </div>
+            </div>
+        </section>
+
         <section id="reputation-kde" class="stats-section">
             <h2>Reputation Distribution (KDE)</h2>
             <p class="section-desc">Reputation points per game by player</p>
@@ -375,6 +429,42 @@
             </div>
         </section>
 
+        <section id="animal-totals" class="stats-section">
+            <h2>Total Animal Icons by Player</h2>
+            <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
+            <table id="animal-totals-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>3rd</th>
+                        <th>4th</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="continent-totals" class="stats-section">
+            <h2>Total Continent Icons by Player</h2>
+            <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
+            <table id="continent-totals-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>1st</th>
+                        <th>2nd</th>
+                        <th>3rd</th>
+                        <th>4th</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+
         <section id="player-best-maps" class="stats-section">
             <h2>Best Map by Player</h2>
             <p class="section-desc">Map with most wins for each player</p>
@@ -407,6 +497,37 @@
                 <tbody>
                 </tbody>
             </table>
+        </section>
+
+        <section id="map-selection-total" class="stats-section">
+            <h2>Total Map Selection</h2>
+            <p class="section-desc">How often each map was chosen across all players</p>
+            <div class="chart-container">
+                <canvas id="map-selection-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="map-selection-by-player" class="stats-section">
+            <h2>Map Selection by Player</h2>
+            <p class="section-desc">Map preferences for each player</p>
+            <div class="histogram-grid">
+                <div class="histogram-item">
+                    <h3>Matt</h3>
+                    <canvas id="map-selection-matt"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Mark</h3>
+                    <canvas id="map-selection-mark"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Callie</h3>
+                    <canvas id="map-selection-callie"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Keith</h3>
+                    <canvas id="map-selection-keith"></canvas>
+                </div>
+            </div>
         </section>
 
         <section id="efficiency" class="stats-section">
