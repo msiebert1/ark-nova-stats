@@ -79,12 +79,23 @@
 
     function renderAll() {
         renderSummary();
+        renderAccolades();
         renderLeaderboard();
         renderPerformanceMetric();
         renderScoreOverTime();
         renderTurnsOverTime();
         renderWinnerPPTOverTime();
+        renderScoreKDE();
         renderScoreHistograms();
+        renderAnimalIconsKDE();
+        renderAnimalIconsByPlayer();
+        renderAnimalIcons();
+        renderContinentIconsKDE();
+        renderContinentIconsByPlayer();
+        renderContinentIcons();
+        renderMoneyKDE();
+        renderMoneyByPlayerKDE();
+        renderAdditionalStats();
         renderPlacement();
         renderPlayerBestMaps();
         renderMaps();
@@ -95,7 +106,6 @@
     // Summary cards
     function renderSummary() {
         const totalGames = gamesData.length;
-        const totalPlayers = allPlayers.size;
 
         let totalScore = 0;
         let scoreCount = 0;
@@ -123,9 +133,84 @@
         });
 
         document.getElementById('total-games').textContent = totalGames;
-        document.getElementById('total-players').textContent = totalPlayers;
         document.getElementById('avg-score').textContent = scoreCount ? Math.round(totalScore / scoreCount) : 0;
         document.getElementById('avg-turns').textContent = turnsCount ? Math.round(totalTurns / turnsCount) : 0;
+    }
+
+    // Accolades
+    function renderAccolades() {
+        // Collect all individual performances
+        const performances = [];
+
+        gamesData.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            const turns = game.stats['Number of turns'] || {};
+            const appeal = game.stats['Appeal'] || {};
+            const conservation = game.stats['Conservation'] || {};
+            const date = game.date || 'Unknown';
+            const url = game.url;
+            const turnCount = parseInt(Object.values(turns)[0]) || 999;
+
+            Object.entries(results).forEach(([player, result]) => {
+                if (!TRACKED_PLAYERS.includes(player)) return;
+
+                const scoreMatch = result.match(/\((\d+)\)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                const appealVal = parseInt(appeal[player]) || 0;
+                const conservationVal = parseInt(conservation[player]) || 0;
+                const isWinner = result.startsWith('1st');
+
+                performances.push({
+                    player,
+                    score,
+                    turns: turnCount,
+                    appeal: appealVal,
+                    conservation: conservationVal,
+                    date,
+                    url,
+                    isWinner
+                });
+            });
+        });
+
+        // Format date for display
+        function formatDate(dateStr) {
+            if (!dateStr || dateStr === 'Unknown') return '';
+            const [year, month, day] = dateStr.split('-');
+            return `${parseInt(month)}/${parseInt(day)}/${year.slice(2)}`;
+        }
+
+        // Render accolade list
+        function renderList(elementId, sorted, valueKey, valueFormat) {
+            const top3 = sorted.slice(0, 3);
+            const el = document.getElementById(elementId);
+            el.innerHTML = top3.map(p => `
+                <li>
+                    <div class="accolade-info">
+                        <span class="accolade-value">${valueFormat(p[valueKey])}</span>
+                        <span class="accolade-detail">${getDisplayName(p.player)} - ${formatDate(p.date)}</span>
+                    </div>
+                    <a href="${p.url}" target="_blank" class="accolade-link game-link">View</a>
+                </li>
+            `).join('');
+        }
+
+        // Highest scores
+        const byScore = [...performances].sort((a, b) => b.score - a.score);
+        renderList('highest-scores', byScore, 'score', v => `${v} pts`);
+
+        // Fastest games (fewest turns) - only winners
+        const winners = performances.filter(p => p.isWinner);
+        const byTurns = [...winners].sort((a, b) => a.turns - b.turns);
+        renderList('fastest-games', byTurns, 'turns', v => `${v} turns`);
+
+        // Most appeal
+        const byAppeal = [...performances].sort((a, b) => b.appeal - a.appeal);
+        renderList('most-appeal', byAppeal, 'appeal', v => `${v} appeal`);
+
+        // Most conservation
+        const byConservation = [...performances].sort((a, b) => b.conservation - a.conservation);
+        renderList('most-conservation', byConservation, 'conservation', v => `${v} conservation`);
     }
 
     // Leaderboard
@@ -468,6 +553,80 @@
         });
     }
 
+    // Score KDE plot
+    function renderScoreKDE() {
+        // Collect scores per player
+        const playerScores = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerScores[player] = [];
+        });
+
+        let globalMin = Infinity;
+        let globalMax = -Infinity;
+
+        gamesData.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            Object.entries(results).forEach(([player, result]) => {
+                if (!TRACKED_PLAYERS.includes(player)) return;
+                const match = result.match(/\((\d+)\)/);
+                if (match) {
+                    const score = parseInt(match[1]);
+                    playerScores[player].push(score);
+                    globalMin = Math.min(globalMin, score);
+                    globalMax = Math.max(globalMax, score);
+                }
+            });
+        });
+
+        // Add padding to range
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = globalMin - padding;
+        const xMax = globalMax + padding;
+
+        // Compute KDE for each player
+        const datasets = TRACKED_PLAYERS.map(player => {
+            const data = playerScores[player];
+            const bandwidth = 5; // Wider bandwidth for scores
+            const kde = computeKDE(data, xMin, xMax, bandwidth, 100);
+
+            return {
+                label: getDisplayName(player),
+                data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            };
+        });
+
+        const ctx = document.getElementById('score-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Score' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
     // Score histograms per player
     function renderScoreHistograms() {
         // Collect all scores to determine bin range
@@ -564,6 +723,818 @@
                 }
             });
         });
+    }
+
+    // Gaussian kernel for KDE
+    function gaussianKernel(x) {
+        return Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
+    }
+
+    // Compute KDE for a dataset
+    function computeKDE(data, xMin, xMax, bandwidth, numPoints = 100) {
+        const step = (xMax - xMin) / (numPoints - 1);
+        const xValues = [];
+        const yValues = [];
+
+        for (let i = 0; i < numPoints; i++) {
+            const x = xMin + i * step;
+            xValues.push(x);
+
+            let density = 0;
+            for (const xi of data) {
+                density += gaussianKernel((x - xi) / bandwidth);
+            }
+            density /= (data.length * bandwidth);
+            yValues.push(density);
+        }
+
+        return { x: xValues, y: yValues };
+    }
+
+    // Animal icons KDE plot
+    function renderAnimalIconsKDE() {
+        const animalTypes = [
+            { key: 'Bird icons', label: 'Birds', color: '#87ceeb' },
+            { key: 'Predator icons', label: 'Predators', color: '#f87171' },
+            { key: 'Herbivore icons', label: 'Herbivores', color: '#4ade80' },
+            { key: 'Reptile icons', label: 'Reptiles', color: '#8b5cf6' },
+            { key: 'Primate icons', label: 'Primates', color: '#fde047' },
+            { key: 'Sea Animal icons', label: 'Sea Animals', color: '#1e3a5f' },
+            { key: 'Petting Zoo icons', label: 'Petting Zoo', color: '#d1d5db' },
+            { key: 'Bear icons', label: 'Bears', color: '#8b4513' }
+        ];
+
+        // Collect totals for all types
+        const allTotals = {};
+        let globalMin = Infinity;
+        let globalMax = -Infinity;
+
+        animalTypes.forEach(type => {
+            allTotals[type.key] = [];
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                const total = Object.values(iconStats).reduce((sum, val) => {
+                    return sum + (parseInt(val) || 0);
+                }, 0);
+                allTotals[type.key].push(total);
+                globalMin = Math.min(globalMin, total);
+                globalMax = Math.max(globalMax, total);
+            });
+        });
+
+        // Add padding to range
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        // Compute KDE for each type
+        const datasets = animalTypes.map(type => {
+            const data = allTotals[type.key];
+            const bandwidth = 1.5; // Adjust for smoothness
+            const kde = computeKDE(data, xMin, xMax, bandwidth, 100);
+
+            return {
+                label: type.label,
+                data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                borderColor: type.color,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            };
+        });
+
+        const ctx = document.getElementById('animal-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Icons per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Animal icons KDE by player
+    function renderAnimalIconsByPlayer() {
+        const animalTypes = [
+            { key: 'Bird icons', canvasId: 'kde-birds-player', sharedAxis: true },
+            { key: 'Predator icons', canvasId: 'kde-predators-player', sharedAxis: true },
+            { key: 'Herbivore icons', canvasId: 'kde-herbivores-player', sharedAxis: true },
+            { key: 'Reptile icons', canvasId: 'kde-reptiles-player', sharedAxis: true },
+            { key: 'Primate icons', canvasId: 'kde-primates-player', sharedAxis: true },
+            { key: 'Sea Animal icons', canvasId: 'kde-seaanimals-player', sharedAxis: true },
+            { key: 'Petting Zoo icons', canvasId: 'kde-pettingzoo-player', sharedAxis: false },
+            { key: 'Bear icons', canvasId: 'kde-bears-player', sharedAxis: false }
+        ];
+
+        // First pass: collect all data and find shared axis range
+        const allPlayerCounts = {};
+        let sharedMin = Infinity;
+        let sharedMax = -Infinity;
+
+        animalTypes.forEach(type => {
+            allPlayerCounts[type.key] = {};
+            TRACKED_PLAYERS.forEach(player => {
+                allPlayerCounts[type.key][player] = [];
+            });
+
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                TRACKED_PLAYERS.forEach(player => {
+                    const count = parseInt(iconStats[player]) || 0;
+                    allPlayerCounts[type.key][player].push(count);
+                    if (type.sharedAxis) {
+                        sharedMin = Math.min(sharedMin, count);
+                        sharedMax = Math.max(sharedMax, count);
+                    }
+                });
+            });
+        });
+
+        // Add padding to shared range
+        const sharedPadding = Math.max(1, (sharedMax - sharedMin) * 0.1);
+        const sharedXMin = Math.max(0, sharedMin - sharedPadding);
+        const sharedXMax = sharedMax + sharedPadding;
+
+        animalTypes.forEach(type => {
+            const playerCounts = allPlayerCounts[type.key];
+
+            let xMin, xMax;
+            if (type.sharedAxis) {
+                xMin = sharedXMin;
+                xMax = sharedXMax;
+            } else {
+                // Calculate individual range for this type
+                let typeMin = Infinity;
+                let typeMax = -Infinity;
+                TRACKED_PLAYERS.forEach(player => {
+                    playerCounts[player].forEach(count => {
+                        typeMin = Math.min(typeMin, count);
+                        typeMax = Math.max(typeMax, count);
+                    });
+                });
+                const padding = Math.max(1, (typeMax - typeMin) * 0.1);
+                xMin = Math.max(0, typeMin - padding);
+                xMax = typeMax + padding;
+            }
+
+            // Compute KDE for each player
+            const datasets = TRACKED_PLAYERS.map(player => {
+                const data = playerCounts[player];
+                const bandwidth = 0.8;
+                const kde = computeKDE(data, xMin, xMax, bandwidth, 100);
+
+                return {
+                    label: getDisplayName(player),
+                    data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                    borderColor: PLAYER_COLORS[player],
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    fill: false
+                };
+            });
+
+            const ctx = document.getElementById(type.canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { boxWidth: 12, padding: 8 }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: xMin,
+                            max: xMax,
+                            title: { display: true, text: 'Icons per Game' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Density' },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Animal icons distribution histograms
+    function renderAnimalIcons() {
+        const animalTypes = [
+            { key: 'Bird icons', canvasId: 'histogram-birds', color: '#87ceeb', sharedAxis: true },
+            { key: 'Predator icons', canvasId: 'histogram-predators', color: '#f87171', sharedAxis: true },
+            { key: 'Herbivore icons', canvasId: 'histogram-herbivores', color: '#4ade80', sharedAxis: true },
+            { key: 'Bear icons', canvasId: 'histogram-bears', color: '#8b4513', sharedAxis: false },
+            { key: 'Reptile icons', canvasId: 'histogram-reptiles', color: '#8b5cf6', sharedAxis: true },
+            { key: 'Primate icons', canvasId: 'histogram-primates', color: '#fde047', sharedAxis: true },
+            { key: 'Petting Zoo icons', canvasId: 'histogram-pettingzoo', color: '#d1d5db', sharedAxis: false },
+            { key: 'Sea Animal icons', canvasId: 'histogram-seaanimals', color: '#1e3a5f', sharedAxis: true }
+        ];
+
+        // Collect totals for all types first
+        const allTotals = {};
+        animalTypes.forEach(type => {
+            allTotals[type.key] = [];
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                const total = Object.values(iconStats).reduce((sum, val) => {
+                    return sum + (parseInt(val) || 0);
+                }, 0);
+                allTotals[type.key].push(total);
+            });
+        });
+
+        // Find max value for shared axis types
+        const sharedAxisMax = Math.max(
+            ...animalTypes
+                .filter(t => t.sharedAxis)
+                .flatMap(t => allTotals[t.key])
+        );
+
+        animalTypes.forEach(type => {
+            const totals = allTotals[type.key];
+            const maxVal = type.sharedAxis ? sharedAxisMax : Math.max(...totals, 0);
+
+            // Build histogram bins
+            const bins = {};
+            for (let i = 0; i <= maxVal; i++) {
+                bins[i] = 0;
+            }
+            totals.forEach(val => {
+                bins[val] = (bins[val] || 0) + 1;
+            });
+
+            const labels = Object.keys(bins).map(k => k.toString());
+            const data = Object.values(bins);
+
+            const ctx = document.getElementById(type.canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Games',
+                        data: data,
+                        backgroundColor: type.color + 'CC',
+                        borderColor: type.color,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 },
+                            title: { display: true, text: 'Games' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Icons' }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Continent icons KDE plot
+    function renderContinentIconsKDE() {
+        const continentTypes = [
+            { key: 'Africa icons', label: 'Africa', color: '#fde047' },
+            { key: 'Americas icons', label: 'Americas', color: '#f97316' },
+            { key: 'Asia icons', label: 'Asia', color: '#4ade80' },
+            { key: 'Europe icons', label: 'Europe', color: '#87ceeb' },
+            { key: 'Australia icons', label: 'Australia', color: '#ef4444' }
+        ];
+
+        // Collect totals for all types
+        const allTotals = {};
+        let globalMin = Infinity;
+        let globalMax = -Infinity;
+
+        continentTypes.forEach(type => {
+            allTotals[type.key] = [];
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                const total = Object.values(iconStats).reduce((sum, val) => {
+                    return sum + (parseInt(val) || 0);
+                }, 0);
+                allTotals[type.key].push(total);
+                globalMin = Math.min(globalMin, total);
+                globalMax = Math.max(globalMax, total);
+            });
+        });
+
+        // Add padding to range
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        // Compute KDE for each type
+        const datasets = continentTypes.map(type => {
+            const data = allTotals[type.key];
+            const bandwidth = 1.5;
+            const kde = computeKDE(data, xMin, xMax, bandwidth, 100);
+
+            return {
+                label: type.label,
+                data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                borderColor: type.color,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            };
+        });
+
+        const ctx = document.getElementById('continent-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Icons per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Continent icons KDE by player
+    function renderContinentIconsByPlayer() {
+        const continentTypes = [
+            { key: 'Africa icons', canvasId: 'kde-africa-player' },
+            { key: 'Americas icons', canvasId: 'kde-americas-player' },
+            { key: 'Asia icons', canvasId: 'kde-asia-player' },
+            { key: 'Europe icons', canvasId: 'kde-europe-player' },
+            { key: 'Australia icons', canvasId: 'kde-australia-player' }
+        ];
+
+        // First pass: collect all data and find shared axis range
+        const allPlayerCounts = {};
+        let sharedMin = Infinity;
+        let sharedMax = -Infinity;
+
+        continentTypes.forEach(type => {
+            allPlayerCounts[type.key] = {};
+            TRACKED_PLAYERS.forEach(player => {
+                allPlayerCounts[type.key][player] = [];
+            });
+
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                TRACKED_PLAYERS.forEach(player => {
+                    const count = parseInt(iconStats[player]) || 0;
+                    allPlayerCounts[type.key][player].push(count);
+                    sharedMin = Math.min(sharedMin, count);
+                    sharedMax = Math.max(sharedMax, count);
+                });
+            });
+        });
+
+        // Add padding to shared range
+        const sharedPadding = Math.max(1, (sharedMax - sharedMin) * 0.1);
+        const xMin = Math.max(0, sharedMin - sharedPadding);
+        const xMax = sharedMax + sharedPadding;
+
+        continentTypes.forEach(type => {
+            const playerCounts = allPlayerCounts[type.key];
+
+            // Compute KDE for each player
+            const datasets = TRACKED_PLAYERS.map(player => {
+                const data = playerCounts[player];
+                const bandwidth = 0.8;
+                const kde = computeKDE(data, xMin, xMax, bandwidth, 100);
+
+                return {
+                    label: getDisplayName(player),
+                    data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                    borderColor: PLAYER_COLORS[player],
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.4,
+                    pointRadius: 0,
+                    fill: false
+                };
+            });
+
+            const ctx = document.getElementById(type.canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { boxWidth: 12, padding: 8 }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            min: xMin,
+                            max: xMax,
+                            title: { display: true, text: 'Icons per Game' }
+                        },
+                        y: {
+                            title: { display: true, text: 'Density' },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Continent icons distribution histograms
+    function renderContinentIcons() {
+        const continentTypes = [
+            { key: 'Africa icons', canvasId: 'histogram-africa', color: '#fde047' },
+            { key: 'Americas icons', canvasId: 'histogram-americas', color: '#f97316' },
+            { key: 'Asia icons', canvasId: 'histogram-asia', color: '#4ade80' },
+            { key: 'Europe icons', canvasId: 'histogram-europe', color: '#87ceeb' },
+            { key: 'Australia icons', canvasId: 'histogram-australia', color: '#ef4444' }
+        ];
+
+        // Collect totals for all continents first
+        const allTotals = {};
+        continentTypes.forEach(type => {
+            allTotals[type.key] = [];
+            gamesData.forEach(game => {
+                const iconStats = game.stats[type.key] || {};
+                const total = Object.values(iconStats).reduce((sum, val) => {
+                    return sum + (parseInt(val) || 0);
+                }, 0);
+                allTotals[type.key].push(total);
+            });
+        });
+
+        // Find max value across all continents for shared axis
+        const sharedAxisMax = Math.max(
+            ...continentTypes.flatMap(t => allTotals[t.key])
+        );
+
+        continentTypes.forEach(type => {
+            const totals = allTotals[type.key];
+
+            // Build histogram bins using shared max
+            const bins = {};
+            for (let i = 0; i <= sharedAxisMax; i++) {
+                bins[i] = 0;
+            }
+            totals.forEach(val => {
+                bins[val] = (bins[val] || 0) + 1;
+            });
+
+            const labels = Object.keys(bins).map(k => k.toString());
+            const data = Object.values(bins);
+
+            const ctx = document.getElementById(type.canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Games',
+                        data: data,
+                        backgroundColor: type.color + 'CC',
+                        borderColor: type.color,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { stepSize: 1 },
+                            title: { display: true, text: 'Games' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Icons' }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Money gained vs spent KDE
+    function renderMoneyKDE() {
+        const moneyGainedPerGame = [];
+        const moneySpentPerGame = [];
+
+        gamesData.forEach(game => {
+            const gained = game.stats['Money gained'] || {};
+            const spentAnimals = game.stats['Money spent on animals'] || {};
+            const spentEnclosures = game.stats['Money spent on enclosures'] || {};
+            const spentDonations = game.stats['Money spent on donations'] || {};
+            const spentCards = game.stats['Money spent for playing cards from reputation range'] || {};
+
+            let totalGained = 0;
+            let totalSpent = 0;
+            let playerCount = 0;
+
+            TRACKED_PLAYERS.forEach(player => {
+                const g = parseInt(gained[player]) || 0;
+                const s1 = parseInt(spentAnimals[player]) || 0;
+                const s2 = parseInt(spentEnclosures[player]) || 0;
+                const s3 = parseInt(spentDonations[player]) || 0;
+                const s4 = parseInt(spentCards[player]) || 0;
+
+                totalGained += g;
+                totalSpent += s1 + s2 + s3 + s4;
+                playerCount++;
+            });
+
+            // Average per player
+            moneyGainedPerGame.push(totalGained / playerCount);
+            moneySpentPerGame.push(totalSpent / playerCount);
+        });
+
+        // Find global range
+        const allValues = [...moneyGainedPerGame, ...moneySpentPerGame];
+        const globalMin = Math.min(...allValues);
+        const globalMax = Math.max(...allValues);
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        // Compute KDEs
+        const bandwidth = 5;
+        const kdeGained = computeKDE(moneyGainedPerGame, xMin, xMax, bandwidth, 100);
+        const kdeSpent = computeKDE(moneySpentPerGame, xMin, xMax, bandwidth, 100);
+
+        const datasets = [
+            {
+                label: 'Money Gained',
+                data: kdeGained.x.map((x, i) => ({ x: x, y: kdeGained.y[i] })),
+                borderColor: '#22c55e',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            },
+            {
+                label: 'Money Spent',
+                data: kdeSpent.x.map((x, i) => ({ x: x, y: kdeSpent.y[i] })),
+                borderColor: '#ef4444',
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            }
+        ];
+
+        const ctx = document.getElementById('money-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Money per Player per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Money by player KDE
+    function renderMoneyByPlayerKDE() {
+        const playerMoneyGained = {};
+        const playerMoneySpent = {};
+
+        TRACKED_PLAYERS.forEach(player => {
+            playerMoneyGained[player] = [];
+            playerMoneySpent[player] = [];
+        });
+
+        gamesData.forEach(game => {
+            const gained = game.stats['Money gained'] || {};
+            const spentAnimals = game.stats['Money spent on animals'] || {};
+            const spentEnclosures = game.stats['Money spent on enclosures'] || {};
+            const spentDonations = game.stats['Money spent on donations'] || {};
+            const spentCards = game.stats['Money spent for playing cards from reputation range'] || {};
+
+            TRACKED_PLAYERS.forEach(player => {
+                const g = parseInt(gained[player]) || 0;
+                const s1 = parseInt(spentAnimals[player]) || 0;
+                const s2 = parseInt(spentEnclosures[player]) || 0;
+                const s3 = parseInt(spentDonations[player]) || 0;
+                const s4 = parseInt(spentCards[player]) || 0;
+
+                playerMoneyGained[player].push(g);
+                playerMoneySpent[player].push(s1 + s2 + s3 + s4);
+            });
+        });
+
+        // Find global range
+        const allValues = [
+            ...Object.values(playerMoneyGained).flat(),
+            ...Object.values(playerMoneySpent).flat()
+        ];
+        const globalMin = Math.min(...allValues);
+        const globalMax = Math.max(...allValues);
+        const padding = (globalMax - globalMin) * 0.1;
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        const bandwidth = 5;
+        const datasets = [];
+
+        // Add spent (solid) and gained (dashed) for each player
+        TRACKED_PLAYERS.forEach(player => {
+            const kdeSpent = computeKDE(playerMoneySpent[player], xMin, xMax, bandwidth, 100);
+            const kdeGained = computeKDE(playerMoneyGained[player], xMin, xMax, bandwidth, 100);
+
+            datasets.push({
+                label: `${getDisplayName(player)} Spent`,
+                data: kdeSpent.x.map((x, i) => ({ x: x, y: kdeSpent.y[i] })),
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [],
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            });
+
+            datasets.push({
+                label: `${getDisplayName(player)} Gained`,
+                data: kdeGained.x.map((x, i) => ({ x: x, y: kdeGained.y[i] })),
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            });
+        });
+
+        const ctx = document.getElementById('money-player-kde-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { boxWidth: 12, padding: 8 }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: { display: true, text: 'Money per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Generic stat KDE renderer (player breakdown only)
+    function renderStatKDE(statKey, playerCanvasId, bandwidth = 2) {
+        const playerValues = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerValues[player] = [];
+        });
+
+        gamesData.forEach(game => {
+            const stats = game.stats[statKey] || {};
+            TRACKED_PLAYERS.forEach(player => {
+                const val = parseInt(stats[player]) || 0;
+                playerValues[player].push(val);
+            });
+        });
+
+        // Find global range across all data
+        const allValues = Object.values(playerValues).flat();
+        const globalMin = Math.min(...allValues);
+        const globalMax = Math.max(...allValues);
+        const padding = Math.max(1, (globalMax - globalMin) * 0.1);
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        // Player breakdown KDE
+        const datasets = TRACKED_PLAYERS.map(player => {
+            const kde = computeKDE(playerValues[player], xMin, xMax, bandwidth, 100);
+            return {
+                label: getDisplayName(player),
+                data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            };
+        });
+
+        const ctxPlayer = document.getElementById(playerCanvasId).getContext('2d');
+        new Chart(ctxPlayer, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, padding: 8 } }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        min: xMin,
+                        max: xMax,
+                        title: { display: true, text: 'Value per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    // Render all additional stat KDEs
+    function renderAdditionalStats() {
+        renderStatKDE('Conservation', 'conservation-player-kde', 3);
+        renderStatKDE('Appeal', 'appeal-player-kde', 3);
+        renderStatKDE('Reputation', 'reputation-player-kde', 2);
+        renderStatKDE('Number of breaks triggered', 'breaks-player-kde', 0.5);
+        renderStatKDE('Played sponsors', 'sponsors-player-kde', 1);
+        renderStatKDE('Played animals', 'animals-player-kde', 1);
     }
 
     // Placement distribution

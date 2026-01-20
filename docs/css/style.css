@@ -245,9 +245,26 @@ a:hover {
     width: 100%;
 }
 
+.chart-container-half {
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
 .histogram-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.histogram-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.histogram-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -265,6 +282,75 @@ a:hover {
 
 .histogram-item canvas {
     max-height: 250px;
+}
+
+/* Accolades */
+.accolades-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.accolade-category h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.accolade-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.accolade-list li {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--bg-color);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accolade-list li:first-child {
+    background: linear-gradient(135deg, #fff9e6, #fff3cc);
+    border: 1px solid var(--gold);
+}
+
+.accolade-list li:nth-child(2) {
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+    border: 1px solid var(--silver);
+}
+
+.accolade-list li:nth-child(3) {
+    background: linear-gradient(135deg, #fdf4e7, #f5e6d3);
+    border: 1px solid var(--bronze);
+}
+
+.accolade-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.accolade-value {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.accolade-detail {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.accolade-link {
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .accolades-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Footer */
@@ -337,5 +423,13 @@ footer {
 
     .histogram-grid {
         grid-template-columns: 1fr;
+    }
+
+    .histogram-grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .histogram-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

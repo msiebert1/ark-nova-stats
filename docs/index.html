@@ -22,16 +22,34 @@
                     <span class="card-label">Games Played</span>
                 </div>
                 <div class="card">
-                    <span class="card-value" id="total-players">0</span>
-                    <span class="card-label">Players</span>
-                </div>
-                <div class="card">
                     <span class="card-value" id="avg-score">0</span>
                     <span class="card-label">Avg Score</span>
                 </div>
                 <div class="card">
                     <span class="card-value" id="avg-turns">0</span>
                     <span class="card-label">Avg Turns</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="accolades" class="stats-section">
+            <h2>Accolades</h2>
+            <div class="accolades-grid">
+                <div class="accolade-category">
+                    <h3>Highest Scores</h3>
+                    <ol id="highest-scores" class="accolade-list"></ol>
+                </div>
+                <div class="accolade-category">
+                    <h3>Fastest Games (Fewest Turns)</h3>
+                    <ol id="fastest-games" class="accolade-list"></ol>
+                </div>
+                <div class="accolade-category">
+                    <h3>Most Appeal</h3>
+                    <ol id="most-appeal" class="accolade-list"></ol>
+                </div>
+                <div class="accolade-category">
+                    <h3>Most Conservation</h3>
+                    <ol id="most-conservation" class="accolade-list"></ol>
                 </div>
             </div>
         </section>
@@ -96,8 +114,16 @@
             </div>
         </section>
 
+        <section id="score-kde" class="stats-section">
+            <h2>Score Distribution (KDE)</h2>
+            <p class="section-desc">Kernel density estimates of player scores</p>
+            <div class="chart-container">
+                <canvas id="score-kde-chart"></canvas>
+            </div>
+        </section>
+
         <section id="score-histograms" class="stats-section">
-            <h2>Score Distribution</h2>
+            <h2>Score Distribution (Histograms)</h2>
             <div class="histogram-grid">
                 <div class="histogram-item">
                     <h3>Matt</h3>
@@ -115,6 +141,218 @@
                     <h3>Keith</h3>
                     <canvas id="histogram-keith"></canvas>
                 </div>
+            </div>
+        </section>
+
+        <section id="animal-icons-kde" class="stats-section">
+            <h2>Animal Icons Distribution (KDE)</h2>
+            <p class="section-desc">Kernel density estimates of animal icons per game (total)</p>
+            <div class="chart-container">
+                <canvas id="animal-kde-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="animal-icons-by-player" class="stats-section">
+            <h2>Animal Icons by Player (KDE)</h2>
+            <p class="section-desc">Distribution of animal icons played per game by each player</p>
+            <div class="histogram-grid">
+                <div class="histogram-item">
+                    <h3>Birds</h3>
+                    <canvas id="kde-birds-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Predators</h3>
+                    <canvas id="kde-predators-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Herbivores</h3>
+                    <canvas id="kde-herbivores-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Reptiles</h3>
+                    <canvas id="kde-reptiles-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Primates</h3>
+                    <canvas id="kde-primates-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Sea Animals</h3>
+                    <canvas id="kde-seaanimals-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Petting Zoo</h3>
+                    <canvas id="kde-pettingzoo-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Bears</h3>
+                    <canvas id="kde-bears-player"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="animal-icons" class="stats-section">
+            <h2>Animal Icons Distribution (Histograms)</h2>
+            <p class="section-desc">Total animal icons played per game (sum of all players)</p>
+            <div class="histogram-grid-4">
+                <div class="histogram-item">
+                    <h3>Birds</h3>
+                    <canvas id="histogram-birds"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Predators</h3>
+                    <canvas id="histogram-predators"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Herbivores</h3>
+                    <canvas id="histogram-herbivores"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Reptiles</h3>
+                    <canvas id="histogram-reptiles"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Primates</h3>
+                    <canvas id="histogram-primates"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Sea Animals</h3>
+                    <canvas id="histogram-seaanimals"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Petting Zoo</h3>
+                    <canvas id="histogram-pettingzoo"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Bears</h3>
+                    <canvas id="histogram-bears"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="continent-icons-kde" class="stats-section">
+            <h2>Continent Icons Distribution (KDE)</h2>
+            <p class="section-desc">Kernel density estimates of continent icons per game (total)</p>
+            <div class="chart-container">
+                <canvas id="continent-kde-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="continent-icons-by-player" class="stats-section">
+            <h2>Continent Icons by Player (KDE)</h2>
+            <p class="section-desc">Distribution of continent icons played per game by each player</p>
+            <div class="histogram-grid">
+                <div class="histogram-item">
+                    <h3>Africa</h3>
+                    <canvas id="kde-africa-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Americas</h3>
+                    <canvas id="kde-americas-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Asia</h3>
+                    <canvas id="kde-asia-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Europe</h3>
+                    <canvas id="kde-europe-player"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Australia</h3>
+                    <canvas id="kde-australia-player"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="continent-icons" class="stats-section">
+            <h2>Continent Icons Distribution (Histograms)</h2>
+            <p class="section-desc">Total continent icons played per game (sum of all players)</p>
+            <div class="histogram-grid-3">
+                <div class="histogram-item">
+                    <h3>Africa</h3>
+                    <canvas id="histogram-africa"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Americas</h3>
+                    <canvas id="histogram-americas"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Asia</h3>
+                    <canvas id="histogram-asia"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Europe</h3>
+                    <canvas id="histogram-europe"></canvas>
+                </div>
+                <div class="histogram-item">
+                    <h3>Australia</h3>
+                    <canvas id="histogram-australia"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="money-kde" class="stats-section">
+            <h2>Money Distribution (KDE)</h2>
+            <p class="section-desc">Average money gained vs spent per player per game</p>
+            <div class="chart-container">
+                <canvas id="money-kde-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="money-by-player-kde" class="stats-section">
+            <h2>Money by Player (KDE)</h2>
+            <p class="section-desc">Money gained (dashed) vs spent (solid) per game by player</p>
+            <div class="chart-container">
+                <canvas id="money-player-kde-chart"></canvas>
+            </div>
+        </section>
+
+        <section id="conservation-kde" class="stats-section">
+            <h2>Conservation Distribution (KDE)</h2>
+            <p class="section-desc">Conservation points per game by player</p>
+            <div class="chart-container">
+                <canvas id="conservation-player-kde"></canvas>
+            </div>
+        </section>
+
+        <section id="appeal-kde" class="stats-section">
+            <h2>Appeal Distribution (KDE)</h2>
+            <p class="section-desc">Appeal points per game by player</p>
+            <div class="chart-container">
+                <canvas id="appeal-player-kde"></canvas>
+            </div>
+        </section>
+
+        <section id="reputation-kde" class="stats-section">
+            <h2>Reputation Distribution (KDE)</h2>
+            <p class="section-desc">Reputation points per game by player</p>
+            <div class="chart-container">
+                <canvas id="reputation-player-kde"></canvas>
+            </div>
+        </section>
+
+        <section id="breaks-kde" class="stats-section">
+            <h2>Breaks Triggered Distribution (KDE)</h2>
+            <p class="section-desc">Number of breaks triggered per game by player</p>
+            <div class="chart-container">
+                <canvas id="breaks-player-kde"></canvas>
+            </div>
+        </section>
+
+        <section id="sponsors-kde" class="stats-section">
+            <h2>Played Sponsors Distribution (KDE)</h2>
+            <p class="section-desc">Sponsors played per game by player</p>
+            <div class="chart-container">
+                <canvas id="sponsors-player-kde"></canvas>
+            </div>
+        </section>
+
+        <section id="animals-kde" class="stats-section">
+            <h2>Played Animals Distribution (KDE)</h2>
+            <p class="section-desc">Animals played per game by player</p>
+            <div class="chart-container">
+                <canvas id="animals-player-kde"></canvas>
             </div>
         </section>
 
