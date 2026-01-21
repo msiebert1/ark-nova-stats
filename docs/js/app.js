@@ -96,17 +96,16 @@
         renderMoneyKDE();
         renderMoneyByPlayerKDE();
         renderAdditionalStats();
+        renderCardsDrawnKDE();
         renderPointDisparity();
         renderDisparityDistribution();
         renderDisparityByPlayer();
-        renderPlacement();
         renderAnimalIconTotals();
         renderContinentIconTotals();
         renderPlayerBestMaps();
         renderMaps();
         renderMapSelectionTotal();
         renderMapSelectionByPlayer();
-        renderEfficiency();
         renderHistory();
     }
 
@@ -221,12 +220,18 @@
                 const placeMatch = result.match(/^(\d)/);
                 const placement = placeMatch ? parseInt(placeMatch[1]) : 0;
 
+                // Calculate point disparity
+                const appealPts = appealVal;
+                const conservationPts = 3 * conservationVal - 10;
+                const disparity = appealPts - conservationPts;
+
                 performances.push({
                     player,
                     score,
                     turns: turnCount,
                     appeal: appealVal,
                     conservation: conservationVal,
+                    disparity,
                     date,
                     url,
                     isWinner,
@@ -328,6 +333,17 @@
                 <a href="${s.url}" target="_blank" class="accolade-link game-link">View</a>
             </li>
         `).join('');
+
+        // Point disparity accolades (only for scores >= 100)
+        const validDisparities = performances.filter(p => p.score >= 100);
+
+        // Most appeal-heavy (highest positive disparity)
+        const byPositiveDisparity = [...validDisparities].sort((a, b) => b.disparity - a.disparity);
+        renderList('most-appeal-heavy', byPositiveDisparity, 'disparity', v => `+${v.toFixed(0)}`);
+
+        // Most conservation-heavy (lowest/most negative disparity)
+        const byNegativeDisparity = [...validDisparities].sort((a, b) => a.disparity - b.disparity);
+        renderList('most-conservation-heavy', byNegativeDisparity, 'disparity', v => `${v.toFixed(0)}`);
     }
 
     // Leaderboard
@@ -335,16 +351,28 @@
         const playerStats = {};
 
         allPlayers.forEach(player => {
-            playerStats[player] = { wins: 0, games: 0, scores: [], totalScore: 0 };
+            playerStats[player] = {
+                wins: 0,
+                games: 0,
+                scores: [],
+                totalScore: 0,
+                totalPoints: 0,
+                totalTurns: 0,
+                bestPPT: 0,
+                fastestWin: Infinity
+            };
         });
 
         gamesData.forEach(game => {
             const results = game.stats['Game result'] || {};
+            const turns = game.stats['Number of turns'] || {};
+
             Object.entries(results).forEach(([player, result]) => {
                 if (!playerStats[player]) return;
                 playerStats[player].games++;
 
-                if (result.startsWith('1st')) {
+                const isWinner = result.startsWith('1st');
+                if (isWinner) {
                     playerStats[player].wins++;
                 }
 
@@ -353,6 +381,22 @@
                     const score = parseInt(match[1]);
                     playerStats[player].scores.push(score);
                     playerStats[player].totalScore += score;
+
+                    // Efficiency tracking
+                    const playerTurns = turns[player];
+                    if (playerTurns) {
+                        const t = parseInt(playerTurns);
+                        playerStats[player].totalPoints += score;
+                        playerStats[player].totalTurns += t;
+                        const ppt = score / t;
+                        if (ppt > playerStats[player].bestPPT) {
+                            playerStats[player].bestPPT = ppt;
+                        }
+                        // Track fastest win
+                        if (isWinner && t < playerStats[player].fastestWin) {
+                            playerStats[player].fastestWin = t;
+                        }
+                    }
                 }
             });
         });
@@ -374,6 +418,9 @@
             const winRate = ((stats.wins / stats.games) * 100).toFixed(1);
             const avgScore = stats.games ? Math.round(stats.totalScore / stats.games) : 0;
             const bestScore = stats.scores.length ? Math.max(...stats.scores) : 0;
+            const avgPPT = stats.totalTurns > 0 ? (stats.totalPoints / stats.totalTurns).toFixed(2) : '0.00';
+            const bestPPT = stats.bestPPT.toFixed(2);
+            const fastestWin = stats.fastestWin === Infinity ? '-' : stats.fastestWin;
 
             let rankClass = '';
             if (idx === 0) rankClass = 'rank-1';
@@ -385,10 +432,12 @@
                     <td class="${rankClass}">${idx + 1}</td>
                     <td>${getDisplayName(player)}</td>
                     <td>${stats.wins}</td>
-                    <td>${stats.games}</td>
                     <td>${winRate}%</td>
                     <td>${avgScore}</td>
                     <td>${bestScore}</td>
+                    <td>${avgPPT}</td>
+                    <td>${bestPPT}</td>
+                    <td>${fastestWin}</td>
                 </tr>
             `;
         }).join('');
@@ -1654,10 +1703,77 @@
         renderStatKDE('Played animals', 'animals-player-kde', 1);
     }
 
+    // Cards drawn KDE by player
+    function renderCardsDrawnKDE() {
+        const playerValues = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerValues[player] = [];
+        });
+
+        gamesData.forEach(game => {
+            const stats = game.stats['Cards drawn from deck'] || {};
+            TRACKED_PLAYERS.forEach(player => {
+                const val = parseInt(stats[player]) || 0;
+                playerValues[player].push(val);
+            });
+        });
+
+        // Find global range across all data
+        const allValues = Object.values(playerValues).flat();
+        const globalMin = Math.min(...allValues);
+        const globalMax = Math.max(...allValues);
+        const padding = Math.max(1, (globalMax - globalMin) * 0.1);
+        const xMin = Math.max(0, globalMin - padding);
+        const xMax = globalMax + padding;
+
+        const bandwidth = 2;
+
+        // Player breakdown KDE
+        const datasets = TRACKED_PLAYERS.map(player => {
+            const kde = computeKDE(playerValues[player], xMin, xMax, bandwidth, 100);
+            return {
+                label: getDisplayName(player),
+                data: kde.x.map((x, i) => ({ x: x, y: kde.y[i] })),
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.4,
+                pointRadius: 0,
+                fill: false
+            };
+        });
+
+        const ctx = document.getElementById('cards-drawn-player-kde').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, padding: 8 } }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        min: xMin,
+                        max: xMax,
+                        title: { display: true, text: 'Cards Drawn per Game' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Density' },
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
     // Point disparity (appeal vs conservation)
     function renderPointDisparity() {
         // Appeal points = appeal
         // Conservation points = 10*2 + (conservation - 10)*3 = 3*conservation - 10
+        // Only include players with final score >= 100
         const playerStats = {};
 
         TRACKED_PLAYERS.forEach(player => {
@@ -1671,8 +1787,16 @@
         gamesData.forEach(game => {
             const appeal = game.stats['Appeal'] || {};
             const conservation = game.stats['Conservation'] || {};
+            const results = game.stats['Game result'] || {};
 
             TRACKED_PLAYERS.forEach(player => {
+                // Check if player's score >= 100
+                const result = results[player];
+                if (!result) return;
+                const scoreMatch = result.match(/\((\d+)\)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                if (score < 100) return;
+
                 const appealVal = parseInt(appeal[player]) || 0;
                 const conservationVal = parseInt(conservation[player]) || 0;
 
@@ -1713,6 +1837,7 @@
     }
 
     // Disparity distribution (all players vs winners)
+    // Only include players with final score >= 100
     function renderDisparityDistribution() {
         const allDisparities = [];
         const winnerDisparities = [];
@@ -1723,6 +1848,12 @@
             const results = game.stats['Game result'] || {};
 
             TRACKED_PLAYERS.forEach(player => {
+                const result = results[player];
+                if (!result) return;
+                const scoreMatch = result.match(/\((\d+)\)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                if (score < 100) return;
+
                 const appealVal = parseInt(appeal[player]) || 0;
                 const conservationVal = parseInt(conservation[player]) || 0;
 
@@ -1732,8 +1863,7 @@
 
                 allDisparities.push(disparity);
 
-                const result = results[player];
-                if (result && result.startsWith('1st')) {
+                if (result.startsWith('1st')) {
                     winnerDisparities.push(disparity);
                 }
             });
@@ -1800,6 +1930,7 @@
     }
 
     // Disparity histograms by player
+    // Only include games where player's final score >= 100
     function renderDisparityByPlayer() {
         const playerDisparities = {};
         TRACKED_PLAYERS.forEach(player => {
@@ -1809,8 +1940,15 @@
         gamesData.forEach(game => {
             const appeal = game.stats['Appeal'] || {};
             const conservation = game.stats['Conservation'] || {};
+            const results = game.stats['Game result'] || {};
 
             TRACKED_PLAYERS.forEach(player => {
+                const result = results[player];
+                if (!result) return;
+                const scoreMatch = result.match(/\((\d+)\)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                if (score < 100) return;
+
                 const appealVal = parseInt(appeal[player]) || 0;
                 const conservationVal = parseInt(conservation[player]) || 0;
 
@@ -1887,46 +2025,6 @@
                 }
             });
         });
-    }
-
-    // Placement distribution
-    function renderPlacement() {
-        const placements = {};
-
-        allPlayers.forEach(player => {
-            placements[player] = { 1: 0, 2: 0, 3: 0, 4: 0, total: 0 };
-        });
-
-        gamesData.forEach(game => {
-            const results = game.stats['Game result'] || {};
-            Object.entries(results).forEach(([player, result]) => {
-                if (!placements[player]) return;
-                placements[player].total++;
-
-                const placeMatch = result.match(/^(\d)/);
-                if (placeMatch) {
-                    const place = parseInt(placeMatch[1]);
-                    if (place >= 1 && place <= 4) {
-                        placements[player][place]++;
-                    }
-                }
-            });
-        });
-
-        const sorted = Object.entries(placements)
-            .filter(([_, p]) => p.total >= 1)
-            .sort((a, b) => b[1][1] - a[1][1]);
-
-        const tbody = document.querySelector('#placement-table tbody');
-        tbody.innerHTML = sorted.map(([player, p]) => `
-            <tr>
-                <td>${getDisplayName(player)}</td>
-                <td class="rank-1">${p[1]}</td>
-                <td class="rank-2">${p[2]}</td>
-                <td class="rank-3">${p[3]}</td>
-                <td>${p[4]}</td>
-            </tr>
-        `).join('');
     }
 
     // Total animal icons by player
@@ -2332,61 +2430,6 @@
                 }
             });
         });
-    }
-
-    // Efficiency stats
-    function renderEfficiency() {
-        const playerEfficiency = {};
-
-        allPlayers.forEach(player => {
-            playerEfficiency[player] = { totalPoints: 0, totalTurns: 0, games: 0, bestPPT: 0 };
-        });
-
-        gamesData.forEach(game => {
-            const results = game.stats['Game result'] || {};
-            const turns = game.stats['Number of turns'] || {};
-
-            Object.entries(results).forEach(([player, result]) => {
-                if (!playerEfficiency[player]) return;
-
-                const scoreMatch = result.match(/\((\d+)\)/);
-                const playerTurns = turns[player];
-
-                if (scoreMatch && playerTurns) {
-                    const score = parseInt(scoreMatch[1]);
-                    const t = parseInt(playerTurns);
-
-                    playerEfficiency[player].totalPoints += score;
-                    playerEfficiency[player].totalTurns += t;
-                    playerEfficiency[player].games++;
-
-                    const ppt = score / t;
-                    if (ppt > playerEfficiency[player].bestPPT) {
-                        playerEfficiency[player].bestPPT = ppt;
-                    }
-                }
-            });
-        });
-
-        const sorted = Object.entries(playerEfficiency)
-            .filter(([_, e]) => e.games >= 1)
-            .sort((a, b) => {
-                const aAvg = a[1].totalPoints / a[1].totalTurns;
-                const bAvg = b[1].totalPoints / b[1].totalTurns;
-                return bAvg - aAvg;
-            });
-
-        const tbody = document.querySelector('#efficiency-table tbody');
-        tbody.innerHTML = sorted.map(([player, e]) => {
-            const avgPPT = e.totalTurns ? (e.totalPoints / e.totalTurns).toFixed(2) : 0;
-            return `
-                <tr>
-                    <td>${getDisplayName(player)}</td>
-                    <td>${avgPPT}</td>
-                    <td>${e.bestPPT.toFixed(2)}</td>
-                </tr>
-            `;
-        }).join('');
     }
 
     // Game history

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         BGA Ark Nova Stats Collector
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Auto-collect Ark Nova game stats from BGA
 // @match        https://boardgamearena.com/*
 // @match        https://*.boardgamearena.com/*
@@ -15,6 +15,10 @@
     const QUEUE_KEY = 'arkNovaQueue';
     const INDEX_KEY = 'arkNovaIndex';
     const RUNNING_KEY = 'arkNovaRunning';
+    const EXISTING_IDS_KEY = 'arkNovaExistingIds';
+
+    // URL to fetch existing games from GitHub Pages
+    const GAMES_JSON_URL = 'https://msiebert1.github.io/ark-nova-stats/data/detailed_games.json';
 
     // Add control button to page
     function addControlButton() {
@@ -73,7 +77,7 @@
         }
     }
 
-    function startCollection() {
+    async function startCollection() {
         const isStatsPage = window.location.href.includes('/gamestats');
 
         if (!isStatsPage) {
@@ -92,14 +96,38 @@
             return;
         }
 
-        localStorage.setItem(QUEUE_KEY, JSON.stringify(tableIds));
+        // Fetch existing game IDs from GitHub Pages
+        let existingIds = [];
+        try {
+            const response = await fetch(GAMES_JSON_URL + '?t=' + Date.now());
+            if (response.ok) {
+                const data = await response.json();
+                existingIds = (data.games || []).map(function(g) { return g.tableId; });
+                console.log('[Ark Nova] Found ' + existingIds.length + ' existing games on GitHub Pages');
+            }
+        } catch (e) {
+            console.log('[Ark Nova] Could not fetch existing games, will collect all:', e);
+        }
+
+        // Filter out already collected games
+        const newTableIds = tableIds.filter(function(id) {
+            return existingIds.indexOf(id) === -1;
+        });
+
+        if (newTableIds.length === 0) {
+            alert('No new games to collect! All ' + tableIds.length + ' games already in database.');
+            return;
+        }
+
+        localStorage.setItem(QUEUE_KEY, JSON.stringify(newTableIds));
         localStorage.setItem(INDEX_KEY, '0');
         localStorage.setItem(STORAGE_KEY, '[]');
         localStorage.setItem(RUNNING_KEY, 'true');
+        localStorage.setItem(EXISTING_IDS_KEY, JSON.stringify(existingIds));
 
-        alert(`Found ${tableIds.length} games. Starting collection...\n\nClick the button anytime to stop and export.`);
+        alert('Found ' + newTableIds.length + ' NEW games to collect (skipping ' + existingIds.length + ' existing).\n\nClick the button anytime to stop and export.');
 
-        window.location.href = 'https://boardgamearena.com/table?table=' + tableIds[0];
+        window.location.href = 'https://boardgamearena.com/table?table=' + newTableIds[0];
     }
 
     // Extract game date from the page

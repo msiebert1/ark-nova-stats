@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-01-19T22:09:01.139Z",
-  "totalGames": 66,
+  "exportedAt": "2026-01-18T23:27:42.188Z",
+  "totalGames": 67,
   "games": [
     {
       "tableId": "787453392",
@@ -456,8 +456,7 @@
           "marksbrt": "1",
           "siebert23": "2"
         }
-      },
-      "date": "2026-01-09"
+      }
     },
     {
       "tableId": "779706773",
@@ -913,8 +912,7 @@
           "AstroHood": "6",
           "siebert23": "4"
         }
-      },
-      "date": "2025-12-25"
+      }
     },
     {
       "tableId": "776992864",
@@ -1370,8 +1368,7 @@
           "msiebert": "3",
           "marksbrt": "3"
         }
-      },
-      "date": "2025-12-19"
+      }
     },
     {
       "tableId": "773722822",
@@ -1827,8 +1824,7 @@
           "AstroHood": "2",
           "msiebert": "4"
         }
-      },
-      "date": "2025-12-12"
+      }
     },
     {
       "tableId": "770410542",
@@ -2284,8 +2280,7 @@
           "siebert23": "2",
           "AstroHood": "3"
         }
-      },
-      "date": "2025-12-05"
+      }
     },
     {
       "tableId": "767730800",
@@ -2666,8 +2661,7 @@
           "msiebert": "4",
           "AstroHood": "5"
         }
-      },
-      "date": "2025-11-29"
+      }
     },
     {
       "tableId": "766743433",
@@ -3123,8 +3117,7 @@
           "AstroHood": "3",
           "siebert23": "3"
         }
-      },
-      "date": "2025-11-27"
+      }
     },
     {
       "tableId": "763971199",
@@ -3580,8 +3573,7 @@
           "marksbrt": "4",
           "msiebert": "3"
         }
-      },
-      "date": "2025-11-21"
+      }
     },
     {
       "tableId": "760668790",
@@ -4037,8 +4029,7 @@
           "msiebert": "1",
           "siebert23": "2"
         }
-      },
-      "date": "2025-11-14"
+      }
     },
     {
       "tableId": "757408882",
@@ -4494,8 +4485,7 @@
           "marksbrt": "2",
           "siebert23": "4"
         }
-      },
-      "date": "2025-11-07"
+      }
     },
     {
       "tableId": "757272133",
@@ -4951,8 +4941,7 @@
           "siebert23": "-",
           "marksbrt": "-"
         }
-      },
-      "date": "2025-11-07"
+      }
     },
     {
       "tableId": "753887215",
@@ -5408,8 +5397,7 @@
           "msiebert": "2",
           "marksbrt": "2"
         }
-      },
-      "date": "2025-10-31"
+      }
     },
     {
       "tableId": "750441190",
@@ -5865,8 +5853,7 @@
           "msiebert": "3",
           "siebert23": "2"
         }
-      },
-      "date": "2025-10-24"
+      }
     },
     {
       "tableId": "747084160",
@@ -6322,8 +6309,7 @@
           "marksbrt": "2",
           "AstroHood": "5"
         }
-      },
-      "date": "2025-10-17"
+      }
     },
     {
       "tableId": "741894430",
@@ -6779,8 +6765,7 @@
           "msiebert": "2",
           "AstroHood": "2"
         }
-      },
-      "date": "2025-10-10"
+      }
     },
     {
       "tableId": "738615135",
@@ -7236,8 +7221,7 @@
           "siebert23": "4",
           "marksbrt": "5"
         }
-      },
-      "date": "2025-10-03"
+      }
     },
     {
       "tableId": "735212026",
@@ -7693,8 +7677,7 @@
           "siebert23": "0",
           "msiebert": "1"
         }
-      },
-      "date": "2025-09-26"
+      }
     },
     {
       "tableId": "732076907",
@@ -8150,8 +8133,7 @@
           "msiebert": "2",
           "AstroHood": "2"
         }
-      },
-      "date": "2025-09-19"
+      }
     },
     {
       "tableId": "728834201",
@@ -8607,8 +8589,7 @@
           "siebert23": "4",
           "msiebert": "6"
         }
-      },
-      "date": "2025-09-12"
+      }
     },
     {
       "tableId": "725557532",
@@ -9064,8 +9045,7 @@
           "siebert23": "6",
           "AstroHood": "3"
         }
-      },
-      "date": "2025-09-05"
+      }
     },
     {
       "tableId": "722043393",
@@ -9521,8 +9501,7 @@
           "AstroHood": "3",
           "marksbrt": "2"
         }
-      },
-      "date": "2025-08-29"
+      }
     },
     {
       "tableId": "719172706",
@@ -9978,8 +9957,7 @@
           "msiebert": "6",
           "AstroHood": "2"
         }
-      },
-      "date": "2025-08-23"
+      }
     },
     {
       "tableId": "715547102",
@@ -10435,8 +10413,7 @@
           "msiebert": "2",
           "AstroHood": "1"
         }
-      },
-      "date": "2025-08-15"
+      }
     },
     {
       "tableId": "712367919",
@@ -10892,8 +10869,7 @@
           "AstroHood": "4",
           "msiebert": "2"
         }
-      },
-      "date": "2025-08-08"
+      }
     },
     {
       "tableId": "708988803",
@@ -11349,8 +11325,7 @@
           "marksbrt": "5",
           "siebert23": "5"
         }
-      },
-      "date": "2025-08-01"
+      }
     },
     {
       "tableId": "705888320",
@@ -11806,8 +11781,7 @@
           "siebert23": "3",
           "msiebert": "6"
         }
-      },
-      "date": "2025-07-25"
+      }
     },
     {
       "tableId": "702854720",
@@ -12263,8 +12237,7 @@
           "msiebert": "2",
           "AstroHood": "5"
         }
-      },
-      "date": "2025-07-18"
+      }
     },
     {
       "tableId": "699566783",
@@ -12720,8 +12693,7 @@
           "msiebert": "1",
           "siebert23": "4"
         }
-      },
-      "date": "2025-07-10"
+      }
     },
     {
       "tableId": "696633264",
@@ -13177,8 +13149,7 @@
           "marksbrt": "3",
           "AstroHood": "1"
         }
-      },
-      "date": "2025-07-04"
+      }
     },
     {
       "tableId": "693705593",
@@ -13634,8 +13605,7 @@
           "AstroHood": "2",
           "siebert23": "1"
         }
-      },
-      "date": "2025-06-27"
+      }
     },
     {
       "tableId": "690495259",
@@ -14091,8 +14061,7 @@
           "msiebert": "2",
           "marksbrt": "4"
         }
-      },
-      "date": "2025-06-20"
+      }
     },
     {
       "tableId": "686985317",
@@ -14548,8 +14517,7 @@
           "msiebert": "3",
           "siebert23": "2"
         }
-      },
-      "date": "2025-06-12"
+      }
     },
     {
       "tableId": "684024882",
@@ -15005,8 +14973,7 @@
           "siebert23": "5",
           "msiebert": "3"
         }
-      },
-      "date": "2025-06-06"
+      }
     },
     {
       "tableId": "680675641",
@@ -15462,8 +15429,7 @@
           "marksbrt": "5",
           "AstroHood": "1"
         }
-      },
-      "date": "2025-05-30"
+      }
     },
     {
       "tableId": "677691635",
@@ -15919,8 +15885,7 @@
           "msiebert": "5",
           "siebert23": "5"
         }
-      },
-      "date": "2025-05-24"
+      }
     },
     {
       "tableId": "674060290",
@@ -16376,8 +16341,7 @@
           "marksbrt": "4",
           "AstroHood": "5"
         }
-      },
-      "date": "2025-05-16"
+      }
     },
     {
       "tableId": "670821819",
@@ -16833,8 +16797,7 @@
           "msiebert": "6",
           "marksbrt": "3"
         }
-      },
-      "date": "2025-05-09"
+      }
     },
     {
       "tableId": "667036882",
@@ -17290,8 +17253,7 @@
           "marksbrt": "4",
           "siebert23": "7"
         }
-      },
-      "date": "2025-05-01"
+      }
     },
     {
       "tableId": "663751707",
@@ -17747,8 +17709,7 @@
           "marksbrt": "6",
           "msiebert": "1"
         }
-      },
-      "date": "2025-04-24"
+      }
     },
     {
       "tableId": "660387982",
@@ -18204,8 +18165,7 @@
           "msiebert": "4",
           "siebert23": "3"
         }
-      },
-      "date": "2025-04-17"
+      }
     },
     {
       "tableId": "657000425",
@@ -18661,8 +18621,7 @@
           "msiebert": "2",
           "AstroHood": "2"
         }
-      },
-      "date": "2025-04-10"
+      }
     },
     {
       "tableId": "654077461",
@@ -19118,8 +19077,7 @@
           "msiebert": "3",
           "AstroHood": "3"
         }
-      },
-      "date": "2025-04-04"
+      }
     },
     {
       "tableId": "650449850",
@@ -19575,8 +19533,7 @@
           "msiebert": "2",
           "AstroHood": "8"
         }
-      },
-      "date": "2025-03-27"
+      }
     },
     {
       "tableId": "647302397",
@@ -20032,8 +19989,83 @@
           "AstroHood": "3",
           "msiebert": "5"
         }
-      },
-      "date": "2025-03-21"
+      }
+    },
+    {
+      "tableId": "644930512",
+      "url": "https://boardgamearena.com/table?table=644930512",
+      "players": [
+        "AstroHood",
+        "Gamerhood",
+        "msiebert"
+      ],
+      "stats": {
+        "Game result": {
+          "AstroHood": "1st (91)",
+          "Gamerhood": "2nd (82)",
+          "msiebert": "3rd (68)"
+        },
+        "Thinking time": {
+          "AstroHood": "36h02",
+          "Gamerhood": "45h12",
+          "msiebert": "36h43"
+        },
+        "Number of turns": {
+          "AstroHood": "45",
+          "Gamerhood": "43",
+          "msiebert": "40"
+        },
+        "VP from cards": {
+          "AstroHood": "22",
+          "Gamerhood": "11",
+          "msiebert": "20"
+        },
+        "VP from cities": {
+          "AstroHood": "14",
+          "Gamerhood": "4",
+          "msiebert": "4"
+        },
+        "VP from greeneries": {
+          "AstroHood": "8",
+          "Gamerhood": "4",
+          "msiebert": "3"
+        },
+        "VP from Terraforming Rating": {
+          "AstroHood": "38",
+          "Gamerhood": "38",
+          "msiebert": "37"
+        },
+        "VP from Milestones": {
+          "AstroHood": "5",
+          "Gamerhood": "10",
+          "msiebert": "0"
+        },
+        "VP from Awards": {
+          "AstroHood": "4",
+          "Gamerhood": "15",
+          "msiebert": "4"
+        },
+        "VP total": {
+          "AstroHood": "91",
+          "Gamerhood": "82",
+          "msiebert": "68"
+        },
+        "Number of actions": {
+          "AstroHood": "68",
+          "Gamerhood": "57",
+          "msiebert": "54"
+        },
+        "Corporation": {
+          "AstroHood": "Teractor",
+          "Gamerhood": "Mining Guild",
+          "msiebert": "ThorGate"
+        },
+        "User Interface Theme": {
+          "AstroHood": "Digital",
+          "Gamerhood": "Digital",
+          "msiebert": "Digital"
+        }
+      }
     },
     {
       "tableId": "644053930",
@@ -20489,8 +20521,7 @@
           "msiebert": "8",
           "marksbrt": "3"
         }
-      },
-      "date": "2025-03-14"
+      }
     },
     {
       "tableId": "639947862",
@@ -20946,8 +20977,7 @@
           "siebert23": "5",
           "marksbrt": "2"
         }
-      },
-      "date": "2025-03-06"
+      }
     },
     {
       "tableId": "636665494",
@@ -21403,8 +21433,7 @@
           "siebert23": "2",
           "AstroHood": "5"
         }
-      },
-      "date": "2025-02-27"
+      }
     },
     {
       "tableId": "633638281",
@@ -21860,8 +21889,7 @@
           "msiebert": "7",
           "siebert23": "2"
         }
-      },
-      "date": "2025-02-21"
+      }
     },
     {
       "tableId": "630217196",
@@ -22317,8 +22345,7 @@
           "msiebert": "3",
           "marksbrt": "7"
         }
-      },
-      "date": "2025-02-14"
+      }
     },
     {
       "tableId": "626887468",
@@ -22774,8 +22801,7 @@
           "siebert23": "2",
           "marksbrt": "1"
         }
-      },
-      "date": "2025-02-07"
+      }
     },
     {
       "tableId": "624066909",
@@ -23231,8 +23257,7 @@
           "siebert23": "6",
           "AstroHood": "2"
         }
-      },
-      "date": "2025-02-01"
+      }
     },
     {
       "tableId": "623064310",
@@ -23688,8 +23713,7 @@
           "msiebert": "3",
           "siebert23": "2"
         }
-      },
-      "date": "2025-01-30"
+      }
     },
     {
       "tableId": "619786140",
@@ -24145,8 +24169,7 @@
           "AstroHood": "5",
           "siebert23": "4"
         }
-      },
-      "date": "2025-01-23"
+      }
     },
     {
       "tableId": "616951170",
@@ -24602,8 +24625,7 @@
           "siebert23": "6",
           "marksbrt": "1"
         }
-      },
-      "date": "2025-01-17"
+      }
     },
     {
       "tableId": "615387922",
@@ -25059,8 +25081,7 @@
           "msiebert": "1",
           "siebert23": "2"
         }
-      },
-      "date": "2025-01-14"
+      }
     },
     {
       "tableId": "613497330",
@@ -25516,8 +25537,7 @@
           "msiebert": "3",
           "siebert23": "8"
         }
-      },
-      "date": "2025-01-10"
+      }
     },
     {
       "tableId": "613131063",
@@ -25973,8 +25993,7 @@
           "siebert23": "-",
           "marksbrt": "-"
         }
-      },
-      "date": "2025-01-09"
+      }
     },
     {
       "tableId": "609676271",
@@ -26430,8 +26449,7 @@
           "AstroHood": "4",
           "siebert23": "2"
         }
-      },
-      "date": "2025-01-02"
+      }
     },
     {
       "tableId": "607429413",
@@ -26812,8 +26830,7 @@
           "siebert23": "3",
           "msiebert": "5"
         }
-      },
-      "date": "2024-12-28"
+      }
     },
     {
       "tableId": "606643836",
@@ -27194,8 +27211,7 @@
           "siebert23": "7",
           "marksbrt": "4"
         }
-      },
-      "date": "2024-12-26"
+      }
     },
     {
       "tableId": "605562525",
@@ -27576,8 +27592,7 @@
           "msiebert": "3",
           "siebert23": "4"
         }
-      },
-      "date": "2024-12-23"
+      }
     },
     {
       "tableId": "605555247",
@@ -27883,8 +27898,7 @@
           "msiebert": "-",
           "siebert23": "-"
         }
-      },
-      "date": "2024-12-23"
+      }
     },
     {
       "tableId": "605554023",
@@ -28190,8 +28204,7 @@
           "siebert23": "0",
           "msiebert": "0"
         }
-      },
-      "date": "2024-12-23"
+      }
     },
     {
       "tableId": "557724342",
@@ -28497,8 +28510,7 @@
           "msiebert": "5",
           "AstroHood": "6"
         }
-      },
-      "date": "2024-09-02"
+      }
     },
     {
       "tableId": "557713069",
@@ -28804,99 +28816,15 @@
           "AstroHood": "-",
           "msiebert": "-"
         }
-      },
-      "date": "2024-09-02"
+      }
     },
     {
-      "tableId": "791054483",
-      "url": "https://boardgamearena.com/table?table=791054483",
-      "players": [
-        "msiebert",
-        "siebert23",
-        "AstroHood",
-        "marksbrt"
-      ],
+      "tableId": "792278605",
+      "url": "https://boardgamearena.com/table?table=792278605",
+      "players": [],
       "stats": {
-        "Game result": {
-          "msiebert": "1st (67)",
-          "siebert23": "2nd (65)",
-          "AstroHood": "3rd (61)",
-          "marksbrt": "4th (48)"
-        },
-        "Thinking time": {
-          "msiebert": "19h57",
-          "siebert23": "12h01",
-          "AstroHood": "20h01",
-          "marksbrt": "30h47"
-        },
-        "Number of turns": {
-          "msiebert": "30",
-          "siebert23": "33",
-          "AstroHood": "27",
-          "marksbrt": "31"
-        },
-        "VP from cards": {
-          "msiebert": "20",
-          "siebert23": "12",
-          "AstroHood": "10",
-          "marksbrt": "0"
-        },
-        "VP from cities": {
-          "msiebert": "6",
-          "siebert23": "3",
-          "AstroHood": "5",
-          "marksbrt": "8"
-        },
-        "VP from greeneries": {
-          "msiebert": "4",
-          "siebert23": "4",
-          "AstroHood": "3",
-          "marksbrt": "3"
-        },
-        "VP from Terraforming Rating": {
-          "msiebert": "32",
-          "siebert23": "34",
-          "AstroHood": "31",
-          "marksbrt": "30"
-        },
-        "VP from Milestones": {
-          "msiebert": "0",
-          "siebert23": "5",
-          "AstroHood": "5",
-          "marksbrt": "5"
-        },
-        "VP from Awards": {
-          "msiebert": "5",
-          "siebert23": "7",
-          "AstroHood": "7",
-          "marksbrt": "2"
-        },
-        "VP total": {
-          "msiebert": "67",
-          "siebert23": "65",
-          "AstroHood": "61",
-          "marksbrt": "48"
-        },
-        "Number of actions": {
-          "msiebert": "31",
-          "siebert23": "40",
-          "AstroHood": "30",
-          "marksbrt": "34"
-        },
-        "Corporation": {
-          "msiebert": "Saturn Systems",
-          "siebert23": "Cheung Shing Mars",
-          "AstroHood": "CrediCor",
-          "marksbrt": "Robinson Industries"
-        },
-        "User Interface Theme": {
-          "msiebert": "Digital",
-          "siebert23": "Digital",
-          "AstroHood": "Digital",
-          "marksbrt": "Digital"
-        }
-      },
-      "date": "2026-01-16"
+        "Game result": {}
+      }
     }
   ]
 }
