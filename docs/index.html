@@ -13,610 +13,635 @@
         <p class="subtitle">Weekly Game Statistics</p>
     </header>
 
+    <nav class="tab-nav">
+        <button class="tab-btn active" data-tab="overview">Overview</button>
+        <button class="tab-btn" data-tab="accolades">Accolades</button>
+        <button class="tab-btn" data-tab="icons">Icons</button>
+        <button class="tab-btn" data-tab="strategy">Strategy</button>
+        <button class="tab-btn" data-tab="cards">Cards</button>
+        <button class="tab-btn" data-tab="maps">Maps</button>
+        <button class="tab-btn" data-tab="history">History</button>
+    </nav>
+
     <main>
-        <section id="summary" class="stats-section">
-            <h2>Overview</h2>
-            <div class="summary-cards">
-                <div class="card">
-                    <span class="card-value" id="total-games">0</span>
-                    <span class="card-label">Games Played</span>
+        <!-- OVERVIEW TAB -->
+        <div id="tab-overview" class="tab-content active">
+            <section id="summary" class="stats-section">
+                <h2>Overview</h2>
+                <div class="summary-cards">
+                    <div class="card">
+                        <span class="card-value" id="total-games">0</span>
+                        <span class="card-label">Games Played</span>
+                    </div>
+                    <div class="card">
+                        <span class="card-value" id="avg-score">0</span>
+                        <span class="card-label">Avg Score</span>
+                    </div>
+                    <div class="card">
+                        <span class="card-value" id="avg-turns">0</span>
+                        <span class="card-label">Avg Turns</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <span class="card-value" id="avg-score">0</span>
-                    <span class="card-label">Avg Score</span>
-                </div>
-                <div class="card">
-                    <span class="card-value" id="avg-turns">0</span>
-                    <span class="card-label">Avg Turns</span>
-                </div>
-            </div>
-            <div id="recent-game" class="recent-game-summary"></div>
-        </section>
+                <div id="recent-game" class="recent-game-summary"></div>
+            </section>
 
-        <section id="accolades" class="stats-section">
-            <h2>Accolades</h2>
-            <div class="accolades-grid">
-                <div class="accolade-category">
-                    <h3>Highest Scores</h3>
-                    <ol id="highest-scores" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Fastest Games (Fewest Turns)</h3>
-                    <ol id="fastest-games" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Most Appeal</h3>
-                    <ol id="most-appeal" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Most Conservation</h3>
-                    <ol id="most-conservation" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Best Win Streak</h3>
-                    <ol id="best-win-streak" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Most Appeal-Heavy (Disparity)</h3>
-                    <ol id="most-appeal-heavy" class="accolade-list"></ol>
-                </div>
-                <div class="accolade-category">
-                    <h3>Most Conservation-Heavy (Disparity)</h3>
-                    <ol id="most-conservation-heavy" class="accolade-list"></ol>
-                </div>
-            </div>
-        </section>
+            <section id="leaderboard" class="stats-section">
+                <h2>Leaderboard</h2>
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Wins</th>
+                            <th>Win Rate</th>
+                            <th>Avg Score</th>
+                            <th>Best Score</th>
+                            <th>Avg Pts/Turn</th>
+                            <th>Best Pts/Turn</th>
+                            <th>Fastest Win</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
 
-        <section id="leaderboard" class="stats-section">
-            <h2>Leaderboard</h2>
-            <table id="leaderboard-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>Wins</th>
-                        <th>Win Rate</th>
-                        <th>Avg Score</th>
-                        <th>Best Score</th>
-                        <th>Avg Pts/Turn</th>
-                        <th>Best Pts/Turn</th>
-                        <th>Fastest Win</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
+            <section id="performance" class="stats-section">
+                <h2>Performance Metric</h2>
+                <p class="section-desc">10x1st + 6x2nd + 3x3rd + 1x4th</p>
+                <table id="performance-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>1st (x10)</th>
+                            <th>2nd (x6)</th>
+                            <th>3rd (x3)</th>
+                            <th>4th (x1)</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
 
-        <section id="performance" class="stats-section">
-            <h2>Performance Metric</h2>
-            <p class="section-desc">10×1st + 6×2nd + 3×3rd + 1×4th</p>
-            <table id="performance-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Player</th>
-                        <th>1st (×10)</th>
-                        <th>2nd (×6)</th>
-                        <th>3rd (×3)</th>
-                        <th>4th (×1)</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
+            <section id="turns-over-time" class="stats-section">
+                <h2>Turns Per Game Over Time</h2>
+                <div class="chart-container">
+                    <canvas id="turns-time-chart"></canvas>
+                </div>
+            </section>
 
-        <section id="score-trends" class="stats-section">
-            <h2>Score Over Time</h2>
-            <div class="chart-container">
-                <canvas id="score-time-chart"></canvas>
-            </div>
-        </section>
+            <section id="score-kde" class="stats-section">
+                <h2>Score Distribution (KDE)</h2>
+                <p class="section-desc">Kernel density estimates of player scores</p>
+                <div class="chart-container">
+                    <canvas id="score-kde-chart"></canvas>
+                </div>
+            </section>
 
-        <section id="turns-over-time" class="stats-section">
-            <h2>Turns Per Game Over Time</h2>
-            <div class="chart-container">
-                <canvas id="turns-time-chart"></canvas>
-            </div>
-        </section>
+            <section id="score-histograms" class="stats-section">
+                <h2>Score Distribution (Histograms)</h2>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Matt</h3>
+                        <canvas id="histogram-matt"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Mark</h3>
+                        <canvas id="histogram-mark"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Callie</h3>
+                        <canvas id="histogram-callie"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Keith</h3>
+                        <canvas id="histogram-keith"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-        <section id="winner-efficiency" class="stats-section">
-            <h2>Winner Points Per Turn Over Time</h2>
-            <div class="chart-container">
-                <canvas id="winner-ppt-chart"></canvas>
-            </div>
-        </section>
+        <!-- ACCOLADES TAB -->
+        <div id="tab-accolades" class="tab-content">
+            <section id="accolades" class="stats-section">
+                <h2>Accolades</h2>
+                <div class="accolades-grid">
+                    <div class="accolade-category">
+                        <h3>Highest Scores</h3>
+                        <ol id="highest-scores" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Fastest Games (Fewest Turns)</h3>
+                        <ol id="fastest-games" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Most Appeal</h3>
+                        <ol id="most-appeal" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Most Conservation</h3>
+                        <ol id="most-conservation" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Best Win Streak</h3>
+                        <ol id="best-win-streak" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Most Appeal-Heavy (Disparity)</h3>
+                        <ol id="most-appeal-heavy" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Most Conservation-Heavy (Disparity)</h3>
+                        <ol id="most-conservation-heavy" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Largest Margin of Victory</h3>
+                        <ol id="largest-margin" class="accolade-list"></ol>
+                    </div>
+                    <div class="accolade-category">
+                        <h3>Biggest Loss</h3>
+                        <ol id="biggest-loss" class="accolade-list"></ol>
+                    </div>
+                </div>
+            </section>
+        </div>
 
-        <section id="score-kde" class="stats-section">
-            <h2>Score Distribution (KDE)</h2>
-            <p class="section-desc">Kernel density estimates of player scores</p>
-            <div class="chart-container">
-                <canvas id="score-kde-chart"></canvas>
-            </div>
-        </section>
+        <!-- ICONS TAB -->
+        <div id="tab-icons" class="tab-content">
+            <section id="animal-icons-kde" class="stats-section">
+                <h2>Animal Icons Distribution (KDE)</h2>
+                <p class="section-desc">Kernel density estimates of animal icons per game (total)</p>
+                <div class="chart-container">
+                    <canvas id="animal-kde-chart"></canvas>
+                </div>
+            </section>
 
-        <section id="score-histograms" class="stats-section">
-            <h2>Score Distribution (Histograms)</h2>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Matt</h3>
-                    <canvas id="histogram-matt"></canvas>
+            <section id="animal-icons-by-player" class="stats-section">
+                <h2>Animal Icons by Player (KDE)</h2>
+                <p class="section-desc">Distribution of animal icons played per game by each player</p>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Birds</h3>
+                        <canvas id="kde-birds-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Predators</h3>
+                        <canvas id="kde-predators-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Herbivores</h3>
+                        <canvas id="kde-herbivores-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Reptiles</h3>
+                        <canvas id="kde-reptiles-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Primates</h3>
+                        <canvas id="kde-primates-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Sea Animals</h3>
+                        <canvas id="kde-seaanimals-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Petting Zoo</h3>
+                        <canvas id="kde-pettingzoo-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Bears</h3>
+                        <canvas id="kde-bears-player"></canvas>
+                    </div>
                 </div>
-                <div class="histogram-item">
-                    <h3>Mark</h3>
-                    <canvas id="histogram-mark"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Callie</h3>
-                    <canvas id="histogram-callie"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Keith</h3>
-                    <canvas id="histogram-keith"></canvas>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="animal-icons-kde" class="stats-section">
-            <h2>Animal Icons Distribution (KDE)</h2>
-            <p class="section-desc">Kernel density estimates of animal icons per game (total)</p>
-            <div class="chart-container">
-                <canvas id="animal-kde-chart"></canvas>
-            </div>
-        </section>
+            <section id="animal-icons" class="stats-section">
+                <h2>Animal Icons Distribution (Histograms)</h2>
+                <p class="section-desc">Total animal icons played per game (sum of all players)</p>
+                <div class="histogram-grid-4">
+                    <div class="histogram-item">
+                        <h3>Birds</h3>
+                        <canvas id="histogram-birds"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Predators</h3>
+                        <canvas id="histogram-predators"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Herbivores</h3>
+                        <canvas id="histogram-herbivores"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Reptiles</h3>
+                        <canvas id="histogram-reptiles"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Primates</h3>
+                        <canvas id="histogram-primates"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Sea Animals</h3>
+                        <canvas id="histogram-seaanimals"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Petting Zoo</h3>
+                        <canvas id="histogram-pettingzoo"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Bears</h3>
+                        <canvas id="histogram-bears"></canvas>
+                    </div>
+                </div>
+            </section>
 
-        <section id="animal-icons-by-player" class="stats-section">
-            <h2>Animal Icons by Player (KDE)</h2>
-            <p class="section-desc">Distribution of animal icons played per game by each player</p>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Birds</h3>
-                    <canvas id="kde-birds-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Predators</h3>
-                    <canvas id="kde-predators-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Herbivores</h3>
-                    <canvas id="kde-herbivores-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Reptiles</h3>
-                    <canvas id="kde-reptiles-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Primates</h3>
-                    <canvas id="kde-primates-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Sea Animals</h3>
-                    <canvas id="kde-seaanimals-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Petting Zoo</h3>
-                    <canvas id="kde-pettingzoo-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Bears</h3>
-                    <canvas id="kde-bears-player"></canvas>
-                </div>
-            </div>
-        </section>
+            <section id="animal-totals" class="stats-section">
+                <h2>Total Animal Icons by Player</h2>
+                <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
+                <table id="animal-totals-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>1st</th>
+                            <th>2nd</th>
+                            <th>3rd</th>
+                            <th>4th</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
 
-        <section id="animal-icons" class="stats-section">
-            <h2>Animal Icons Distribution (Histograms)</h2>
-            <p class="section-desc">Total animal icons played per game (sum of all players)</p>
-            <div class="histogram-grid-4">
-                <div class="histogram-item">
-                    <h3>Birds</h3>
-                    <canvas id="histogram-birds"></canvas>
+            <section id="continent-icons-kde" class="stats-section">
+                <h2>Continent Icons Distribution (KDE)</h2>
+                <p class="section-desc">Kernel density estimates of continent icons per game (total)</p>
+                <div class="chart-container">
+                    <canvas id="continent-kde-chart"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Predators</h3>
-                    <canvas id="histogram-predators"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Herbivores</h3>
-                    <canvas id="histogram-herbivores"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Reptiles</h3>
-                    <canvas id="histogram-reptiles"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Primates</h3>
-                    <canvas id="histogram-primates"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Sea Animals</h3>
-                    <canvas id="histogram-seaanimals"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Petting Zoo</h3>
-                    <canvas id="histogram-pettingzoo"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Bears</h3>
-                    <canvas id="histogram-bears"></canvas>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="continent-icons-kde" class="stats-section">
-            <h2>Continent Icons Distribution (KDE)</h2>
-            <p class="section-desc">Kernel density estimates of continent icons per game (total)</p>
-            <div class="chart-container">
-                <canvas id="continent-kde-chart"></canvas>
-            </div>
-        </section>
-
-        <section id="continent-icons-by-player" class="stats-section">
-            <h2>Continent Icons by Player (KDE)</h2>
-            <p class="section-desc">Distribution of continent icons played per game by each player</p>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Africa</h3>
-                    <canvas id="kde-africa-player"></canvas>
+            <section id="continent-icons-by-player" class="stats-section">
+                <h2>Continent Icons by Player (KDE)</h2>
+                <p class="section-desc">Distribution of continent icons played per game by each player</p>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Africa</h3>
+                        <canvas id="kde-africa-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Americas</h3>
+                        <canvas id="kde-americas-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Asia</h3>
+                        <canvas id="kde-asia-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Europe</h3>
+                        <canvas id="kde-europe-player"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Australia</h3>
+                        <canvas id="kde-australia-player"></canvas>
+                    </div>
                 </div>
-                <div class="histogram-item">
-                    <h3>Americas</h3>
-                    <canvas id="kde-americas-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Asia</h3>
-                    <canvas id="kde-asia-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Europe</h3>
-                    <canvas id="kde-europe-player"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Australia</h3>
-                    <canvas id="kde-australia-player"></canvas>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="continent-icons" class="stats-section">
-            <h2>Continent Icons Distribution (Histograms)</h2>
-            <p class="section-desc">Total continent icons played per game (sum of all players)</p>
-            <div class="histogram-grid-3">
-                <div class="histogram-item">
-                    <h3>Africa</h3>
-                    <canvas id="histogram-africa"></canvas>
+            <section id="continent-icons" class="stats-section">
+                <h2>Continent Icons Distribution (Histograms)</h2>
+                <p class="section-desc">Total continent icons played per game (sum of all players)</p>
+                <div class="histogram-grid-3">
+                    <div class="histogram-item">
+                        <h3>Africa</h3>
+                        <canvas id="histogram-africa"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Americas</h3>
+                        <canvas id="histogram-americas"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Asia</h3>
+                        <canvas id="histogram-asia"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Europe</h3>
+                        <canvas id="histogram-europe"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Australia</h3>
+                        <canvas id="histogram-australia"></canvas>
+                    </div>
                 </div>
-                <div class="histogram-item">
-                    <h3>Americas</h3>
-                    <canvas id="histogram-americas"></canvas>
+            </section>
+
+            <section id="continent-totals" class="stats-section">
+                <h2>Total Continent Icons by Player</h2>
+                <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
+                <table id="continent-totals-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>1st</th>
+                            <th>2nd</th>
+                            <th>3rd</th>
+                            <th>4th</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+
+        <!-- STRATEGY TAB -->
+        <div id="tab-strategy" class="tab-content">
+            <section id="appeal-kde" class="stats-section">
+                <h2>Appeal Distribution (KDE)</h2>
+                <p class="section-desc">Appeal points per game by player</p>
+                <div class="chart-container">
+                    <canvas id="appeal-player-kde"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Asia</h3>
-                    <canvas id="histogram-asia"></canvas>
+            </section>
+
+            <section id="conservation-kde" class="stats-section">
+                <h2>Conservation Distribution (KDE)</h2>
+                <p class="section-desc">Conservation points per game by player</p>
+                <div class="chart-container">
+                    <canvas id="conservation-player-kde"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Europe</h3>
-                    <canvas id="histogram-europe"></canvas>
+            </section>
+
+            <section id="point-disparity" class="stats-section">
+                <h2>Appeal vs Conservation Point Disparity</h2>
+                <p class="section-desc">Appeal points - Conservation points (positive = more from appeal, negative = more from conservation)<br>
+                Appeal pts = Appeal | Conservation pts = 10x2 + (Conservation-10)x3</p>
+                <table id="disparity-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Avg Appeal Pts</th>
+                            <th>Avg Conservation Pts</th>
+                            <th>Avg Disparity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="disparity-distribution" class="stats-section">
+                <h2>Point Disparity Distribution</h2>
+                <p class="section-desc">Comparing disparity of all players vs winners only</p>
+                <div class="chart-container">
+                    <canvas id="disparity-kde-chart"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Australia</h3>
-                    <canvas id="histogram-australia"></canvas>
+            </section>
+
+            <section id="disparity-by-player" class="stats-section">
+                <h2>Point Disparity by Player</h2>
+                <p class="section-desc">Individual disparity distributions (+ = more appeal, - = more conservation)</p>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Matt</h3>
+                        <canvas id="disparity-matt"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Mark</h3>
+                        <canvas id="disparity-mark"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Callie</h3>
+                        <canvas id="disparity-callie"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Keith</h3>
+                        <canvas id="disparity-keith"></canvas>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="money-kde" class="stats-section">
-            <h2>Money Distribution (KDE)</h2>
-            <p class="section-desc">Average money gained vs spent per player per game</p>
-            <div class="chart-container">
-                <canvas id="money-kde-chart"></canvas>
-            </div>
-        </section>
-
-        <section id="money-by-player-kde" class="stats-section">
-            <h2>Money by Player (KDE)</h2>
-            <p class="section-desc">Money gained (dashed) vs spent (solid) per game by player</p>
-            <div class="chart-container">
-                <canvas id="money-player-kde-chart"></canvas>
-            </div>
-        </section>
-
-        <section id="conservation-kde" class="stats-section">
-            <h2>Conservation Distribution (KDE)</h2>
-            <p class="section-desc">Conservation points per game by player</p>
-            <div class="chart-container">
-                <canvas id="conservation-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="appeal-kde" class="stats-section">
-            <h2>Appeal Distribution (KDE)</h2>
-            <p class="section-desc">Appeal points per game by player</p>
-            <div class="chart-container">
-                <canvas id="appeal-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="cards-drawn-kde" class="stats-section">
-            <h2>Cards Drawn Distribution (KDE)</h2>
-            <p class="section-desc">Cards drawn per game by player</p>
-            <div class="chart-container">
-                <canvas id="cards-drawn-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="point-disparity" class="stats-section">
-            <h2>Appeal vs Conservation Point Disparity</h2>
-            <p class="section-desc">Appeal points - Conservation points (positive = more from appeal, negative = more from conservation)<br>
-            Appeal pts = Appeal | Conservation pts = 10×2 + (Conservation-10)×3</p>
-            <table id="disparity-table">
-                <thead>
-                    <tr>
-                        <th>Player</th>
-                        <th>Avg Appeal Pts</th>
-                        <th>Avg Conservation Pts</th>
-                        <th>Avg Disparity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="disparity-distribution" class="stats-section">
-            <h2>Point Disparity Distribution</h2>
-            <p class="section-desc">Comparing disparity of all players vs winners only</p>
-            <div class="chart-container">
-                <canvas id="disparity-kde-chart"></canvas>
-            </div>
-        </section>
-
-        <section id="disparity-by-player" class="stats-section">
-            <h2>Point Disparity by Player</h2>
-            <p class="section-desc">Individual disparity distributions (+ = more appeal, - = more conservation)</p>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Matt</h3>
-                    <canvas id="disparity-matt"></canvas>
+            <section id="reputation-kde" class="stats-section">
+                <h2>Reputation Distribution (KDE)</h2>
+                <p class="section-desc">Reputation points per game by player</p>
+                <div class="chart-container">
+                    <canvas id="reputation-player-kde"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Mark</h3>
-                    <canvas id="disparity-mark"></canvas>
+            </section>
+
+            <section id="money-kde" class="stats-section">
+                <h2>Money Distribution (KDE)</h2>
+                <p class="section-desc">Average money gained vs spent per player per game</p>
+                <div class="chart-container">
+                    <canvas id="money-kde-chart"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Callie</h3>
-                    <canvas id="disparity-callie"></canvas>
+            </section>
+
+            <section id="money-by-player-kde" class="stats-section">
+                <h2>Money by Player (KDE)</h2>
+                <p class="section-desc">Money gained (dashed) vs spent (solid) per game by player</p>
+                <div class="chart-container">
+                    <canvas id="money-player-kde-chart"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Keith</h3>
-                    <canvas id="disparity-keith"></canvas>
+            </section>
+
+            <section id="breaks-kde" class="stats-section">
+                <h2>Breaks Triggered Distribution (KDE)</h2>
+                <p class="section-desc">Number of breaks triggered per game by player</p>
+                <div class="chart-container">
+                    <canvas id="breaks-player-kde"></canvas>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="reputation-kde" class="stats-section">
-            <h2>Reputation Distribution (KDE)</h2>
-            <p class="section-desc">Reputation points per game by player</p>
-            <div class="chart-container">
-                <canvas id="reputation-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="breaks-kde" class="stats-section">
-            <h2>Breaks Triggered Distribution (KDE)</h2>
-            <p class="section-desc">Number of breaks triggered per game by player</p>
-            <div class="chart-container">
-                <canvas id="breaks-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="sponsors-kde" class="stats-section">
-            <h2>Played Sponsors Distribution (KDE)</h2>
-            <p class="section-desc">Sponsors played per game by player</p>
-            <div class="chart-container">
-                <canvas id="sponsors-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="animals-kde" class="stats-section">
-            <h2>Played Animals Distribution (KDE)</h2>
-            <p class="section-desc">Animals played per game by player</p>
-            <div class="chart-container">
-                <canvas id="animals-player-kde"></canvas>
-            </div>
-        </section>
-
-        <section id="animal-totals" class="stats-section">
-            <h2>Total Animal Icons by Player</h2>
-            <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
-            <table id="animal-totals-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>4th</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="continent-totals" class="stats-section">
-            <h2>Total Continent Icons by Player</h2>
-            <p class="section-desc">Total icons played across all games (sorted by count within each category)</p>
-            <table id="continent-totals-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>1st</th>
-                        <th>2nd</th>
-                        <th>3rd</th>
-                        <th>4th</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="top-cards" class="stats-section">
-            <h2>Most Played Cards</h2>
-            <p class="section-desc">Top 20 most frequently played cards across all players</p>
-            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
-                <canvas id="top-cards-overall"></canvas>
-            </div>
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Least Played Cards</h3>
-            <p class="section-desc">Bottom 20 least frequently played cards (minimum 2 plays)</p>
-            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
-                <canvas id="least-cards-overall"></canvas>
-            </div>
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Winners</h3>
-            <p class="section-desc">Top 20 most frequently played cards by the winning player</p>
-            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
-                <canvas id="winner-cards-overall"></canvas>
-            </div>
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Last Place</h3>
-            <p class="section-desc">Top 20 most frequently played cards by the 4th place player</p>
-            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
-                <canvas id="loser-cards-overall"></canvas>
-            </div>
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">By Player</h3>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Matt</h3>
-                    <table id="top-cards-matt" class="top-cards-table">
-                        <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
+            <section id="cards-drawn-kde" class="stats-section">
+                <h2>Cards Drawn Distribution (KDE)</h2>
+                <p class="section-desc">Cards drawn per game by player</p>
+                <div class="chart-container">
+                    <canvas id="cards-drawn-player-kde"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Mark</h3>
-                    <table id="top-cards-mark" class="top-cards-table">
-                        <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-                <div class="histogram-item">
-                    <h3>Callie</h3>
-                    <table id="top-cards-callie" class="top-cards-table">
-                        <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-                <div class="histogram-item">
-                    <h3>Keith</h3>
-                    <table id="top-cards-keith" class="top-cards-table">
-                        <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <section id="player-best-maps" class="stats-section">
-            <h2>Best Map by Player</h2>
-            <p class="section-desc">Map with most wins for each player</p>
-            <table id="player-maps-table">
-                <thead>
-                    <tr>
-                        <th>Player</th>
-                        <th>Best Map</th>
-                        <th>Wins</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="maps" class="stats-section">
-            <h2>Performance by Map</h2>
-            <p class="section-desc">Average placement when playing this map (1.0 = always 1st, 4.0 = always 4th)</p>
-            <table id="maps-table">
-                <thead>
-                    <tr>
-                        <th>Map</th>
-                        <th>Times Played</th>
-                        <th>Wins</th>
-                        <th>Avg Placement</th>
-                        <th>Avg Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="map-selection-total" class="stats-section">
-            <h2>Total Map Selection</h2>
-            <p class="section-desc">How often each map was chosen across all players</p>
-            <div class="chart-container">
-                <canvas id="map-selection-chart"></canvas>
-            </div>
-        </section>
-
-        <section id="map-selection-by-player" class="stats-section">
-            <h2>Map Selection by Player</h2>
-            <p class="section-desc">Map preferences for each player</p>
-            <div class="histogram-grid">
-                <div class="histogram-item">
-                    <h3>Matt</h3>
-                    <canvas id="map-selection-matt"></canvas>
+        <!-- CARDS TAB -->
+        <div id="tab-cards" class="tab-content">
+            <section id="animals-kde" class="stats-section">
+                <h2>Played Animals Distribution (KDE)</h2>
+                <p class="section-desc">Animals played per game by player</p>
+                <div class="chart-container">
+                    <canvas id="animals-player-kde"></canvas>
                 </div>
-                <div class="histogram-item">
-                    <h3>Mark</h3>
-                    <canvas id="map-selection-mark"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Callie</h3>
-                    <canvas id="map-selection-callie"></canvas>
-                </div>
-                <div class="histogram-item">
-                    <h3>Keith</h3>
-                    <canvas id="map-selection-keith"></canvas>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="history" class="stats-section">
-            <h2>Game History</h2>
-            <div class="controls">
-                <label for="filter-player">Filter by Player:</label>
-                <select id="filter-player">
-                    <option value="">All Players</option>
-                </select>
-                <label for="filter-map">Filter by Map:</label>
-                <select id="filter-map">
-                    <option value="">All Maps</option>
-                </select>
-                <label for="sort-by">Sort by:</label>
-                <select id="sort-by">
-                    <option value="date-desc">Date (Newest)</option>
-                    <option value="date-asc">Date (Oldest)</option>
-                    <option value="score-desc">High Score</option>
-                    <option value="turns-asc">Fewest Turns</option>
-                </select>
-            </div>
-            <table id="history-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Map</th>
-                        <th>Turns</th>
-                        <th>Winner</th>
-                        <th>Results</th>
-                        <th>Link</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </section>
+            <section id="sponsors-kde" class="stats-section">
+                <h2>Played Sponsors Distribution (KDE)</h2>
+                <p class="section-desc">Sponsors played per game by player</p>
+                <div class="chart-container">
+                    <canvas id="sponsors-player-kde"></canvas>
+                </div>
+            </section>
+
+            <section id="top-cards" class="stats-section">
+                <h2>Most Played Cards</h2>
+                <p class="section-desc">Top 20 most frequently played cards across all players</p>
+                <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                    <canvas id="top-cards-overall"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Least Played Cards</h3>
+                <p class="section-desc">Bottom 20 least frequently played cards (minimum 2 plays)</p>
+                <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                    <canvas id="least-cards-overall"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Winners</h3>
+                <p class="section-desc">Top 20 most frequently played cards by the winning player</p>
+                <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                    <canvas id="winner-cards-overall"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Last Place</h3>
+                <p class="section-desc">Top 20 most frequently played cards by the 4th place player</p>
+                <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                    <canvas id="loser-cards-overall"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">By Player</h3>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Matt</h3>
+                        <table id="top-cards-matt" class="top-cards-table">
+                            <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Mark</h3>
+                        <table id="top-cards-mark" class="top-cards-table">
+                            <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Callie</h3>
+                        <table id="top-cards-callie" class="top-cards-table">
+                            <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Keith</h3>
+                        <table id="top-cards-keith" class="top-cards-table">
+                            <thead><tr><th>#</th><th>Card</th><th>Plays</th></tr></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MAPS TAB -->
+        <div id="tab-maps" class="tab-content">
+            <section id="player-best-maps" class="stats-section">
+                <h2>Best Map by Player</h2>
+                <p class="section-desc">Map with most wins for each player</p>
+                <table id="player-maps-table">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Best Map</th>
+                            <th>Wins</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="maps" class="stats-section">
+                <h2>Performance by Map</h2>
+                <p class="section-desc">Average placement when playing this map (1.0 = always 1st, 4.0 = always 4th)</p>
+                <table id="maps-table">
+                    <thead>
+                        <tr>
+                            <th>Map</th>
+                            <th>Times Played</th>
+                            <th>Wins</th>
+                            <th>Avg Placement</th>
+                            <th>Avg Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="map-selection-total" class="stats-section">
+                <h2>Total Map Selection</h2>
+                <p class="section-desc">How often each map was chosen across all players</p>
+                <div class="chart-container">
+                    <canvas id="map-selection-chart"></canvas>
+                </div>
+            </section>
+
+            <section id="map-selection-by-player" class="stats-section">
+                <h2>Map Selection by Player</h2>
+                <p class="section-desc">Map preferences for each player</p>
+                <div class="histogram-grid">
+                    <div class="histogram-item">
+                        <h3>Matt</h3>
+                        <canvas id="map-selection-matt"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Mark</h3>
+                        <canvas id="map-selection-mark"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Callie</h3>
+                        <canvas id="map-selection-callie"></canvas>
+                    </div>
+                    <div class="histogram-item">
+                        <h3>Keith</h3>
+                        <canvas id="map-selection-keith"></canvas>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- HISTORY TAB -->
+        <div id="tab-history" class="tab-content">
+            <section id="history" class="stats-section">
+                <h2>Game History</h2>
+                <div class="controls">
+                    <label for="filter-player">Filter by Player:</label>
+                    <select id="filter-player">
+                        <option value="">All Players</option>
+                    </select>
+                    <label for="filter-map">Filter by Map:</label>
+                    <select id="filter-map">
+                        <option value="">All Maps</option>
+                    </select>
+                    <label for="sort-by">Sort by:</label>
+                    <select id="sort-by">
+                        <option value="date-desc">Date (Newest)</option>
+                        <option value="date-asc">Date (Oldest)</option>
+                        <option value="score-desc">High Score</option>
+                        <option value="turns-asc">Fewest Turns</option>
+                    </select>
+                </div>
+                <table id="history-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Map</th>
+                            <th>Turns</th>
+                            <th>Winner</th>
+                            <th>Results</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </section>
+        </div>
     </main>
 
     <footer>

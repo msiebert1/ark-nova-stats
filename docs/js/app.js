@@ -82,9 +82,7 @@
         renderAccolades();
         renderLeaderboard();
         renderPerformanceMetric();
-        renderScoreOverTime();
         renderTurnsOverTime();
-        renderWinnerPPTOverTime();
         renderScoreKDE();
         renderScoreHistograms();
         renderAnimalIconsKDE();
@@ -345,6 +343,70 @@
         // Most conservation-heavy (lowest/most negative disparity)
         const byNegativeDisparity = [...validDisparities].sort((a, b) => a.disparity - b.disparity);
         renderList('most-conservation-heavy', byNegativeDisparity, 'disparity', v => `${v.toFixed(0)}`);
+
+        // Margin of victory and biggest loss
+        const marginPerformances = [];
+
+        gamesData.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            const date = game.date || 'Unknown';
+            const url = game.url;
+
+            // Get all placements with scores
+            const placements = Object.entries(results)
+                .filter(([player]) => TRACKED_PLAYERS.includes(player))
+                .map(([player, result]) => {
+                    const placeMatch = result.match(/^(\d)/);
+                    const scoreMatch = result.match(/\((\d+)\)/);
+                    return {
+                        player,
+                        place: placeMatch ? parseInt(placeMatch[1]) : 99,
+                        score: scoreMatch ? parseInt(scoreMatch[1]) : 0
+                    };
+                })
+                .sort((a, b) => a.place - b.place);
+
+            if (placements.length < 2) return;
+
+            const first = placements[0];
+            const second = placements[1];
+            const last = placements[placements.length - 1];
+            const secondLast = placements.length > 2 ? placements[placements.length - 2] : null;
+
+            // Largest margin of victory (1st place margin over 2nd)
+            if (first.place === 1 && second.place === 2) {
+                marginPerformances.push({
+                    player: first.player,
+                    margin: first.score - second.score,
+                    placement: 1,
+                    date,
+                    url,
+                    type: 'victory'
+                });
+            }
+
+            // Biggest loss (last place margin behind second-to-last)
+            if (secondLast && last.place > secondLast.place) {
+                marginPerformances.push({
+                    player: last.player,
+                    margin: secondLast.score - last.score,
+                    placement: last.place,
+                    date,
+                    url,
+                    type: 'loss'
+                });
+            }
+        });
+
+        // Largest margin of victory
+        const victories = marginPerformances.filter(p => p.type === 'victory');
+        const byMarginVictory = [...victories].sort((a, b) => b.margin - a.margin);
+        renderList('largest-margin', byMarginVictory, 'margin', v => `+${v} pts`);
+
+        // Biggest loss
+        const losses = marginPerformances.filter(p => p.type === 'loss');
+        const byMarginLoss = [...losses].sort((a, b) => b.margin - a.margin);
+        renderList('biggest-loss', byMarginLoss, 'margin', v => `-${v} pts`);
     }
 
     // Leaderboard
@@ -516,89 +578,29 @@
         return `Game ${index + 1}`;
     }
 
-    // Score over time line chart
-    function renderScoreOverTime() {
-        // Collect scores per player over time (sorted by date)
-        const sortedGames = sortGamesChronologically(gamesData);
-
-        const playerScores = {};
-        TRACKED_PLAYERS.forEach(player => {
-            playerScores[player] = [];
-        });
-
-        const gameLabels = [];
-
-        sortedGames.forEach((game, index) => {
-            gameLabels.push(formatGameLabel(game, index));
-            const results = game.stats['Game result'] || {};
-
-            TRACKED_PLAYERS.forEach(player => {
-                const result = results[player];
-                if (result) {
-                    const match = result.match(/\((\d+)\)/);
-                    playerScores[player].push(match ? parseInt(match[1]) : null);
-                } else {
-                    playerScores[player].push(null);
-                }
-            });
-        });
-
-        const datasets = TRACKED_PLAYERS.map(player => ({
-            label: getDisplayName(player),
-            data: playerScores[player],
-            borderColor: PLAYER_COLORS[player],
-            backgroundColor: PLAYER_COLORS[player] + '20',
-            tension: 0.1,
-            fill: false,
-            pointRadius: 4,
-            pointHoverRadius: 6
-        }));
-
-        const ctx = document.getElementById('score-time-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: gameLabels,
-                datasets: datasets
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top'
-                    }
-                },
-                scales: {
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Final Score'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Game'
-                        }
-                    }
-                }
-            }
-        });
-    }
-
     // Turns per game over time
     function renderTurnsOverTime() {
         const sortedGames = sortGamesChronologically(gamesData);
 
         const gameLabels = [];
         const turnsData = [];
+        const pointColors = [];
 
         sortedGames.forEach((game, index) => {
             gameLabels.push(formatGameLabel(game, index));
             const turns = game.stats['Number of turns'] || {};
             const turnVal = Object.values(turns)[0];
             turnsData.push(turnVal ? parseInt(turnVal) : null);
+
+            // Find winner for point color
+            const results = game.stats['Game result'] || {};
+            let winnerPlayer = null;
+            Object.entries(results).forEach(([player, result]) => {
+                if (result.startsWith('1st')) {
+                    winnerPlayer = player;
+                }
+            });
+            pointColors.push(winnerPlayer ? PLAYER_COLORS[winnerPlayer] : '#999');
         });
 
         const ctx = document.getElementById('turns-time-chart').getContext('2d');
@@ -613,8 +615,10 @@
                     backgroundColor: '#2d5a2720',
                     tension: 0.1,
                     fill: true,
-                    pointRadius: 4,
-                    pointHoverRadius: 6
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    pointBackgroundColor: pointColors,
+                    pointBorderColor: pointColors
                 }]
             },
             options: {
@@ -630,83 +634,6 @@
                         title: {
                             display: true,
                             text: 'Number of Turns'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Game'
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Winner points per turn over time
-    function renderWinnerPPTOverTime() {
-        const sortedGames = sortGamesChronologically(gamesData);
-
-        const gameLabels = [];
-        const winnerPPTData = [];
-        const winnerColors = [];
-
-        sortedGames.forEach((game, index) => {
-            gameLabels.push(formatGameLabel(game, index));
-            const results = game.stats['Game result'] || {};
-            const turns = game.stats['Number of turns'] || {};
-
-            // Find winner
-            let winnerPPT = null;
-            let winnerPlayer = null;
-            Object.entries(results).forEach(([player, result]) => {
-                if (result.startsWith('1st')) {
-                    const scoreMatch = result.match(/\((\d+)\)/);
-                    const playerTurns = turns[player];
-                    if (scoreMatch && playerTurns) {
-                        winnerPPT = parseInt(scoreMatch[1]) / parseInt(playerTurns);
-                        winnerPlayer = player;
-                    }
-                }
-            });
-
-            winnerPPTData.push(winnerPPT);
-            winnerColors.push(winnerPlayer ? PLAYER_COLORS[winnerPlayer] : '#999');
-        });
-
-        const ctx = document.getElementById('winner-ppt-chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: gameLabels,
-                datasets: [{
-                    label: 'Winner PPT',
-                    data: winnerPPTData,
-                    backgroundColor: winnerColors,
-                    borderColor: winnerColors.map(c => c.replace('20', '')),
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                return `PPT: ${context.raw.toFixed(2)}`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Points Per Turn'
                         }
                     },
                     x: {
@@ -2797,10 +2724,41 @@
         sortSelect.addEventListener('change', updateHistory);
     }
 
+    // Tab Navigation
+    function initTabs() {
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+
+                // Update buttons
+                tabButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                // Update content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === `tab-${tabId}`) {
+                        content.classList.add('active');
+                    }
+                });
+
+                // Scroll to top of main content
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
+
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabs();
+            init();
+        });
     } else {
+        initTabs();
         init();
     }
 })();
