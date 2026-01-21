@@ -330,6 +330,29 @@ a:hover {
     max-height: 250px;
 }
 
+/* Top cards tables */
+.top-cards-table {
+    margin-top: 0;
+    font-size: 0.9rem;
+}
+
+.top-cards-table th,
+.top-cards-table td {
+    padding: 0.4rem 0.6rem;
+}
+
+.top-cards-table th:first-child,
+.top-cards-table td:first-child {
+    width: 30px;
+    text-align: center;
+}
+
+.top-cards-table th:last-child,
+.top-cards-table td:last-child {
+    width: 50px;
+    text-align: center;
+}
+
 /* Accolades */
 .accolades-grid {
     display: grid;

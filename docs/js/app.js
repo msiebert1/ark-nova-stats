@@ -106,6 +106,7 @@
         renderMaps();
         renderMapSelectionTotal();
         renderMapSelectionByPlayer();
+        renderTopCards();
         renderHistory();
     }
 
@@ -2533,6 +2534,233 @@
         const turns = game.stats['Number of turns'] || {};
         const val = Object.values(turns)[0];
         return val ? parseInt(val) : 999;
+    }
+
+    // Top cards by player
+    async function renderTopCards() {
+        try {
+            const response = await fetch('data/card_analysis.json');
+            const data = await response.json();
+            const topCards = data.topCardsByPlayer || {};
+
+            // Aggregate cards across all players
+            const allCards = {};
+            TRACKED_PLAYERS.forEach(player => {
+                (topCards[player] || []).forEach(item => {
+                    allCards[item.card] = (allCards[item.card] || 0) + item.plays;
+                });
+            });
+
+            // Sort cards by play count
+            const sortedCards = Object.entries(allCards)
+                .sort((a, b) => b[1] - a[1]);
+
+            // Get top 20
+            const overallTop20 = sortedCards.slice(0, 20);
+
+            // Render top cards histogram
+            const topCtx = document.getElementById('top-cards-overall').getContext('2d');
+            new Chart(topCtx, {
+                type: 'bar',
+                data: {
+                    labels: overallTop20.map(([card]) => card),
+                    datasets: [{
+                        label: 'Total Plays',
+                        data: overallTop20.map(([, plays]) => plays),
+                        backgroundColor: '#8b5cf6',
+                        borderColor: '#7c3aed',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Total Plays' },
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            // Get bottom 20 (least played, but still >= 2 plays total)
+            const leastPlayed = sortedCards
+                .filter(([, plays]) => plays >= 2)
+                .slice(-20)
+                .reverse();
+
+            // Render least cards histogram
+            const leastCtx = document.getElementById('least-cards-overall').getContext('2d');
+            new Chart(leastCtx, {
+                type: 'bar',
+                data: {
+                    labels: leastPlayed.map(([card]) => card),
+                    datasets: [{
+                        label: 'Total Plays',
+                        data: leastPlayed.map(([, plays]) => plays),
+                        backgroundColor: '#f97316',
+                        borderColor: '#ea580c',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Total Plays' },
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            // Tally cards played by winners and last place
+            const cardsPerGame = data.cardsPerGame || {};
+            const winnerCards = {};
+            const loserCards = {};
+
+            gamesData.forEach(game => {
+                const tableId = game.tableId;
+                const gameCards = cardsPerGame[tableId];
+                if (!gameCards) return;
+
+                // Find winner and last place of this game
+                const results = game.stats['Game result'] || {};
+                let winner = null;
+                let loser = null;
+                Object.entries(results).forEach(([player, result]) => {
+                    if (result.startsWith('1')) {
+                        winner = player;
+                    }
+                    if (result.startsWith('4')) {
+                        loser = player;
+                    }
+                });
+
+                if (winner && gameCards[winner]) {
+                    gameCards[winner].forEach(card => {
+                        winnerCards[card] = (winnerCards[card] || 0) + 1;
+                    });
+                }
+
+                if (loser && gameCards[loser]) {
+                    gameCards[loser].forEach(card => {
+                        loserCards[card] = (loserCards[card] || 0) + 1;
+                    });
+                }
+            });
+
+            // Get top 20 winner cards
+            const topWinnerCards = Object.entries(winnerCards)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 20);
+
+            // Render winner cards histogram
+            const winnerCtx = document.getElementById('winner-cards-overall').getContext('2d');
+            new Chart(winnerCtx, {
+                type: 'bar',
+                data: {
+                    labels: topWinnerCards.map(([card]) => card),
+                    datasets: [{
+                        label: 'Plays by Winner',
+                        data: topWinnerCards.map(([, plays]) => plays),
+                        backgroundColor: '#ffd700',
+                        borderColor: '#b8960c',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Times Played by Winner' },
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            // Get top 20 loser cards
+            const topLoserCards = Object.entries(loserCards)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 20);
+
+            // Render loser cards histogram
+            const loserCtx = document.getElementById('loser-cards-overall').getContext('2d');
+            new Chart(loserCtx, {
+                type: 'bar',
+                data: {
+                    labels: topLoserCards.map(([card]) => card),
+                    datasets: [{
+                        label: 'Plays by Last Place',
+                        data: topLoserCards.map(([, plays]) => plays),
+                        backgroundColor: '#6b7280',
+                        borderColor: '#4b5563',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Times Played by Last Place' },
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
+
+            // Render player tables
+            const playerTableMap = {
+                'msiebert': 'top-cards-matt',
+                'marksbrt': 'top-cards-mark',
+                'AstroHood': 'top-cards-callie',
+                'siebert23': 'top-cards-keith'
+            };
+
+            TRACKED_PLAYERS.forEach(player => {
+                const tableId = playerTableMap[player];
+                const table = document.getElementById(tableId);
+                if (!table) return;
+
+                const tbody = table.querySelector('tbody');
+                const cards = (topCards[player] || []).slice(0, 10);
+
+                tbody.innerHTML = cards.map((item, idx) => `
+                    <tr>
+                        <td>${idx + 1}</td>
+                        <td>${item.card}</td>
+                        <td>${item.plays}</td>
+                    </tr>
+                `).join('');
+            });
+        } catch (error) {
+            console.error('Failed to load card analysis:', error);
+        }
     }
 
     // Setup filter controls

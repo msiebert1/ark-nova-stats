@@ -465,8 +465,27 @@
         </section>
 
         <section id="top-cards" class="stats-section">
-            <h2>Most Played Cards by Player</h2>
-            <p class="section-desc">Top 10 most frequently played cards (minimum 2 plays)</p>
+            <h2>Most Played Cards</h2>
+            <p class="section-desc">Top 20 most frequently played cards across all players</p>
+            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                <canvas id="top-cards-overall"></canvas>
+            </div>
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Least Played Cards</h3>
+            <p class="section-desc">Bottom 20 least frequently played cards (minimum 2 plays)</p>
+            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                <canvas id="least-cards-overall"></canvas>
+            </div>
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Winners</h3>
+            <p class="section-desc">Top 20 most frequently played cards by the winning player</p>
+            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                <canvas id="winner-cards-overall"></canvas>
+            </div>
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Top Cards Played by Last Place</h3>
+            <p class="section-desc">Top 20 most frequently played cards by the 4th place player</p>
+            <div class="chart-container" style="height: 500px; margin-bottom: 2rem;">
+                <canvas id="loser-cards-overall"></canvas>
+            </div>
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">By Player</h3>
             <div class="histogram-grid">
                 <div class="histogram-item">
                     <h3>Matt</h3>
