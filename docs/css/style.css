@@ -571,3 +571,45 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+/* Scrollable table container for cards by player */
+.scrollable-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.scrollable-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scrollable-table-container thead {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    z-index: 1;
+}
+
+.scrollable-table-container thead th {
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.scrollable-table-container tbody tr:nth-child(even) {
+    background: var(--bg-color);
+}
+
+.scrollable-table-container tbody tr:hover {
+    background: rgba(45, 90, 39, 0.1);
+}
+
+/* Zero plays styling for card tables */
+.scrollable-table-container tbody tr.zero-plays {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.scrollable-table-container tbody tr.zero-plays td:last-child {
+    color: #999;
+}

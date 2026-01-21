@@ -73,7 +73,7 @@ trackedPlayers.forEach(player => {
     if (!playerCards[player]) return;
 
     const cards = Object.entries(playerCards[player])
-        .filter(([name, count]) => count >= 2)
+        .filter(([name, count]) => count >= 1)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 10);
 
@@ -95,7 +95,7 @@ trackedPlayers.forEach(player => {
     if (!playerCards[player]) return;
 
     output.topCardsByPlayer[player] = Object.entries(playerCards[player])
-        .filter(([name, count]) => count >= 2)
+        .filter(([name, count]) => count >= 1)
         .sort((a, b) => b[1] - a[1])
         .map(([name, count]) => ({ card: name, plays: count }));
 });

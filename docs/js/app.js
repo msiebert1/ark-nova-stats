@@ -11,6 +11,67 @@
         'siebert23': 'Keith'
     };
 
+    // Complete card database from Ark Nova
+    const ALL_ANIMAL_CARDS = [
+        'Cheetah', 'Lion', 'Leopard', 'Caracal', 'Fennec Fox', 'Siberian Tiger', 'Sumatran Tiger',
+        'Sloth Bear', 'Sun Bear', 'Yellow-throated Marten', 'Grizzly Bear', 'Jaguar', 'Cougar',
+        'South American Coati', 'Raccoon', 'Eurasian Brown Bear', 'Wolf', 'Eurasian Lynx',
+        'European Badger', 'Stoat', 'New Zealand Fur Seal', 'Australian Sea Lion', 'New Zealand Sea Lion',
+        'Australian Dingo', 'Tasmanian Devil', 'African Bush Elephant', 'White Rhinoceros', 'Giraffe',
+        'Grevy\'s Zebra', 'Pygmy Hippopotamus', 'Asian Elephant', 'Indian Rhinoceros', 'Giant Panda',
+        'Red Panda', 'Malayan Tapir', 'American Bison', 'Muskox', 'Reindeer', 'Llama', 'Mountain Tapir',
+        'European Bison', 'Moose', 'Red Deer', 'Alpine Ibex', 'Crested Porcupine', 'Dugong',
+        'Red Kangaroo', 'Koala', 'Platypus', 'Common Wombat', 'Proboscis Monkey', 'Senegal Bushbaby',
+        'Collared Mangabey', 'Ring-tailed Lemur', 'Mantled Guereza', 'Barbary Macaque', 'Mandrill',
+        'Japanese Macaque', 'Red-shanked Douc', 'Dusky Leaf Monkey', 'Horsfield\'s Tarsier',
+        'Northern Plains Gray Langur', 'Panamanian White-faced Capuchin', 'Brown Spider Monkey',
+        'Golden Lion Tamarin', 'Bolivian Red Howler', 'Ecuadorian Squirrel Monkey', 'Cotton-top Tamarin',
+        'Nile Crocodile', 'Western Green Mamba', 'African Spurred Tortoise', 'Rock Monitor', 'Common Agama',
+        'Indian Rock Python', 'King Cobra', 'Komodo Dragon', 'Veiled Chameleon', 'Chinese Water Dragon',
+        'American Alligator', 'Broad-snouted Caiman', 'Galapagos Giant Tortoise', 'Anaconda',
+        'Boa Constrictor', 'European Pond Turtle', 'Common European Adder', 'Common Wall Lizard',
+        'European Grass Snake', 'Slow Worm', 'Saltwater Crocodile', 'Gould\'s Monitor', 'Frilled Lizard',
+        'Inland Taipan', 'Thorny Devil', 'African Ostrich', 'Secretary Bird', 'Marabou', 'Lesser Flamingo',
+        'Shoebill', 'Cinereous Vulture', 'Long-billed Vulture', 'Indian Peafowl', 'Great Hornbill',
+        'Snowy Owl', 'Andean Condor', 'Bald Eagle', 'King Vulture', 'Greater Rhea', 'Scarlet Macaw',
+        'Golden Eagle', 'White Stork', 'Greater Flamingo', 'Eurasian Eagle-owl', 'Barn Owl', 'Emu',
+        'Australian Pelican', 'Northern Cassowary', 'Laughing Kookaburra', 'Lesser Bird-of-Paradise',
+        'Domestic Goat', 'Sheep', 'Horse', 'Donkey', 'Domestic Rabbit', 'Mangalica', 'Guinea Pig',
+        'Alpaca', 'Coconut Lorikeet', 'Bennett\'s Wallaby', 'Magnificent Sea Anemone', 'Orange Clownfish',
+        'Palette Surgeonfish', 'Zooplankton', 'Blackside Hawkfish', 'Southern Blue-Ringed Octopus',
+        'Sharknose Goby', 'Longhorn Cowfish', 'Blackbar Triggerfish', 'Devil Firefish',
+        'American Whitespotted Filefish', 'Guineafowl Puffer', 'Bluespotted Ribbontail Ray',
+        'Humphead Wrasse', 'Coastal Manta Ray', 'Caribbean Reef Shark', 'Longcomb Sawfish',
+        'Sand Tiger Shark', 'Mediterranean Rainbow', 'Lined Seahorse', 'Common Octopus',
+        'Compass Jellyfish', 'Loggerhead Sea Turtle', 'Green Sea Turtle', 'Tambaqui', 'African Penguin',
+        'Golden Snub-Nosed Monkey', 'Wolverine', 'Vietnamese Pot-Bellied Pig', 'Northern Muriqui',
+        'Coquerel\'s Sifaka', 'Brahminy Kite'
+    ];
+
+    const ALL_SPONSOR_CARDS = [
+        'Science Lab', 'Spokesperson', 'Veterinarian', 'Science Museum', 'Gorilla Field Research',
+        'Medical Breakthrough', 'Basic Research', 'Science Library', 'Technology Institute',
+        'Expert on the Americas', 'Expert on Europe', 'Expert on Australia', 'Expert on Asia',
+        'Expert on Africa', 'Breeding Cooperation', 'Talented Communicator', 'Engineer',
+        'Breeding Program', 'Diversity Researcher', 'Federal Grants', 'Archaeologist',
+        'Release of Patents', 'Science Institute', 'Migration Recording', 'Quarantine Lab',
+        'Foreign Institute', 'WAZA Special Assignment', 'WAZA Small Animals Program',
+        'Expert in Small Animals', 'Expert in Large Animals', 'Sponsorship: Primates',
+        'Sponsorship: Reptiles', 'Sponsorship: Vultures', 'Sponsorship: Lions', 'Sponsorship: Elephants',
+        'Primatologist', 'Herpetologist', 'Ornithologist', 'Expert in Predators', 'Expert in Herbivores',
+        'Hydrologist', 'Geologist', 'Meerkat Den', 'Penguin Pool', 'Aquarium', 'Cable Car',
+        'Baboon Rock', 'Rhesus Monkey Park', 'Barred Owl Hut', 'Sea Turtle Tank', 'Polar Bear Exhibit',
+        'Spotted Hyena Compound', 'Okapi Stable', 'Zoo School', 'Adventure Playground',
+        'Water Playground', 'Side Entrance', 'Native Seabirds', 'Native Lizards', 'Native Farm Animals',
+        'Guided School Tours', 'Explorer', 'WAZA Large Animal Program', 'Free-range New World Monkeys',
+        'Franchise Business', 'Marine Biologist', 'Farm Cat', 'Conference on Europe',
+        'Conference on Australia', 'Marine Research Expedition', 'Excavation Site', 'Expansion Area',
+        'Publications', 'Mascot Statue', 'Horse Whisperer', 'Landscape Gardener',
+        'Field Research Type D Orcas', 'Amazon House', 'Underwater Tunnel', 'Reconstruction'
+    ];
+
+    const ALL_CARDS = [...ALL_ANIMAL_CARDS, ...ALL_SPONSOR_CARDS].sort();
+
     // Helper to get display name
     function getDisplayName(username) {
         return PLAYER_ALIASES[username] || username;
@@ -2466,7 +2527,7 @@
     // Top cards by player
     async function renderTopCards() {
         try {
-            const response = await fetch('data/card_analysis.json');
+            const response = await fetch('data/card_analysis.json?v=' + Date.now());
             const data = await response.json();
             const topCards = data.topCardsByPlayer || {};
 
@@ -2516,9 +2577,9 @@
                 }
             });
 
-            // Get bottom 20 (least played, but still >= 2 plays total)
+            // Get bottom 20 (least played, but still >= 1 play total)
             const leastPlayed = sortedCards
-                .filter(([, plays]) => plays >= 2)
+                .filter(([, plays]) => plays >= 1)
                 .slice(-20)
                 .reverse();
 
@@ -2675,10 +2736,33 @@
                 if (!table) return;
 
                 const tbody = table.querySelector('tbody');
-                const cards = (topCards[player] || []).slice(0, 10);
+                const playedCards = topCards[player] || [];
 
-                tbody.innerHTML = cards.map((item, idx) => `
-                    <tr>
+                // Debug: log cards with 1 play
+                const onesCount = playedCards.filter(c => c.plays === 1).length;
+                console.log(`${player}: ${playedCards.length} played cards, ${onesCount} with 1 play`);
+
+                // Create a set of played card names (lowercase for comparison)
+                const playedNamesLower = new Set(playedCards.map(item => item.card.toLowerCase()));
+
+                // Start with all played cards (they have correct names from game logs)
+                const allCardsWithPlays = [...playedCards];
+
+                // Add cards from ALL_CARDS that weren't played (case-insensitive check)
+                ALL_CARDS.forEach(card => {
+                    if (!playedNamesLower.has(card.toLowerCase())) {
+                        allCardsWithPlays.push({ card: card, plays: 0 });
+                    }
+                });
+
+                // Sort by plays descending, then by card name
+                allCardsWithPlays.sort((a, b) => {
+                    if (b.plays !== a.plays) return b.plays - a.plays;
+                    return a.card.localeCompare(b.card);
+                });
+
+                tbody.innerHTML = allCardsWithPlays.map((item, idx) => `
+                    <tr class="${item.plays === 0 ? 'zero-plays' : ''}">
                         <td>${idx + 1}</td>
                         <td>${item.card}</td>
                         <td>${item.plays}</td>
