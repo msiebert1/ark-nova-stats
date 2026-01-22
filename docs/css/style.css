@@ -145,6 +145,36 @@ main {
     border: 1px solid var(--gold);
 }
 
+/* Recent Game Container - side by side layout */
+.recent-game-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: start;
+}
+
+.recent-game-container .recent-game-summary {
+    margin-top: 0;
+}
+
+.recent-game-chart {
+    height: 350px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    .recent-game-container {
+        grid-template-columns: 1fr;
+    }
+
+    .recent-game-chart {
+        height: 280px;
+    }
+}
+
 /* Tables */
 table {
     width: 100%;

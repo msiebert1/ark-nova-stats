@@ -6,6 +6,8 @@
     <title>Ark Nova Stats Tracker</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1"></script>
 </head>
 <body>
     <header>
@@ -42,7 +44,10 @@
                         <span class="card-label">Avg Turns</span>
                     </div>
                 </div>
-                <div id="recent-game" class="recent-game-summary"></div>
+                <div class="recent-game-container">
+                    <div id="recent-game" class="recent-game-summary"></div>
+                    <div id="recent-game-score-chart" class="recent-game-chart"></div>
+                </div>
             </section>
 
             <section id="leaderboard" class="stats-section">

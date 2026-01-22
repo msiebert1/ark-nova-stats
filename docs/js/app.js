@@ -78,6 +78,7 @@
     }
 
     let gamesData = null;
+    let gameLogsData = null;
     let allPlayers = new Set();
     let allMaps = new Set();
 
@@ -102,8 +103,16 @@
     // Load data and initialize
     async function init() {
         try {
-            const response = await fetch('data/detailed_games.json');
-            const data = await response.json();
+            // Load both games and logs data
+            const [gamesResponse, logsResponse] = await Promise.all([
+                fetch('data/detailed_games.json'),
+                fetch('data/detailed_game_logs.json')
+            ]);
+
+            const data = await gamesResponse.json();
+            const logsData = await logsResponse.json();
+
+            gameLogsData = logsData.logs;
 
             // Filter to only valid 4-player games with our tracked players
             gamesData = data.games.filter(isValidGame);
@@ -140,6 +149,7 @@
 
     function renderAll() {
         renderSummary();
+        renderRecentGameScoreOverTime();
         renderAccolades();
         renderLeaderboard();
         renderPerformanceMetric();
@@ -253,6 +263,253 @@
                 </div>
             `;
         }
+    }
+
+    // Recent game score over time chart
+    function renderRecentGameScoreOverTime() {
+        const chartContainer = document.getElementById('recent-game-score-chart');
+        if (!chartContainer) return;
+
+        // Find the most recent game
+        const sortedGames = sortGamesChronologically(gamesData);
+        const recentGame = sortedGames[sortedGames.length - 1];
+        if (!recentGame) {
+            chartContainer.innerHTML = '<p class="empty-state">No game data available</p>';
+            return;
+        }
+
+        // Find the corresponding game log
+        const gameLog = gameLogsData?.find(log => log.tableId === recentGame.tableId);
+        if (!gameLog) {
+            chartContainer.innerHTML = '<p class="empty-state">No log data available for this game</p>';
+            return;
+        }
+
+        // Get starting positions and calculate starting scores
+        // 1st player: -14, 2nd: -13, 3rd: -12, 4th: -11
+        const startingPositions = recentGame.stats['Starting position in first round'] || {};
+        const positionToScore = {
+            'First player': -14,
+            'Second player': -13,
+            'Third player': -12,
+            'Fourth player': -11
+        };
+
+        // Parse appeal and conservation gains from log entries
+        const playerScores = {};
+        const playerConservation = {};
+        const playerStartingScore = {};
+        TRACKED_PLAYERS.forEach(player => {
+            const position = startingPositions[player];
+            playerStartingScore[player] = positionToScore[position] || -14;
+            playerScores[player] = [];
+            playerConservation[player] = 0;
+        });
+
+        // Regex patterns for appeal and conservation changes
+        // Matches both "gains X appeal" and "gets X x appeal" formats
+        const appealGainPattern = /^(\w+) (?:gains|gets) (\d+)(?: x)? appeal/;
+        const appealLossPattern = /^(\w+).*loses (\d+) appeal/;
+        // Only use "gains" for conservation to avoid double-counting (gets/gains are duplicates)
+        const conservationGainPattern = /^(\w+) gains (\d+) conservation/;
+        // Also track donations for conservation
+        const conservationDonatePattern = /^(\w+) donates \d+ money to get (\d+) conservation/;
+
+        // Calculate score from conservation points
+        // First 10 CP = 2 points each, after 10 = 3 points each
+        function calculateConservationScore(totalCP) {
+            if (totalCP <= 10) {
+                return totalCP * 2;
+            } else {
+                return 10 * 2 + (totalCP - 10) * 3;
+            }
+        }
+
+        // Process each log entry
+        gameLog.logEntries.forEach(entry => {
+            const moveNumber = entry.moveNumber;
+
+            entry.actions.forEach(action => {
+                // Check for appeal gain
+                const appealGainMatch = action.match(appealGainPattern);
+                if (appealGainMatch) {
+                    const player = appealGainMatch[1];
+                    const appealGain = parseInt(appealGainMatch[2]);
+                    if (TRACKED_PLAYERS.includes(player)) {
+                        // Appeal is worth 1 point each
+                        const prevScore = playerScores[player].length > 0
+                            ? playerScores[player][playerScores[player].length - 1].score
+                            : playerStartingScore[player];
+                        playerScores[player].push({
+                            move: moveNumber,
+                            score: prevScore + appealGain,
+                            type: 'appeal',
+                            gain: appealGain
+                        });
+                    }
+                }
+
+                // Check for appeal loss (releasing animals into the wild)
+                const appealLossMatch = action.match(appealLossPattern);
+                if (appealLossMatch) {
+                    const player = appealLossMatch[1];
+                    const appealLoss = parseInt(appealLossMatch[2]);
+                    if (TRACKED_PLAYERS.includes(player)) {
+                        const prevScore = playerScores[player].length > 0
+                            ? playerScores[player][playerScores[player].length - 1].score
+                            : playerStartingScore[player];
+                        playerScores[player].push({
+                            move: moveNumber,
+                            score: prevScore - appealLoss,
+                            type: 'appeal_loss',
+                            gain: -appealLoss
+                        });
+                    }
+                }
+
+                // Check for conservation gain (from "gains" pattern)
+                const conservationGainMatch = action.match(conservationGainPattern);
+                if (conservationGainMatch) {
+                    const player = conservationGainMatch[1];
+                    const cpGain = parseInt(conservationGainMatch[2]);
+                    if (TRACKED_PLAYERS.includes(player)) {
+                        const prevCP = playerConservation[player];
+                        const prevScore = playerScores[player].length > 0
+                            ? playerScores[player][playerScores[player].length - 1].score
+                            : playerStartingScore[player];
+
+                        // Calculate points gained from this conservation
+                        const prevCPScore = calculateConservationScore(prevCP);
+                        playerConservation[player] += cpGain;
+                        const newCPScore = calculateConservationScore(playerConservation[player]);
+                        const pointsGained = newCPScore - prevCPScore;
+
+                        playerScores[player].push({
+                            move: moveNumber,
+                            score: prevScore + pointsGained,
+                            type: 'conservation',
+                            gain: pointsGained
+                        });
+                    }
+                }
+
+                // Check for conservation from donations
+                const conservationDonateMatch = action.match(conservationDonatePattern);
+                if (conservationDonateMatch) {
+                    const player = conservationDonateMatch[1];
+                    const cpGain = parseInt(conservationDonateMatch[2]);
+                    if (TRACKED_PLAYERS.includes(player)) {
+                        const prevCP = playerConservation[player];
+                        const prevScore = playerScores[player].length > 0
+                            ? playerScores[player][playerScores[player].length - 1].score
+                            : playerStartingScore[player];
+
+                        const prevCPScore = calculateConservationScore(prevCP);
+                        playerConservation[player] += cpGain;
+                        const newCPScore = calculateConservationScore(playerConservation[player]);
+                        const pointsGained = newCPScore - prevCPScore;
+
+                        playerScores[player].push({
+                            move: moveNumber,
+                            score: prevScore + pointsGained,
+                            type: 'donation',
+                            gain: pointsGained
+                        });
+                    }
+                }
+            });
+        });
+
+        // Create datasets for Chart.js
+        const datasets = TRACKED_PLAYERS.map(player => {
+            const data = playerScores[player];
+            // Add initial point at starting score
+            const chartData = [{ x: 0, y: playerStartingScore[player] }];
+            data.forEach(point => {
+                chartData.push({ x: point.move, y: point.score });
+            });
+
+            return {
+                label: getDisplayName(player),
+                data: chartData,
+                borderColor: PLAYER_COLORS[player],
+                backgroundColor: PLAYER_COLORS[player] + '20',
+                fill: false,
+                tension: 0.1,
+                pointRadius: 2,
+                pointHoverRadius: 5
+            };
+        });
+
+        // Find max move number for x-axis
+        let maxMove = 0;
+        TRACKED_PLAYERS.forEach(player => {
+            playerScores[player].forEach(point => {
+                if (point.move > maxMove) maxMove = point.move;
+            });
+        });
+
+        // Create canvas
+        chartContainer.innerHTML = '<canvas id="recent-score-chart"></canvas>';
+        const ctx = document.getElementById('recent-score-chart').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: { datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Score Progression',
+                        font: { size: 14 }
+                    },
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `${context.dataset.label}: ${context.parsed.y} pts`;
+                            }
+                        }
+                    },
+                    zoom: {
+                        pan: {
+                            enabled: true,
+                            mode: 'xy'
+                        },
+                        zoom: {
+                            wheel: {
+                                enabled: true
+                            },
+                            pinch: {
+                                enabled: true
+                            },
+                            mode: 'xy'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        title: {
+                            display: true,
+                            text: 'Move Number'
+                        },
+                        min: 0,
+                        max: maxMove + 5
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Score (Points)'
+                        }
+                    }
+                }
+            }
+        });
     }
 
     // Accolades
