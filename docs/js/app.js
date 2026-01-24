@@ -151,6 +151,7 @@
         renderSummary();
         renderRecentGameScoreOverTime();
         renderAccolades();
+        renderGoldMedalCharts();
         renderLeaderboard();
         renderPerformanceMetric();
         renderTurnsOverTime();
@@ -265,29 +266,23 @@
         }
     }
 
-    // Recent game score over time chart
-    function renderRecentGameScoreOverTime() {
-        const chartContainer = document.getElementById('recent-game-score-chart');
-        if (!chartContainer) return;
-
-        // Find the most recent game
-        const sortedGames = sortGamesChronologically(gamesData);
-        const recentGame = sortedGames[sortedGames.length - 1];
-        if (!recentGame) {
-            chartContainer.innerHTML = '<p class="empty-state">No game data available</p>';
-            return;
+    // Calculate score from conservation points
+    // First 10 CP = 2 points each, after 10 = 3 points each
+    function calculateConservationScore(totalCP) {
+        if (totalCP <= 10) {
+            return totalCP * 2;
+        } else {
+            return 10 * 2 + (totalCP - 10) * 3;
         }
+    }
 
-        // Find the corresponding game log
-        const gameLog = gameLogsData?.find(log => log.tableId === recentGame.tableId);
-        if (!gameLog) {
-            chartContainer.innerHTML = '<p class="empty-state">No log data available for this game</p>';
-            return;
-        }
+    // Calculate score progression for a game
+    // Returns { playerScores, playerStartingScore, maxMove, finalCalculatedScores }
+    function calculateGameScoreProgression(game, gameLog) {
+        if (!game || !gameLog) return null;
 
         // Get starting positions and calculate starting scores
-        // 1st player: -14, 2nd: -13, 3rd: -12, 4th: -11
-        const startingPositions = recentGame.stats['Starting position in first round'] || {};
+        const startingPositions = game.stats['Starting position in first round'] || {};
         const positionToScore = {
             'First player': -14,
             'Second player': -13,
@@ -295,7 +290,6 @@
             'Fourth player': -11
         };
 
-        // Parse appeal and conservation gains from log entries
         const playerScores = {};
         const playerConservation = {};
         const playerStartingScore = {};
@@ -306,24 +300,12 @@
             playerConservation[player] = 0;
         });
 
-        // Regex patterns for appeal and conservation changes
-        // Matches both "gains X appeal" and "gets X x appeal" formats
-        const appealGainPattern = /^(\w+) (?:gains|gets) (\d+)(?: x)? appeal/;
+        // Regex patterns
+        const appealGainPattern = /^(\w+) gains (\d+) appeal/;
         const appealLossPattern = /^(\w+).*loses (\d+) appeal/;
-        // Only use "gains" for conservation to avoid double-counting (gets/gains are duplicates)
+        const appealPouchPattern = /^(\w+) pouches \d+ card\(s\) for (\d+) appeal/;
         const conservationGainPattern = /^(\w+) gains (\d+) conservation/;
-        // Also track donations for conservation
-        const conservationDonatePattern = /^(\w+) donates \d+ money to get (\d+) conservation/;
-
-        // Calculate score from conservation points
-        // First 10 CP = 2 points each, after 10 = 3 points each
-        function calculateConservationScore(totalCP) {
-            if (totalCP <= 10) {
-                return totalCP * 2;
-            } else {
-                return 10 * 2 + (totalCP - 10) * 3;
-            }
-        }
+        const conservationDonatePattern = /^(\w+) donates (?:\d+ money|for free) to get (\d+) conservation/;
 
         // Process each log entry
         gameLog.logEntries.forEach(entry => {
@@ -336,7 +318,6 @@
                     const player = appealGainMatch[1];
                     const appealGain = parseInt(appealGainMatch[2]);
                     if (TRACKED_PLAYERS.includes(player)) {
-                        // Appeal is worth 1 point each
                         const prevScore = playerScores[player].length > 0
                             ? playerScores[player][playerScores[player].length - 1].score
                             : playerStartingScore[player];
@@ -349,7 +330,7 @@
                     }
                 }
 
-                // Check for appeal loss (releasing animals into the wild)
+                // Check for appeal loss
                 const appealLossMatch = action.match(appealLossPattern);
                 if (appealLossMatch) {
                     const player = appealLossMatch[1];
@@ -367,7 +348,25 @@
                     }
                 }
 
-                // Check for conservation gain (from "gains" pattern)
+                // Check for appeal from pouching cards (Koala ability)
+                const appealPouchMatch = action.match(appealPouchPattern);
+                if (appealPouchMatch) {
+                    const player = appealPouchMatch[1];
+                    const appealGain = parseInt(appealPouchMatch[2]);
+                    if (TRACKED_PLAYERS.includes(player)) {
+                        const prevScore = playerScores[player].length > 0
+                            ? playerScores[player][playerScores[player].length - 1].score
+                            : playerStartingScore[player];
+                        playerScores[player].push({
+                            move: moveNumber,
+                            score: prevScore + appealGain,
+                            type: 'pouch',
+                            gain: appealGain
+                        });
+                    }
+                }
+
+                // Check for conservation gain
                 const conservationGainMatch = action.match(conservationGainPattern);
                 if (conservationGainMatch) {
                     const player = conservationGainMatch[1];
@@ -378,7 +377,6 @@
                             ? playerScores[player][playerScores[player].length - 1].score
                             : playerStartingScore[player];
 
-                        // Calculate points gained from this conservation
                         const prevCPScore = calculateConservationScore(prevCP);
                         playerConservation[player] += cpGain;
                         const newCPScore = calculateConservationScore(playerConservation[player]);
@@ -420,10 +418,52 @@
             });
         });
 
+        // Calculate final scores and max move
+        let maxMove = 0;
+        const finalCalculatedScores = {};
+        TRACKED_PLAYERS.forEach(player => {
+            playerScores[player].forEach(point => {
+                if (point.move > maxMove) maxMove = point.move;
+            });
+            finalCalculatedScores[player] = playerScores[player].length > 0
+                ? playerScores[player][playerScores[player].length - 1].score
+                : playerStartingScore[player];
+        });
+
+        return { playerScores, playerStartingScore, maxMove, finalCalculatedScores };
+    }
+
+    // Recent game score over time chart
+    function renderRecentGameScoreOverTime() {
+        const chartContainer = document.getElementById('recent-game-score-chart');
+        if (!chartContainer) return;
+
+        // Find the most recent game
+        const sortedGames = sortGamesChronologically(gamesData);
+        const recentGame = sortedGames[sortedGames.length - 1];
+        if (!recentGame) {
+            chartContainer.innerHTML = '<p class="empty-state">No game data available</p>';
+            return;
+        }
+
+        // Find the corresponding game log
+        const gameLog = gameLogsData?.find(log => log.tableId === recentGame.tableId);
+        if (!gameLog) {
+            chartContainer.innerHTML = '<p class="empty-state">No log data available for this game</p>';
+            return;
+        }
+
+        const result = calculateGameScoreProgression(recentGame, gameLog);
+        if (!result) {
+            chartContainer.innerHTML = '<p class="empty-state">Could not calculate scores</p>';
+            return;
+        }
+
+        const { playerScores, playerStartingScore, maxMove } = result;
+
         // Create datasets for Chart.js
         const datasets = TRACKED_PLAYERS.map(player => {
             const data = playerScores[player];
-            // Add initial point at starting score
             const chartData = [{ x: 0, y: playerStartingScore[player] }];
             data.forEach(point => {
                 chartData.push({ x: point.move, y: point.score });
@@ -439,14 +479,6 @@
                 pointRadius: 2,
                 pointHoverRadius: 5
             };
-        });
-
-        // Find max move number for x-axis
-        let maxMove = 0;
-        TRACKED_PLAYERS.forEach(player => {
-            playerScores[player].forEach(point => {
-                if (point.move > maxMove) maxMove = point.move;
-            });
         });
 
         // Create canvas
@@ -599,58 +631,6 @@
         const byConservation = [...performances].sort((a, b) => b.conservation - a.conservation);
         renderList('most-conservation', byConservation, 'conservation', v => `${v} conservation`);
 
-        // Best win streak
-        const sortedGames = sortGamesChronologically(gamesData);
-        const playerStreaks = {};
-        TRACKED_PLAYERS.forEach(player => {
-            playerStreaks[player] = { current: 0, best: 0, bestEndDate: null, bestEndUrl: null };
-        });
-
-        sortedGames.forEach(game => {
-            const results = game.stats['Game result'] || {};
-            const date = game.date || 'Unknown';
-            const url = game.url;
-
-            TRACKED_PLAYERS.forEach(player => {
-                const result = results[player];
-                if (result && result.startsWith('1st')) {
-                    playerStreaks[player].current++;
-                    if (playerStreaks[player].current > playerStreaks[player].best) {
-                        playerStreaks[player].best = playerStreaks[player].current;
-                        playerStreaks[player].bestEndDate = date;
-                        playerStreaks[player].bestEndUrl = url;
-                    }
-                } else {
-                    playerStreaks[player].current = 0;
-                }
-            });
-        });
-
-        // Find the maximum streak
-        const maxStreak = Math.max(...TRACKED_PLAYERS.map(p => playerStreaks[p].best));
-
-        // Get all players with the max streak (ties)
-        const streakWinners = TRACKED_PLAYERS
-            .filter(p => playerStreaks[p].best === maxStreak)
-            .map(p => ({
-                player: p,
-                streak: playerStreaks[p].best,
-                date: playerStreaks[p].bestEndDate,
-                url: playerStreaks[p].bestEndUrl
-            }));
-
-        // Render win streak list
-        const streakEl = document.getElementById('best-win-streak');
-        streakEl.innerHTML = streakWinners.map(s => `
-            <li>
-                <div class="accolade-info">
-                    <span class="accolade-value">${s.streak} wins</span>
-                    <span class="accolade-detail">${getDisplayName(s.player)} - ended ${formatDate(s.date)}</span>
-                </div>
-                <a href="${s.url}" target="_blank" class="accolade-link game-link">View</a>
-            </li>
-        `).join('');
-
         // Point disparity accolades (only for scores >= 100)
         const validDisparities = performances.filter(p => p.score >= 100);
 
@@ -725,6 +705,204 @@
         const losses = marginPerformances.filter(p => p.type === 'loss');
         const byMarginLoss = [...losses].sort((a, b) => b.margin - a.margin);
         renderList('biggest-loss', byMarginLoss, 'margin', v => `-${v} pts`);
+    }
+
+    // Gold medal game charts - render into each accolade's container
+    function renderGoldMedalCharts() {
+        // Collect all performances for gold medals
+        const performances = [];
+
+        gamesData.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            const turns = game.stats['Number of turns'] || {};
+            const appeal = game.stats['Appeal'] || {};
+            const conservation = game.stats['Conservation'] || {};
+            const tableId = game.tableId;
+            const turnCount = parseInt(Object.values(turns)[0]) || 999;
+
+            Object.entries(results).forEach(([player, result]) => {
+                if (!TRACKED_PLAYERS.includes(player)) return;
+
+                const scoreMatch = result.match(/\((\d+)\)/);
+                const score = scoreMatch ? parseInt(scoreMatch[1]) : 0;
+                const appealVal = parseInt(appeal[player]) || 0;
+                const conservationVal = parseInt(conservation[player]) || 0;
+                const isWinner = result.startsWith('1st');
+
+                const appealPts = appealVal;
+                const conservationPts = 3 * conservationVal - 10;
+                const disparity = appealPts - conservationPts;
+
+                performances.push({
+                    player, score, turns: turnCount, appeal: appealVal,
+                    conservation: conservationVal, disparity, tableId, isWinner
+                });
+            });
+        });
+
+        // Calculate margins
+        const marginPerformances = [];
+        gamesData.forEach(game => {
+            const results = game.stats['Game result'] || {};
+            const placements = Object.entries(results)
+                .filter(([player]) => TRACKED_PLAYERS.includes(player))
+                .map(([player, result]) => {
+                    const placeMatch = result.match(/^(\d)/);
+                    const scoreMatch = result.match(/\((\d+)\)/);
+                    return {
+                        player,
+                        place: placeMatch ? parseInt(placeMatch[1]) : 99,
+                        score: scoreMatch ? parseInt(scoreMatch[1]) : 0
+                    };
+                })
+                .sort((a, b) => a.place - b.place);
+
+            if (placements.length >= 2) {
+                const first = placements[0];
+                const second = placements[1];
+                if (first.place === 1 && second.place === 2) {
+                    marginPerformances.push({ tableId: game.tableId, type: 'victory', margin: first.score - second.score });
+                }
+                const last = placements[placements.length - 1];
+                const secondLast = placements.length > 2 ? placements[placements.length - 2] : null;
+                if (secondLast && last.place > secondLast.place) {
+                    marginPerformances.push({ tableId: game.tableId, type: 'loss', margin: secondLast.score - last.score });
+                }
+            }
+        });
+
+        // Map categories to their gold medal tableIds
+        const categoryToTableId = {};
+
+        const byScore = [...performances].sort((a, b) => b.score - a.score);
+        if (byScore.length > 0) categoryToTableId['highest-scores'] = byScore[0].tableId;
+
+        const winners = performances.filter(p => p.isWinner);
+        const byTurns = [...winners].sort((a, b) => a.turns - b.turns);
+        if (byTurns.length > 0) categoryToTableId['fastest-games'] = byTurns[0].tableId;
+
+        const byAppeal = [...performances].sort((a, b) => b.appeal - a.appeal);
+        if (byAppeal.length > 0) categoryToTableId['most-appeal'] = byAppeal[0].tableId;
+
+        const byConservation = [...performances].sort((a, b) => b.conservation - a.conservation);
+        if (byConservation.length > 0) categoryToTableId['most-conservation'] = byConservation[0].tableId;
+
+        const validDisparities = performances.filter(p => p.score >= 100);
+        const byPositiveDisparity = [...validDisparities].sort((a, b) => b.disparity - a.disparity);
+        if (byPositiveDisparity.length > 0) categoryToTableId['most-appeal-heavy'] = byPositiveDisparity[0].tableId;
+
+        const byNegativeDisparity = [...validDisparities].sort((a, b) => a.disparity - b.disparity);
+        if (byNegativeDisparity.length > 0) categoryToTableId['most-conservation-heavy'] = byNegativeDisparity[0].tableId;
+
+        const victories = marginPerformances.filter(p => p.type === 'victory');
+        const byMarginVictory = [...victories].sort((a, b) => b.margin - a.margin);
+        if (byMarginVictory.length > 0) categoryToTableId['largest-margin'] = byMarginVictory[0].tableId;
+
+        const losses = marginPerformances.filter(p => p.type === 'loss');
+        const byMarginLoss = [...losses].sort((a, b) => b.margin - a.margin);
+        if (byMarginLoss.length > 0) categoryToTableId['biggest-loss'] = byMarginLoss[0].tableId;
+
+        // Helper to render a chart into a container
+        function renderChartIntoContainer(containerId, tableId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const game = gamesData.find(g => g.tableId === tableId);
+            const gameLog = gameLogsData?.find(log => log.tableId === tableId);
+
+            if (!game || !gameLog) {
+                container.innerHTML = '<div class="no-chart">No log data available</div>';
+                return;
+            }
+
+            const result = calculateGameScoreProgression(game, gameLog);
+            if (!result) {
+                container.innerHTML = '<div class="no-chart">Could not calculate scores</div>';
+                return;
+            }
+
+            const { playerScores, playerStartingScore, maxMove, finalCalculatedScores } = result;
+
+            // Get actual scores
+            const actualScores = {};
+            const results = game.stats['Game result'] || {};
+            Object.entries(results).forEach(([player, res]) => {
+                const scoreMatch = res.match(/\((\d+)\)/);
+                if (scoreMatch) actualScores[player] = parseInt(scoreMatch[1]);
+            });
+
+            // Create datasets
+            const datasets = TRACKED_PLAYERS.map(player => {
+                const data = playerScores[player];
+                const chartData = [{ x: 0, y: playerStartingScore[player] }];
+                data.forEach(point => chartData.push({ x: point.move, y: point.score }));
+
+                return {
+                    label: getDisplayName(player),
+                    data: chartData,
+                    borderColor: PLAYER_COLORS[player],
+                    backgroundColor: PLAYER_COLORS[player] + '20',
+                    fill: false,
+                    tension: 0.1,
+                    pointRadius: 1,
+                    pointHoverRadius: 4,
+                    borderWidth: 2
+                };
+            });
+
+            // Build discrepancy text
+            const discrepancies = [];
+            TRACKED_PLAYERS.forEach(player => {
+                const calc = finalCalculatedScores[player];
+                const actual = actualScores[player];
+                if (actual !== undefined) {
+                    const diff = calc - actual;
+                    const displayName = getDisplayName(player);
+                    if (diff === 0) {
+                        discrepancies.push(`<span class="match">${displayName}: ${calc}</span>`);
+                    } else {
+                        const sign = diff > 0 ? '+' : '';
+                        discrepancies.push(`<span class="mismatch">${displayName}: ${calc} vs ${actual} (${sign}${diff})</span>`);
+                    }
+                }
+            });
+
+            // Create HTML
+            const canvasId = `canvas-${containerId}`;
+            container.innerHTML = `
+                <div class="chart-wrapper"><canvas id="${canvasId}"></canvas></div>
+                <div class="discrepancy-note">${discrepancies.join(' | ')}</div>
+            `;
+
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: { datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top', labels: { boxWidth: 10, font: { size: 9 } } },
+                        tooltip: {
+                            callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} pts` }
+                        },
+                        zoom: {
+                            pan: { enabled: true, mode: 'xy' },
+                            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' }
+                        }
+                    },
+                    scales: {
+                        x: { type: 'linear', title: { display: true, text: 'Move', font: { size: 9 } }, min: 0, max: maxMove + 5 },
+                        y: { title: { display: true, text: 'Score', font: { size: 9 } } }
+                    }
+                }
+            });
+        }
+
+        // Render chart for each category
+        Object.entries(categoryToTableId).forEach(([category, tableId]) => {
+            renderChartIntoContainer(`chart-${category}`, tableId);
+        });
     }
 
     // Leaderboard
