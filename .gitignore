@@ -1,3 +1,5 @@
 .DS_Store
 scraper/cookies.json
 scraper/config.json
+scraper/new_games.json
+scraper/new_logs.json
