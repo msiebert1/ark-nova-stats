@@ -81,6 +81,7 @@
     let gameLogsData = null;
     let allPlayers = new Set();
     let allMaps = new Set();
+    let biggestPointTurnInfo = null; // Store info for chart annotation
 
     // Check if game is a valid completed 4-player Ark Nova game with our tracked players
     function isValidGame(game) {
@@ -705,6 +706,152 @@
         const losses = marginPerformances.filter(p => p.type === 'loss');
         const byMarginLoss = [...losses].sort((a, b) => b.margin - a.margin);
         renderList('biggest-loss', byMarginLoss, 'margin', v => `-${v} pts`);
+
+        // Biggest Point Turn - calculated from game logs
+        const biggestPointTurns = calculateBiggestPointTurns();
+        renderBiggestPointTurns(biggestPointTurns.slice(0, 3));
+    }
+
+    // Calculate biggest point turns from game logs
+    function calculateBiggestPointTurns() {
+        if (!gameLogsData) return [];
+
+        const actionPattern = /^(\w+) chooses action card (\w+) with strength (\d+)/;
+        const appealPattern = /^(\w+) gains (\d+) appeal/;
+        const conservationPattern = /^(\w+) gains (\d+) conservation/;
+
+        function calculateConservationPoints(conservationBefore, conservationGained) {
+            let points = 0;
+            let current = conservationBefore;
+            for (let i = 0; i < conservationGained; i++) {
+                current++;
+                points += current <= 10 ? 2 : 3;
+            }
+            return points;
+        }
+
+        const allTurns = [];
+
+        for (const game of gameLogsData) {
+            // Skip non-Ark Nova games
+            const hasAppeal = game.logEntries.some(entry =>
+                entry.actions.some(action => action.includes('appeal') && action.includes('gains'))
+            );
+            if (!hasAppeal) continue;
+
+            // Get game date from gamesData
+            const gameData = gamesData.find(g => g.tableId === game.tableId);
+            const date = gameData?.date || 'Unknown';
+            const url = gameData?.url || game.url;
+
+            // Flatten all actions
+            const allActions = [];
+            for (const entry of game.logEntries) {
+                for (const action of entry.actions) {
+                    allActions.push({ moveNumber: entry.moveNumber, action });
+                }
+            }
+
+            // Track conservation totals per player
+            const conservationTotals = {};
+            TRACKED_PLAYERS.forEach(p => conservationTotals[p] = 0);
+
+            // Process turns - first pass to find all turn boundaries
+            const turnBoundaries = [];
+            for (let i = 0; i < allActions.length; i++) {
+                const { moveNumber, action } = allActions[i];
+                const turnMatch = action.match(actionPattern);
+                if (turnMatch) {
+                    turnBoundaries.push({ index: i, moveNumber, player: turnMatch[1], action: turnMatch[2] });
+                }
+            }
+
+            // Process each turn
+            for (let t = 0; t < turnBoundaries.length; t++) {
+                const turn = turnBoundaries[t];
+                const nextTurn = turnBoundaries[t + 1];
+
+                const startIndex = turn.index;
+                const endIndex = nextTurn ? nextTurn.index : allActions.length;
+                const endMove = nextTurn ? nextTurn.moveNumber - 1 : allActions[allActions.length - 1]?.moveNumber || turn.moveNumber;
+
+                let turnAppeal = 0;
+                const turnConservation = [];
+
+                // Process actions within this turn
+                for (let i = startIndex; i < endIndex; i++) {
+                    const { action } = allActions[i];
+
+                    const appealMatch = action.match(appealPattern);
+                    if (appealMatch && !action.toLowerCase().includes('income')) {
+                        const [, player, amount] = appealMatch;
+                        if (player === turn.player) {
+                            turnAppeal += parseInt(amount);
+                        }
+                    }
+
+                    const consMatch = action.match(conservationPattern);
+                    if (consMatch) {
+                        const [, player, amount] = consMatch;
+                        const amountInt = parseInt(amount);
+                        if (conservationTotals[player] !== undefined) {
+                            conservationTotals[player] += amountInt;
+                        }
+                        if (player === turn.player) {
+                            turnConservation.push({ player, amount: amountInt });
+                        }
+                    }
+                }
+
+                // Calculate conservation points
+                let consPoints = 0;
+                for (const { player, amount } of turnConservation) {
+                    consPoints += calculateConservationPoints(
+                        conservationTotals[player] - amount,
+                        amount
+                    );
+                }
+
+                const totalPoints = turnAppeal + consPoints;
+
+                if (totalPoints > 0 && TRACKED_PLAYERS.includes(turn.player)) {
+                    allTurns.push({
+                        tableId: game.tableId,
+                        player: turn.player,
+                        action: turn.action,
+                        startMove: turn.moveNumber,
+                        endMove: endMove,
+                        appeal: turnAppeal,
+                        conservationPoints: consPoints,
+                        totalPoints,
+                        date,
+                        url
+                    });
+                }
+            }
+        }
+
+        // Sort by total points descending
+        allTurns.sort((a, b) => b.totalPoints - a.totalPoints);
+        return allTurns;
+    }
+
+    // Render biggest point turns
+    function renderBiggestPointTurns(turns) {
+        const el = document.getElementById('biggest-point-turn');
+        if (!el) return;
+
+        el.innerHTML = turns.map(t => {
+            const breakdown = `${t.appeal} appeal + ${t.conservationPoints} cons pts`;
+            return `
+            <li>
+                <div class="accolade-info">
+                    <span class="accolade-value">${t.totalPoints} pts</span>
+                    <span class="accolade-detail">${getDisplayName(t.player)} (${t.action}) - ${breakdown}</span>
+                </div>
+                <a href="${t.url}" target="_blank" class="accolade-link game-link">View</a>
+            </li>
+        `}).join('');
     }
 
     // Gold medal game charts - render into each accolade's container
@@ -802,6 +949,13 @@
         const byMarginLoss = [...losses].sort((a, b) => b.margin - a.margin);
         if (byMarginLoss.length > 0) categoryToTableId['biggest-loss'] = byMarginLoss[0].tableId;
 
+        // Biggest point turn
+        const biggestPointTurns = calculateBiggestPointTurns();
+        if (biggestPointTurns.length > 0) {
+            categoryToTableId['biggest-point-turn'] = biggestPointTurns[0].tableId;
+            biggestPointTurnInfo = biggestPointTurns[0]; // Store for chart annotation
+        }
+
         // Helper to render a chart into a container
         function renderChartIntoContainer(containerId, tableId) {
             const container = document.getElementById(containerId);
@@ -875,27 +1029,70 @@
             `;
 
             const ctx = document.getElementById(canvasId).getContext('2d');
+
+            // Build chart options
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: true, position: 'top', labels: { boxWidth: 10, font: { size: 9 } } },
+                    tooltip: {
+                        callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} pts` }
+                    },
+                    zoom: {
+                        pan: { enabled: true, mode: 'xy' },
+                        zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' }
+                    }
+                },
+                scales: {
+                    x: { type: 'linear', title: { display: true, text: 'Move', font: { size: 9 } }, min: 0, max: maxMove + 5 },
+                    y: { title: { display: true, text: 'Score', font: { size: 9 } } }
+                }
+            };
+
+            // Add turn boundary annotations for biggest-point-turn chart
+            if (containerId === 'chart-biggest-point-turn' && biggestPointTurnInfo) {
+                const playerColor = PLAYER_COLORS[biggestPointTurnInfo.player] || '#666';
+                chartOptions.plugins.annotation = {
+                    annotations: {
+                        turnStart: {
+                            type: 'line',
+                            xMin: biggestPointTurnInfo.startMove,
+                            xMax: biggestPointTurnInfo.startMove,
+                            borderColor: playerColor,
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Turn Start',
+                                position: 'start',
+                                backgroundColor: playerColor,
+                                font: { size: 9 }
+                            }
+                        },
+                        turnEnd: {
+                            type: 'line',
+                            xMin: biggestPointTurnInfo.endMove,
+                            xMax: biggestPointTurnInfo.endMove,
+                            borderColor: playerColor,
+                            borderWidth: 2,
+                            borderDash: [6, 4],
+                            label: {
+                                display: true,
+                                content: 'Turn End',
+                                position: 'start',
+                                backgroundColor: playerColor,
+                                font: { size: 9 }
+                            }
+                        }
+                    }
+                };
+            }
+
             new Chart(ctx, {
                 type: 'line',
                 data: { datasets },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: true, position: 'top', labels: { boxWidth: 10, font: { size: 9 } } },
-                        tooltip: {
-                            callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} pts` }
-                        },
-                        zoom: {
-                            pan: { enabled: true, mode: 'xy' },
-                            zoom: { wheel: { enabled: true }, pinch: { enabled: true }, mode: 'xy' }
-                        }
-                    },
-                    scales: {
-                        x: { type: 'linear', title: { display: true, text: 'Move', font: { size: 9 } }, min: 0, max: maxMove + 5 },
-                        y: { title: { display: true, text: 'Score', font: { size: 9 } } }
-                    }
-                }
+                options: chartOptions
             });
         }
 
