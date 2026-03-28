@@ -34,7 +34,10 @@ def merge_games(new_games_path: str):
     with open(new_games_path, 'r') as f:
         new_data = json.load(f)
 
+    # Handle double-wrapped format: {"games": [{exportedAt, totalGames, games: [...]}]}
     new_games = new_data.get('games', [])
+    if new_games and isinstance(new_games[0], dict) and 'games' in new_games[0]:
+        new_games = new_games[0]['games']
 
     # Filter to truly new games
     added = []
@@ -71,7 +74,10 @@ def merge_logs(new_logs_path: str):
     with open(new_logs_path, 'r') as f:
         new_data = json.load(f)
 
+    # Handle double-wrapped format: {"logs": [{exportedAt, totalLogs, logs: [...]}]}
     new_logs = new_data.get('logs', [])
+    if new_logs and isinstance(new_logs[0], dict) and 'logs' in new_logs[0]:
+        new_logs = new_logs[0]['logs']
 
     # Filter to truly new logs
     added = []

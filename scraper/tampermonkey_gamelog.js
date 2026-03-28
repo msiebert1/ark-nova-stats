@@ -191,17 +191,19 @@
         };
 
         const json = JSON.stringify(output, null, 2);
+        const blob = new Blob([json], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'new_logs.json';
+        a.click();
+        URL.revokeObjectURL(url);
 
-        navigator.clipboard.writeText(json).then(() => {
-            const clear = confirm(`Exported ${logs.length} log(s)!\n\nJSON copied to clipboard.\n\nClear collected logs from storage?`);
-            if (clear) {
-                localStorage.removeItem(STORAGE_KEY);
-                location.reload();
-            }
-        }).catch(() => {
-            console.log(json);
-            alert(`Exported ${logs.length} log(s)!\n\nCheck console for JSON (Cmd+Option+J)`);
-        });
+        const clear = confirm(`Exported ${logs.length} log(s)!\n\nnew_logs.json downloaded.\n\nClear collected logs from storage?`);
+        if (clear) {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+        }
     }
 
     // Initialize
