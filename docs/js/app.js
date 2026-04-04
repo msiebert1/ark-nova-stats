@@ -3401,6 +3401,46 @@
                     </tr>
                 `).join('');
             });
+            // Action card draft chart — one bar per specific card+level combo (e.g. "Cards 4")
+            const draftLevelsByPlayer = data.actionCardDraftLevelsByPlayer || {};
+            const ACTION_CARD_NAMES = ['Build', 'Cards', 'Animals', 'Association', 'Sponsors'];
+            const DRAFT_LEVELS = [1, 2, 3, 4];
+            const draftLabels = ACTION_CARD_NAMES.flatMap(card => DRAFT_LEVELS.map(lvl => `${card} ${lvl}`));
+            const draftCtx = document.getElementById('action-card-drafts-chart').getContext('2d');
+            new Chart(draftCtx, {
+                type: 'bar',
+                data: {
+                    labels: draftLabels,
+                    datasets: TRACKED_PLAYERS.map(player => ({
+                        label: getDisplayName(player),
+                        data: ACTION_CARD_NAMES.flatMap(card =>
+                            DRAFT_LEVELS.map(lvl =>
+                                ((draftLevelsByPlayer[player] || {})[card] || {})[String(lvl)] || 0
+                            )
+                        ),
+                        backgroundColor: PLAYER_COLORS[player] + 'CC',
+                        borderColor: PLAYER_COLORS[player],
+                        borderWidth: 1
+                    }))
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'top' }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Action Card' }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Times Chosen in Draft' },
+                            ticks: { stepSize: 1 }
+                        }
+                    }
+                }
+            });
         } catch (error) {
             console.error('Failed to load card analysis:', error);
         }

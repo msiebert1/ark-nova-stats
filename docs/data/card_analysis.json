@@ -6921,5 +6921,163 @@
         "plays": 2
       }
     ]
+  },
+  "actionCardDraftsByPlayer": {
+    "msiebert": {
+      "Cards": 33,
+      "Sponsors": 26,
+      "Animals": 20,
+      "Association": 20,
+      "Build": 25
+    },
+    "marksbrt": {
+      "Animals": 34,
+      "Sponsors": 29,
+      "Cards": 26,
+      "Build": 19,
+      "Association": 14
+    },
+    "AstroHood": {
+      "Build": 28,
+      "Cards": 29,
+      "Animals": 27,
+      "Sponsors": 15,
+      "Association": 21
+    },
+    "siebert23": {
+      "Cards": 25,
+      "Association": 24,
+      "Build": 14,
+      "Animals": 32,
+      "Sponsors": 27
+    }
+  },
+  "actionCardDraftLevelsByPlayer": {
+    "msiebert": {
+      "Cards": {
+        "4": 11,
+        "3": 9,
+        "1": 8,
+        "2": 5
+      },
+      "Sponsors": {
+        "3": 4,
+        "1": 3,
+        "2": 15,
+        "4": 4
+      },
+      "Animals": {
+        "4": 5,
+        "3": 7,
+        "1": 6,
+        "2": 2
+      },
+      "Association": {
+        "3": 12,
+        "1": 5,
+        "4": 2,
+        "2": 1
+      },
+      "Build": {
+        "3": 6,
+        "4": 11,
+        "1": 6,
+        "2": 2
+      }
+    },
+    "marksbrt": {
+      "Animals": {
+        "3": 10,
+        "1": 5,
+        "4": 11,
+        "2": 8
+      },
+      "Sponsors": {
+        "4": 6,
+        "2": 9,
+        "1": 10,
+        "3": 4
+      },
+      "Cards": {
+        "4": 7,
+        "1": 8,
+        "3": 3,
+        "2": 8
+      },
+      "Build": {
+        "4": 8,
+        "3": 6,
+        "1": 1,
+        "2": 4
+      },
+      "Association": {
+        "1": 4,
+        "2": 3,
+        "3": 3,
+        "4": 4
+      }
+    },
+    "AstroHood": {
+      "Build": {
+        "4": 12,
+        "3": 10,
+        "2": 6
+      },
+      "Cards": {
+        "1": 7,
+        "2": 6,
+        "3": 8,
+        "4": 8
+      },
+      "Animals": {
+        "3": 14,
+        "4": 4,
+        "1": 6,
+        "2": 3
+      },
+      "Sponsors": {
+        "3": 1,
+        "1": 3,
+        "2": 9,
+        "4": 2
+      },
+      "Association": {
+        "3": 5,
+        "1": 15,
+        "2": 1
+      }
+    },
+    "siebert23": {
+      "Cards": {
+        "3": 12,
+        "2": 5,
+        "1": 6,
+        "4": 2
+      },
+      "Association": {
+        "3": 12,
+        "4": 3,
+        "1": 5,
+        "2": 4
+      },
+      "Build": {
+        "2": 7,
+        "4": 1,
+        "3": 4,
+        "1": 2
+      },
+      "Animals": {
+        "2": 7,
+        "3": 2,
+        "1": 13,
+        "4": 10
+      },
+      "Sponsors": {
+        "2": 8,
+        "1": 7,
+        "4": 8,
+        "3": 4
+      }
+    }
   }
 }
