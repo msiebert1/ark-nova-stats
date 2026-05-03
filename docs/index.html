@@ -503,18 +503,18 @@
                     <canvas id="cards-drawn-player-kde"></canvas>
                 </div>
             </section>
+
+            <section id="starting-position" class="stats-section">
+                <h2>Win Rate by Starting Position</h2>
+                <p class="section-desc">Win percentage for each starting position (1st–4th player in turn order)</p>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="starting-position-chart"></canvas>
+                </div>
+            </section>
         </div>
 
         <!-- CARDS TAB -->
         <div id="tab-cards" class="tab-content">
-            <section id="action-card-drafts" class="stats-section">
-                <h2>Action Card Draft Choices</h2>
-                <p class="section-desc">Which action cards each player chose to upgrade during the draft phase (2 picks per game)</p>
-                <div class="chart-container" style="height: 450px;">
-                    <canvas id="action-card-drafts-chart"></canvas>
-                </div>
-            </section>
-
             <section id="animals-kde" class="stats-section">
                 <h2>Played Animals Distribution (KDE)</h2>
                 <p class="section-desc">Animals played per game by player</p>
@@ -590,6 +590,24 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section id="action-card-drafts" class="stats-section">
+                <h2>Action Card Draft Choices</h2>
+                <p class="section-desc">Which action cards each player chose to upgrade during the draft phase (2 picks per game)</p>
+                <div class="chart-container" style="height: 450px;">
+                    <canvas id="action-card-drafts-chart"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Draft Choices by Winners</h3>
+                <p class="section-desc">Most frequently drafted action cards by the winning player</p>
+                <div class="chart-container" style="height: 400px; margin-bottom: 2rem;">
+                    <canvas id="winner-drafts-chart"></canvas>
+                </div>
+                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Win Rate vs. Total Picks</h3>
+                <p class="section-desc">Total times chosen (x) vs. win fraction (y) for each draft pick</p>
+                <div class="chart-container" style="height: 400px; margin-bottom: 2rem;">
+                    <canvas id="draft-scatter-chart"></canvas>
                 </div>
             </section>
         </div>

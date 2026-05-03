@@ -28,6 +28,9 @@ player_action_drafts = defaultdict(lambda: defaultdict(int))        # player -> 
 player_action_draft_levels = defaultdict(                            # player -> card -> level -> count
     lambda: defaultdict(lambda: defaultdict(int))
 )
+game_action_draft_levels = defaultdict(                              # table_id -> player -> card -> level -> count
+    lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+)
 
 
 def parse_draft_picks(card_str):
@@ -83,6 +86,7 @@ for game in logs_data['logs']:
                     if card_name in ACTION_CARDS:
                         player_action_drafts[player][card_name] += 1
                         player_action_draft_levels[player][card_name][str(level)] += 1
+                        game_action_draft_levels[table_id][player][card_name][str(level)] += 1
 
 # Output cards per game per player
 print('=== CARDS PLAYED PER GAME ===\n')
@@ -129,7 +133,8 @@ output = {
     'cardsPerGame': {k: dict(v) for k, v in game_cards.items()},
     'topCardsByPlayer': {},
     'actionCardDraftsByPlayer': {},
-    'actionCardDraftLevelsByPlayer': {}
+    'actionCardDraftLevelsByPlayer': {},
+    'actionCardDraftLevelsByGame': {}
 }
 
 for player in tracked_players:
@@ -148,6 +153,14 @@ for player in tracked_players:
             card: dict(levels)
             for card, levels in player_action_draft_levels[player].items()
         }
+
+output['actionCardDraftLevelsByGame'] = {
+    table_id: {
+        player: {card: dict(levels) for card, levels in cards.items()}
+        for player, cards in players.items()
+    }
+    for table_id, players in game_action_draft_levels.items()
+}
 
 with open('./docs/data/card_analysis.json', 'w') as f:
     json.dump(output, f, indent=2)

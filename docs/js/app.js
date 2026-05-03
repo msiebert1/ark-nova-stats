@@ -168,6 +168,7 @@
         renderMoneyByPlayerKDE();
         renderAdditionalStats();
         renderCardsDrawnKDE();
+        renderStartingPositionWinRate();
         renderPointDisparity();
         renderDisparityDistribution();
         renderDisparityByPlayer();
@@ -2390,6 +2391,78 @@
         });
     }
 
+    function renderStartingPositionWinRate() {
+        const POSITIONS = ['First player', 'Second player', 'Third player', 'Fourth player'];
+        const wins = {};
+        const totals = {};
+        const winsByPlayer = {};  // pos -> player -> wins
+        POSITIONS.forEach(p => { wins[p] = 0; totals[p] = 0; winsByPlayer[p] = {}; });
+
+        gamesData.forEach(game => {
+            const positions = game.stats['Starting position in first round'] || {};
+            const scores = game.stats['Score'] || {};
+            const players = game.players.filter(p => scores[p] !== undefined);
+            const winner = players.slice().sort((a, b) => Number(scores[b]) - Number(scores[a]))[0];
+
+            TRACKED_PLAYERS.forEach(player => {
+                const pos = positions[player];
+                if (!pos || !POSITIONS.includes(pos)) return;
+                totals[pos] = (totals[pos] || 0) + 1;
+                if (player === winner) {
+                    wins[pos] = (wins[pos] || 0) + 1;
+                    winsByPlayer[pos][player] = (winsByPlayer[pos][player] || 0) + 1;
+                }
+            });
+        });
+
+        const winRates = POSITIONS.map(p => totals[p] ? (wins[p] / totals[p]) * 100 : 0);
+        const labels = ['1st', '2nd', '3rd', '4th'];
+
+        new Chart(document.getElementById('starting-position-chart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Win Rate',
+                    data: winRates,
+                    backgroundColor: labels.map((_, i) => `hsl(${210 + i * 30}, 60%, ${60 - i * 8}%)`),
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            title: ctx => `${ctx[0].label} player — ${ctx[0].parsed.y.toFixed(1)}% win rate`,
+                            label: () => null,
+                            afterBody: ctx => {
+                                const pos = POSITIONS[ctx[0].dataIndex];
+                                const lines = [`${wins[pos]}W / ${totals[pos]} games`, ''];
+                                TRACKED_PLAYERS.forEach(player => {
+                                    const w = winsByPlayer[pos][player] || 0;
+                                    if (w > 0) lines.push(`${getDisplayName(player)}: ${w}`);
+                                });
+                                return lines;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Starting Position' } },
+                    y: {
+                        beginAtZero: true,
+                        max: Math.ceil(Math.max(...winRates) / 5) * 5,
+                        title: { display: true, text: 'Win Rate (%)' },
+                        ticks: { callback: v => v + '%' }
+                    }
+                }
+            }
+        });
+    }
+
     // Point disparity (appeal vs conservation)
     function renderPointDisparity() {
         // Appeal points = appeal
@@ -3405,7 +3478,32 @@
             const draftLevelsByPlayer = data.actionCardDraftLevelsByPlayer || {};
             const ACTION_CARD_NAMES = ['Build', 'Cards', 'Animals', 'Association', 'Sponsors'];
             const DRAFT_LEVELS = [1, 2, 3, 4];
-            const draftLabels = ACTION_CARD_NAMES.flatMap(card => DRAFT_LEVELS.map(lvl => `${card} ${lvl}`));
+            const ACTION_CARD_ALIASES = {
+                "Animals 1": "Animals: Ignore",
+                "Animals 2": "Animals: Hunter",
+                "Animals 3": "Animals: Discount",
+                "Animals 4": "Animals: Mark",
+                "Build 1": "Build: Pavillion",
+                "Build 2": "Build: Kiosk",
+                "Build 3": "Build: +1",
+                "Build 4": "Build: Water/Rock",
+                "Cards 1": "Cards: No Discard",
+                "Cards 2": "Cards: Digging",
+                "Cards 3": "Cards: Snapping",
+                "Cards 4": "Cards: Clever",
+                "Sponsors 1": "Sponsors: Trade",
+                "Sponsors 2": "Sponsors: Money",
+                "Sponsors 3": "Sponsors: Sunbathing",
+                "Sponsors 4": "Sponsors: Discard",
+                "Association 1": "Association: Supply",
+                "Association 2": "Association: 5 Worker",
+                "Association 3": "Association: X",
+                "Association 4": "Association: Reorder"
+            };
+            const draftLabels = ACTION_CARD_NAMES.flatMap(card => DRAFT_LEVELS.map(lvl => {
+                const key = `${card} ${lvl}`;
+                return ACTION_CARD_ALIASES[key] || key;
+            }));
             const draftCtx = document.getElementById('action-card-drafts-chart').getContext('2d');
             new Chart(draftCtx, {
                 type: 'bar',
@@ -3440,6 +3538,161 @@
                         }
                     }
                 }
+            });
+
+            // Winner/loser draft charts
+            const draftLevelsByGame = data.actionCardDraftLevelsByGame || {};
+            const winnerDrafts = {};
+            const totalDrafts = {};
+
+            gamesData.forEach(game => {
+                const tableId = game.tableId;
+                const gameDrafts = draftLevelsByGame[tableId];
+                if (!gameDrafts) return;
+
+                const scores = game.stats['Score'] || {};
+                const players = game.players.filter(p => scores[p] !== undefined);
+                const sorted = players.slice().sort((a, b) => Number(scores[b]) - Number(scores[a]));
+                const winner = sorted[0];
+
+                const tallyDrafts = (player, tally) => {
+                    const playerDrafts = gameDrafts[player];
+                    if (!playerDrafts) return;
+                    ACTION_CARD_NAMES.forEach(card => {
+                        const levels = playerDrafts[card] || {};
+                        DRAFT_LEVELS.forEach(lvl => {
+                            const count = levels[String(lvl)] || 0;
+                            if (count > 0) {
+                                const key = `${card} ${lvl}`;
+                                const label = ACTION_CARD_ALIASES[key] || key;
+                                tally[label] = (tally[label] || 0) + count;
+                            }
+                        });
+                    });
+                };
+
+                // Tally all players for totals
+                players.forEach(p => tallyDrafts(p, totalDrafts));
+                tallyDrafts(winner, winnerDrafts);
+            });
+
+            const sortedWinnerDrafts = Object.entries(winnerDrafts)
+                .map(([label, wins]) => [label, totalDrafts[label] ? (wins / totalDrafts[label]) * 100 : 0])
+                .sort((a, b) => b[1] - a[1]);
+
+            // Color bars by total play count: low=light blue, high=dark blue
+            const allTotals = Object.values(totalDrafts);
+            const minTotal = Math.min(...allTotals);
+            const maxTotal = Math.max(...allTotals);
+            const playCountColor = (label) => {
+                const t = maxTotal === minTotal ? 0.5
+                    : (totalDrafts[label] - minTotal) / (maxTotal - minTotal);
+                const r = Math.round(191 - 161 * t);  // 191 -> 30
+                const g = Math.round(219 - 155 * t);  // 219 -> 64
+                const b = Math.round(254 - 79  * t);  // 254 -> 175
+                return `rgb(${r},${g},${b})`;
+            };
+
+            const draftFractionChartOptions = (titleText, sortedData) => ({
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => {
+                                const label = sortedData[ctx.dataIndex][0];
+                                return `${ctx.parsed.x.toFixed(1)}%  (${totalDrafts[label]} total picks)`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: titleText },
+                        ticks: { callback: v => v + '%' }
+                    }
+                }
+            });
+
+            document.getElementById('winner-drafts-chart').parentElement.style.height =
+                Math.max(300, sortedWinnerDrafts.length * 30) + 'px';
+
+            new Chart(document.getElementById('winner-drafts-chart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: sortedWinnerDrafts.map(([label]) => label),
+                    datasets: [{
+                        label: 'Win Rate',
+                        data: sortedWinnerDrafts.map(([, pct]) => pct),
+                        backgroundColor: sortedWinnerDrafts.map(([label]) => playCountColor(label)),
+                        borderWidth: 0
+                    }]
+                },
+                options: draftFractionChartOptions('Win Rate (%)', sortedWinnerDrafts)
+            });
+
+            // Scatter: total picks (x) vs win fraction (y), one point per draft pick
+            const scatterPoints = Object.keys(totalDrafts).map(label => ({
+                x: totalDrafts[label],
+                y: winnerDrafts[label] ? (winnerDrafts[label] / totalDrafts[label]) * 100 : 0,
+                label
+            }));
+
+            new Chart(document.getElementById('draft-scatter-chart').getContext('2d'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Draft picks',
+                        data: scatterPoints.map(p => ({ x: p.x, y: p.y })),
+                        backgroundColor: scatterPoints.map(p => playCountColor(p.label)),
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => {
+                                    const p = scatterPoints[ctx.dataIndex];
+                                    return `${p.label}: ${p.y.toFixed(1)}% win rate (${p.x} picks)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            max: Math.max(...scatterPoints.map(p => p.x)) + 8,
+                            title: { display: true, text: 'Total Times Chosen' },
+                            ticks: { stepSize: 1 }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Win Rate (%)' },
+                            ticks: { callback: v => v + '%' }
+                        }
+                    }
+                },
+                plugins: [{
+                    id: 'pointLabels',
+                    afterDatasetsDraw(chart) {
+                        const ctx = chart.ctx;
+                        ctx.save();
+                        ctx.font = '11px sans-serif';
+                        ctx.fillStyle = '#374151';
+                        ctx.textAlign = 'left';
+                        chart.getDatasetMeta(0).data.forEach((point, i) => {
+                            ctx.fillText(scatterPoints[i].label, point.x + 6, point.y + 4);
+                        });
+                        ctx.restore();
+                    }
+                }]
             });
         } catch (error) {
             console.error('Failed to load card analysis:', error);
