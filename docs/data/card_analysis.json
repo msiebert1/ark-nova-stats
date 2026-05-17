@@ -4038,6 +4038,67 @@
         "Australian Sea Lion",
         "Moose"
       ]
+    },
+    "852062667": {
+      "marksbrt": [
+        "Science Library",
+        "Victory Column",
+        "Cheetah",
+        "Okapi Stable",
+        "Meerkat Den",
+        "Asian Elephant",
+        "Moose",
+        "Common Octopus",
+        "Brown Spider Monkey",
+        "American Alligator",
+        "Red Deer",
+        "Aquarium",
+        "Adventure Playground",
+        "Cotton-top Tamarin"
+      ],
+      "AstroHood": [
+        "Northern Cassowary",
+        "Talented Communicator",
+        "European Pond Turtle",
+        "Longhorn Cowfish",
+        "Water Playground",
+        "Rhesus Monkey Park",
+        "Southern Blue-ringed Octopus",
+        "New Zealand Fur Seal",
+        "Expansion Area",
+        "Golden Snub-nosed Monkey",
+        "Golden Lion Tamarin",
+        "Australian Pelican",
+        "Technology Institute",
+        "Guided School Tours",
+        "Boa Constrictor",
+        "Saltwater Crocodile"
+      ],
+      "msiebert": [
+        "Expert On Asia",
+        "Eurasian Eagle-owl",
+        "Greater Flamingo",
+        "Explorer",
+        "Common Wall Lizard",
+        "Brahminy Kite",
+        "Raccoon",
+        "White Rhinoceros",
+        "Magnificent Sea Anemone",
+        "Green Sea Turtle",
+        "Veiled Chameleon"
+      ],
+      "siebert23": [
+        "Red Panda",
+        "Barred Owl Hut",
+        "Lesser Bird-of-paradise",
+        "Wolverine",
+        "Common European Adder",
+        "Emu",
+        "Blackside Hawkfish",
+        "Laughing Kookaburra",
+        "Crested Porcupine",
+        "Wolf"
+      ]
     }
   },
   "topCardsByPlayer": {
@@ -4064,6 +4125,10 @@
       },
       {
         "card": "Spokesperson",
+        "plays": 8
+      },
+      {
+        "card": "Greater Flamingo",
         "plays": 8
       },
       {
@@ -4095,7 +4160,7 @@
         "plays": 7
       },
       {
-        "card": "Greater Flamingo",
+        "card": "Veiled Chameleon",
         "plays": 7
       },
       {
@@ -4108,6 +4173,10 @@
       },
       {
         "card": "European Pond Turtle",
+        "plays": 7
+      },
+      {
+        "card": "Brahminy Kite",
         "plays": 7
       },
       {
@@ -4127,6 +4196,10 @@
         "plays": 7
       },
       {
+        "card": "Common Wall Lizard",
+        "plays": 6
+      },
+      {
         "card": "Sumatran Tiger",
         "plays": 6
       },
@@ -4140,6 +4213,10 @@
       },
       {
         "card": "Foreign Institute",
+        "plays": 6
+      },
+      {
+        "card": "White Rhinoceros",
         "plays": 6
       },
       {
@@ -4163,10 +4240,6 @@
         "plays": 6
       },
       {
-        "card": "Veiled Chameleon",
-        "plays": 6
-      },
-      {
         "card": "Sloth Bear",
         "plays": 6
       },
@@ -4184,10 +4257,6 @@
       },
       {
         "card": "Vietnamese Pot-bellied Pig",
-        "plays": 6
-      },
-      {
-        "card": "Brahminy Kite",
         "plays": 6
       },
       {
@@ -4223,19 +4292,11 @@
         "plays": 5
       },
       {
-        "card": "Common Wall Lizard",
-        "plays": 5
-      },
-      {
         "card": "White Stork",
         "plays": 5
       },
       {
         "card": "Common Wombat",
-        "plays": 5
-      },
-      {
-        "card": "White Rhinoceros",
         "plays": 5
       },
       {
@@ -4279,6 +4340,14 @@
         "plays": 5
       },
       {
+        "card": "Green Sea Turtle",
+        "plays": 5
+      },
+      {
+        "card": "Explorer",
+        "plays": 5
+      },
+      {
         "card": "Expert On Australia",
         "plays": 5
       },
@@ -4292,6 +4361,10 @@
       },
       {
         "card": "Mediterranean Rainbow Wrasse",
+        "plays": 5
+      },
+      {
+        "card": "Magnificent Sea Anemone",
         "plays": 5
       },
       {
@@ -4399,14 +4472,6 @@
         "plays": 4
       },
       {
-        "card": "Green Sea Turtle",
-        "plays": 4
-      },
-      {
-        "card": "Explorer",
-        "plays": 4
-      },
-      {
         "card": "Primatologist",
         "plays": 4
       },
@@ -4424,10 +4489,6 @@
       },
       {
         "card": "Jaguar",
-        "plays": 4
-      },
-      {
-        "card": "Magnificent Sea Anemone",
         "plays": 4
       },
       {
@@ -4452,6 +4513,10 @@
       },
       {
         "card": "Longhorn Cowfish",
+        "plays": 4
+      },
+      {
+        "card": "Raccoon",
         "plays": 4
       },
       {
@@ -4619,10 +4684,6 @@
         "plays": 3
       },
       {
-        "card": "Raccoon",
-        "plays": 3
-      },
-      {
         "card": "Grevy's Zebra",
         "plays": 3
       },
@@ -4640,6 +4701,10 @@
       },
       {
         "card": "Golden Snub-nosed Monkey",
+        "plays": 3
+      },
+      {
+        "card": "Eurasian Eagle-owl",
         "plays": 3
       },
       {
@@ -4791,10 +4856,6 @@
         "plays": 2
       },
       {
-        "card": "Eurasian Eagle-owl",
-        "plays": 2
-      },
-      {
         "card": "Engineer",
         "plays": 2
       },
@@ -4857,6 +4918,10 @@
       {
         "card": "Koala",
         "plays": 2
+      },
+      {
+        "card": "Expert On Asia",
+        "plays": 2
       }
     ],
     "marksbrt": [
@@ -4878,7 +4943,7 @@
       },
       {
         "card": "Cotton-top Tamarin",
-        "plays": 9
+        "plays": 10
       },
       {
         "card": "Blackside Hawkfish",
@@ -4921,6 +4986,10 @@
         "plays": 8
       },
       {
+        "card": "Science Library",
+        "plays": 8
+      },
+      {
         "card": "Expert On Africa",
         "plays": 7
       },
@@ -4941,15 +5010,15 @@
         "plays": 7
       },
       {
+        "card": "Victory Column",
+        "plays": 7
+      },
+      {
         "card": "Laughing Kookaburra",
         "plays": 7
       },
       {
         "card": "Golden Lion Tamarin",
-        "plays": 7
-      },
-      {
-        "card": "Science Library",
         "plays": 7
       },
       {
@@ -4989,11 +5058,11 @@
         "plays": 6
       },
       {
-        "card": "African Bush Elephant",
+        "card": "Asian Elephant",
         "plays": 6
       },
       {
-        "card": "Victory Column",
+        "card": "African Bush Elephant",
         "plays": 6
       },
       {
@@ -5033,6 +5102,10 @@
         "plays": 5
       },
       {
+        "card": "Meerkat Den",
+        "plays": 5
+      },
+      {
         "card": "Anaconda",
         "plays": 5
       },
@@ -5046,6 +5119,10 @@
       },
       {
         "card": "White Rhinoceros",
+        "plays": 5
+      },
+      {
+        "card": "Cheetah",
         "plays": 5
       },
       {
@@ -5085,10 +5162,6 @@
         "plays": 5
       },
       {
-        "card": "Asian Elephant",
-        "plays": 5
-      },
-      {
         "card": "Japanese Macaque",
         "plays": 5
       },
@@ -5106,6 +5179,10 @@
       },
       {
         "card": "Alpine Ibex",
+        "plays": 5
+      },
+      {
+        "card": "Okapi Stable",
         "plays": 5
       },
       {
@@ -5149,10 +5226,6 @@
         "plays": 4
       },
       {
-        "card": "Meerkat Den",
-        "plays": 4
-      },
-      {
         "card": "Herpetologist",
         "plays": 4
       },
@@ -5166,10 +5239,6 @@
       },
       {
         "card": "Guineafowl Puffer",
-        "plays": 4
-      },
-      {
-        "card": "Cheetah",
         "plays": 4
       },
       {
@@ -5221,10 +5290,6 @@
         "plays": 4
       },
       {
-        "card": "Okapi Stable",
-        "plays": 4
-      },
-      {
         "card": "Underwater Tunnel",
         "plays": 4
       },
@@ -5257,11 +5322,23 @@
         "plays": 4
       },
       {
+        "card": "Moose",
+        "plays": 4
+      },
+      {
         "card": "Red Kangaroo",
         "plays": 4
       },
       {
+        "card": "Aquarium",
+        "plays": 4
+      },
+      {
         "card": "European Badger",
+        "plays": 4
+      },
+      {
+        "card": "American Alligator",
         "plays": 4
       },
       {
@@ -5338,6 +5415,10 @@
       },
       {
         "card": "Marabou",
+        "plays": 3
+      },
+      {
+        "card": "Red Deer",
         "plays": 3
       },
       {
@@ -5429,14 +5510,6 @@
         "plays": 3
       },
       {
-        "card": "Moose",
-        "plays": 3
-      },
-      {
-        "card": "Aquarium",
-        "plays": 3
-      },
-      {
         "card": "Chinese Water Dragon",
         "plays": 3
       },
@@ -5446,10 +5519,6 @@
       },
       {
         "card": "Loggerhead Sea Turtle",
-        "plays": 3
-      },
-      {
-        "card": "American Alligator",
         "plays": 3
       },
       {
@@ -5533,10 +5602,6 @@
         "plays": 2
       },
       {
-        "card": "Red Deer",
-        "plays": 2
-      },
-      {
         "card": "Eurasian Lynx",
         "plays": 2
       },
@@ -5601,6 +5666,10 @@
         "plays": 2
       },
       {
+        "card": "Adventure Playground",
+        "plays": 2
+      },
+      {
         "card": "Expert In Predators",
         "plays": 2
       },
@@ -5634,6 +5703,10 @@
       },
       {
         "card": "Veiled Chameleon",
+        "plays": 2
+      },
+      {
+        "card": "Common Octopus",
         "plays": 2
       },
       {
@@ -5675,19 +5748,23 @@
       {
         "card": "Saltwater Crocodile",
         "plays": 2
+      },
+      {
+        "card": "Brown Spider Monkey",
+        "plays": 2
       }
     ],
     "AstroHood": [
       {
-        "card": "Publications",
-        "plays": 10
-      },
-      {
         "card": "Boa Constrictor",
-        "plays": 10
+        "plays": 11
       },
       {
         "card": "Technology Institute",
+        "plays": 11
+      },
+      {
+        "card": "Publications",
         "plays": 10
       },
       {
@@ -5707,6 +5784,10 @@
         "plays": 9
       },
       {
+        "card": "Longhorn Cowfish",
+        "plays": 8
+      },
+      {
         "card": "Dugong",
         "plays": 8
       },
@@ -5719,6 +5800,14 @@
         "plays": 8
       },
       {
+        "card": "Golden Lion Tamarin",
+        "plays": 8
+      },
+      {
+        "card": "Guided School Tours",
+        "plays": 8
+      },
+      {
         "card": "Meerkat Den",
         "plays": 8
       },
@@ -5727,15 +5816,15 @@
         "plays": 8
       },
       {
+        "card": "Saltwater Crocodile",
+        "plays": 8
+      },
+      {
         "card": "Spokesperson",
         "plays": 7
       },
       {
         "card": "Expert In Herbivores",
-        "plays": 7
-      },
-      {
-        "card": "Longhorn Cowfish",
         "plays": 7
       },
       {
@@ -5752,14 +5841,6 @@
       },
       {
         "card": "Explorer",
-        "plays": 7
-      },
-      {
-        "card": "Golden Lion Tamarin",
-        "plays": 7
-      },
-      {
-        "card": "Guided School Tours",
         "plays": 7
       },
       {
@@ -5780,10 +5861,6 @@
       },
       {
         "card": "Horsfield's Tarsier",
-        "plays": 7
-      },
-      {
-        "card": "Saltwater Crocodile",
         "plays": 7
       },
       {
@@ -5812,6 +5889,10 @@
       },
       {
         "card": "Science Library",
+        "plays": 6
+      },
+      {
+        "card": "Southern Blue-ringed Octopus",
         "plays": 6
       },
       {
@@ -5868,10 +5949,6 @@
       },
       {
         "card": "Ecuadorian Squirrel Monkey",
-        "plays": 5
-      },
-      {
-        "card": "Southern Blue-ringed Octopus",
         "plays": 5
       },
       {
@@ -6031,6 +6108,10 @@
         "plays": 4
       },
       {
+        "card": "Water Playground",
+        "plays": 4
+      },
+      {
         "card": "Sponsorship: Lions",
         "plays": 4
       },
@@ -6092,6 +6173,10 @@
       },
       {
         "card": "Indian Rock Python",
+        "plays": 4
+      },
+      {
+        "card": "Northern Cassowary",
         "plays": 4
       },
       {
@@ -6167,11 +6252,11 @@
         "plays": 3
       },
       {
-        "card": "Water Playground",
+        "card": "Lion",
         "plays": 3
       },
       {
-        "card": "Lion",
+        "card": "Golden Snub-nosed Monkey",
         "plays": 3
       },
       {
@@ -6215,6 +6300,10 @@
         "plays": 3
       },
       {
+        "card": "New Zealand Fur Seal",
+        "plays": 3
+      },
+      {
         "card": "Expert In Predators",
         "plays": 3
       },
@@ -6227,7 +6316,7 @@
         "plays": 3
       },
       {
-        "card": "Northern Cassowary",
+        "card": "European Pond Turtle",
         "plays": 3
       },
       {
@@ -6239,7 +6328,15 @@
         "plays": 3
       },
       {
+        "card": "Australian Pelican",
+        "plays": 3
+      },
+      {
         "card": "Secretary Bird",
+        "plays": 3
+      },
+      {
+        "card": "Rhesus Monkey Park",
         "plays": 3
       },
       {
@@ -6291,11 +6388,11 @@
         "plays": 2
       },
       {
-        "card": "Bluespotted Ribbontail Ray",
+        "card": "Talented Communicator",
         "plays": 2
       },
       {
-        "card": "Golden Snub-nosed Monkey",
+        "card": "Bluespotted Ribbontail Ray",
         "plays": 2
       },
       {
@@ -6316,10 +6413,6 @@
       },
       {
         "card": "Collared Mangabey",
-        "plays": 2
-      },
-      {
-        "card": "New Zealand Fur Seal",
         "plays": 2
       },
       {
@@ -6403,10 +6496,6 @@
         "plays": 2
       },
       {
-        "card": "European Pond Turtle",
-        "plays": 2
-      },
-      {
         "card": "Emu",
         "plays": 2
       },
@@ -6419,10 +6508,6 @@
         "plays": 2
       },
       {
-        "card": "Australian Pelican",
-        "plays": 2
-      },
-      {
         "card": "Sponsorship: Reptiles",
         "plays": 2
       },
@@ -6432,10 +6517,6 @@
       },
       {
         "card": "South American Coati",
-        "plays": 2
-      },
-      {
-        "card": "Rhesus Monkey Park",
         "plays": 2
       },
       {
@@ -6593,6 +6674,10 @@
         "plays": 6
       },
       {
+        "card": "Wolverine",
+        "plays": 6
+      },
+      {
         "card": "Indian Cobra",
         "plays": 6
       },
@@ -6653,6 +6738,10 @@
         "plays": 5
       },
       {
+        "card": "Red Panda",
+        "plays": 5
+      },
+      {
         "card": "Bluespotted Ribbontail Ray",
         "plays": 5
       },
@@ -6697,15 +6786,15 @@
         "plays": 5
       },
       {
-        "card": "Wolverine",
-        "plays": 5
-      },
-      {
         "card": "Expert On Europe",
         "plays": 5
       },
       {
         "card": "Marabou",
+        "plays": 5
+      },
+      {
+        "card": "Crested Porcupine",
         "plays": 5
       },
       {
@@ -6746,10 +6835,6 @@
       },
       {
         "card": "Koala",
-        "plays": 4
-      },
-      {
-        "card": "Red Panda",
         "plays": 4
       },
       {
@@ -6809,15 +6894,19 @@
         "plays": 4
       },
       {
+        "card": "Blackside Hawkfish",
+        "plays": 4
+      },
+      {
         "card": "Mediterranean Rainbow Wrasse",
         "plays": 4
       },
       {
-        "card": "Crested Porcupine",
+        "card": "Red Deer",
         "plays": 4
       },
       {
-        "card": "Red Deer",
+        "card": "Barred Owl Hut",
         "plays": 4
       },
       {
@@ -6834,6 +6923,10 @@
       },
       {
         "card": "Shoebill",
+        "plays": 4
+      },
+      {
+        "card": "Lesser Bird-of-paradise",
         "plays": 4
       },
       {
@@ -6941,11 +7034,11 @@
         "plays": 3
       },
       {
-        "card": "Blackside Hawkfish",
+        "card": "Release Of Patents",
         "plays": 3
       },
       {
-        "card": "Release Of Patents",
+        "card": "Laughing Kookaburra",
         "plays": 3
       },
       {
@@ -6958,10 +7051,6 @@
       },
       {
         "card": "Coquerel's Sifaka",
-        "plays": 3
-      },
-      {
-        "card": "Barred Owl Hut",
         "plays": 3
       },
       {
@@ -6997,10 +7086,6 @@
         "plays": 3
       },
       {
-        "card": "Lesser Bird-of-paradise",
-        "plays": 3
-      },
-      {
         "card": "Humphead Wrasse",
         "plays": 3
       },
@@ -7030,6 +7115,10 @@
       },
       {
         "card": "Barbary Macaque",
+        "plays": 2
+      },
+      {
+        "card": "Emu",
         "plays": 2
       },
       {
@@ -7093,10 +7182,6 @@
         "plays": 2
       },
       {
-        "card": "Laughing Kookaburra",
-        "plays": 2
-      },
-      {
         "card": "Malayan Tapir",
         "plays": 2
       },
@@ -7153,6 +7238,10 @@
         "plays": 2
       },
       {
+        "card": "Common European Adder",
+        "plays": 2
+      },
+      {
         "card": "European Bison",
         "plays": 2
       },
@@ -7176,30 +7265,30 @@
   },
   "actionCardDraftsByPlayer": {
     "msiebert": {
-      "Cards": 35,
+      "Cards": 36,
       "Sponsors": 29,
-      "Animals": 20,
+      "Animals": 21,
       "Association": 21,
       "Build": 25
     },
     "marksbrt": {
       "Animals": 36,
-      "Sponsors": 30,
+      "Sponsors": 31,
       "Cards": 26,
       "Build": 21,
-      "Association": 15
+      "Association": 16
     },
     "AstroHood": {
       "Build": 29,
-      "Cards": 31,
+      "Cards": 32,
       "Animals": 28,
-      "Sponsors": 15,
+      "Sponsors": 16,
       "Association": 23
     },
     "siebert23": {
-      "Cards": 25,
+      "Cards": 26,
       "Association": 25,
-      "Build": 14,
+      "Build": 15,
       "Animals": 34,
       "Sponsors": 30
     }
@@ -7210,7 +7299,7 @@
         "4": 13,
         "3": 9,
         "1": 8,
-        "2": 5
+        "2": 6
       },
       "Sponsors": {
         "3": 4,
@@ -7219,7 +7308,7 @@
         "4": 6
       },
       "Animals": {
-        "4": 5,
+        "4": 6,
         "3": 7,
         "1": 6,
         "2": 2
@@ -7247,7 +7336,7 @@
       "Sponsors": {
         "4": 6,
         "2": 10,
-        "1": 10,
+        "1": 11,
         "3": 4
       },
       "Cards": {
@@ -7265,7 +7354,7 @@
       "Association": {
         "1": 5,
         "2": 3,
-        "3": 3,
+        "3": 4,
         "4": 4
       }
     },
@@ -7279,7 +7368,7 @@
         "1": 7,
         "2": 8,
         "3": 8,
-        "4": 8
+        "4": 9
       },
       "Animals": {
         "3": 14,
@@ -7290,7 +7379,7 @@
       "Sponsors": {
         "3": 1,
         "1": 3,
-        "2": 9,
+        "2": 10,
         "4": 2
       },
       "Association": {
@@ -7303,7 +7392,7 @@
       "Cards": {
         "3": 12,
         "2": 5,
-        "1": 6,
+        "1": 7,
         "4": 2
       },
       "Association": {
@@ -7313,7 +7402,7 @@
         "2": 5
       },
       "Build": {
-        "2": 7,
+        "2": 8,
         "4": 1,
         "3": 4,
         "1": 2
@@ -9507,6 +9596,40 @@
           "3": 1
         },
         "Animals": {
+          "1": 1
+        }
+      }
+    },
+    "852062667": {
+      "msiebert": {
+        "Cards": {
+          "2": 1
+        },
+        "Animals": {
+          "4": 1
+        }
+      },
+      "AstroHood": {
+        "Cards": {
+          "4": 1
+        },
+        "Sponsors": {
+          "2": 1
+        }
+      },
+      "marksbrt": {
+        "Association": {
+          "3": 1
+        },
+        "Sponsors": {
+          "1": 1
+        }
+      },
+      "siebert23": {
+        "Build": {
+          "2": 1
+        },
+        "Cards": {
           "1": 1
         }
       }
