@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-06-04T17:24:41.784296Z",
-  "totalGames": 75,
+  "exportedAt": "2026-06-19T09:55:37.832878Z",
+  "totalGames": 76,
   "games": [
     {
       "tableId": "787453392",
@@ -32996,6 +32996,463 @@
         }
       },
       "date": "2026-05-29"
+    },
+    {
+      "tableId": "867117043",
+      "url": "https://boardgamearena.com/table?table=867117043",
+      "players": [
+        "msiebert",
+        "marksbrt",
+        "siebert23",
+        "AstroHood"
+      ],
+      "stats": {
+        "Game result": {
+          "msiebert": "1st (133)",
+          "marksbrt": "2nd (116)",
+          "siebert23": "3rd (109)",
+          "AstroHood": "4th (104)"
+        },
+        "Thinking time": {
+          "msiebert": "5h23",
+          "marksbrt": "35h10",
+          "siebert23": "14h00",
+          "AstroHood": "13h10"
+        },
+        "Starting position in first round": {
+          "msiebert": "Second player",
+          "marksbrt": "Third player",
+          "siebert23": "First player",
+          "AstroHood": "Fourth player"
+        },
+        "Number of turns": {
+          "msiebert": "31",
+          "marksbrt": "31",
+          "siebert23": "32",
+          "AstroHood": "31"
+        },
+        "Number of breaks triggered": {
+          "msiebert": "4",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "1"
+        },
+        "Triggered end of game": {
+          "msiebert": "Yes",
+          "marksbrt": "No",
+          "siebert23": "No",
+          "AstroHood": "No"
+        },
+        "Map": {
+          "msiebert": "Map 4: Commercial Harbor",
+          "marksbrt": "Map 14: Lagoon",
+          "siebert23": "Map 13: Drawing Board",
+          "AstroHood": "Map 3: Silver Lake"
+        },
+        "First drafted action card": {
+          "msiebert": "Sponsors 2",
+          "marksbrt": "Sponsors 1",
+          "siebert23": "Cards 3",
+          "AstroHood": "Cards 2"
+        },
+        "Second drafted action card": {
+          "msiebert": "Sponsors 4",
+          "marksbrt": "Animals 1",
+          "siebert23": "Build 3",
+          "AstroHood": "Build 4"
+        },
+        "Third drafted action card": {
+          "msiebert": "Cards 1",
+          "marksbrt": "Association 2",
+          "siebert23": "Cards 4",
+          "AstroHood": "Association 4"
+        },
+        "Animals Action Card Number": {
+          "msiebert": "0",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Build Action Card Number": {
+          "msiebert": "0",
+          "marksbrt": "0",
+          "siebert23": "3",
+          "AstroHood": "4"
+        },
+        "Association Action Card Number": {
+          "msiebert": "0",
+          "marksbrt": "2",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Cards Action Card Number": {
+          "msiebert": "1",
+          "marksbrt": "0",
+          "siebert23": "3",
+          "AstroHood": "2"
+        },
+        "Sponsors Action Card Number": {
+          "msiebert": "2",
+          "marksbrt": "1",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Appeal": {
+          "msiebert": "73",
+          "marksbrt": "71",
+          "siebert23": "61",
+          "AstroHood": "74"
+        },
+        "Conservation": {
+          "msiebert": "28",
+          "marksbrt": "23",
+          "siebert23": "24",
+          "AstroHood": "18"
+        },
+        "Score": {
+          "msiebert": "133",
+          "marksbrt": "116",
+          "siebert23": "109",
+          "AstroHood": "104"
+        },
+        "Reputation": {
+          "msiebert": "9",
+          "marksbrt": "15",
+          "siebert23": "15",
+          "AstroHood": "8"
+        },
+        "Build actions": {
+          "msiebert": "6",
+          "marksbrt": "7",
+          "siebert23": "7",
+          "AstroHood": "6"
+        },
+        "Animals actions": {
+          "msiebert": "7",
+          "marksbrt": "7",
+          "siebert23": "5",
+          "AstroHood": "6"
+        },
+        "Cards actions": {
+          "msiebert": "5",
+          "marksbrt": "3",
+          "siebert23": "6",
+          "AstroHood": "7"
+        },
+        "Association actions": {
+          "msiebert": "7",
+          "marksbrt": "7",
+          "siebert23": "8",
+          "AstroHood": "7"
+        },
+        "Sponsors actions": {
+          "msiebert": "6",
+          "marksbrt": "8",
+          "siebert23": "7",
+          "AstroHood": "5"
+        },
+        "X-Tokens gained": {
+          "msiebert": "11",
+          "marksbrt": "7",
+          "siebert23": "8",
+          "AstroHood": "5"
+        },
+        "X-Tokens gained instead of action": {
+          "msiebert": "1",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "1"
+        },
+        "X-Tokens used": {
+          "msiebert": "8",
+          "marksbrt": "7",
+          "siebert23": "6",
+          "AstroHood": "2"
+        },
+        "Money gained": {
+          "msiebert": "200",
+          "marksbrt": "143",
+          "siebert23": "210",
+          "AstroHood": "153"
+        },
+        "Money gained through income": {
+          "msiebert": "90",
+          "marksbrt": "126",
+          "siebert23": "117",
+          "AstroHood": "90"
+        },
+        "Money spent on animals": {
+          "msiebert": "163",
+          "marksbrt": "113",
+          "siebert23": "106",
+          "AstroHood": "127"
+        },
+        "Money spent on enclosures": {
+          "msiebert": "38",
+          "marksbrt": "46",
+          "siebert23": "54",
+          "AstroHood": "44"
+        },
+        "Money spent on donations": {
+          "msiebert": "12",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Money spent for playing cards from reputation range": {
+          "msiebert": "9",
+          "marksbrt": "11",
+          "siebert23": "2",
+          "AstroHood": "0"
+        },
+        "Cards drawn from deck": {
+          "msiebert": "9",
+          "marksbrt": "7",
+          "siebert23": "10",
+          "AstroHood": "15"
+        },
+        "Cards taken from reputation range": {
+          "msiebert": "1",
+          "marksbrt": "3",
+          "siebert23": "1",
+          "AstroHood": "7"
+        },
+        "Snapped cards": {
+          "msiebert": "5",
+          "marksbrt": "2",
+          "siebert23": "7",
+          "AstroHood": "6"
+        },
+        "Discarded cards": {
+          "msiebert": "0",
+          "marksbrt": "2",
+          "siebert23": "3",
+          "AstroHood": "4"
+        },
+        "Played sponsors": {
+          "msiebert": "2",
+          "marksbrt": "8",
+          "siebert23": "7",
+          "AstroHood": "2"
+        },
+        "Played animals": {
+          "msiebert": "14",
+          "marksbrt": "10",
+          "siebert23": "10",
+          "AstroHood": "11"
+        },
+        "Released animals": {
+          "msiebert": "0",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "1"
+        },
+        "Association workers": {
+          "msiebert": "3",
+          "marksbrt": "3",
+          "siebert23": "2",
+          "AstroHood": "2"
+        },
+        "Donation association tasks": {
+          "msiebert": "3",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Reputation association tasks": {
+          "msiebert": "0",
+          "marksbrt": "1",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Partner zoo association tasks": {
+          "msiebert": "1",
+          "marksbrt": "2",
+          "siebert23": "2",
+          "AstroHood": "1"
+        },
+        "University association tasks": {
+          "msiebert": "2",
+          "marksbrt": "2",
+          "siebert23": "3",
+          "AstroHood": "3"
+        },
+        "Conservation project association tasks": {
+          "msiebert": "5",
+          "marksbrt": "2",
+          "siebert23": "3",
+          "AstroHood": "3"
+        },
+        "Built enclosures": {
+          "msiebert": "12",
+          "marksbrt": "10",
+          "siebert23": "11",
+          "AstroHood": "7"
+        },
+        "Built kiosks": {
+          "msiebert": "1",
+          "marksbrt": "2",
+          "siebert23": "5",
+          "AstroHood": "0"
+        },
+        "Built pavilions": {
+          "msiebert": "0",
+          "marksbrt": "3",
+          "siebert23": "3",
+          "AstroHood": "1"
+        },
+        "Built unique buildings": {
+          "msiebert": "0",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "1"
+        },
+        "Covered hexes": {
+          "msiebert": "32",
+          "marksbrt": "33",
+          "siebert23": "33",
+          "AstroHood": "27"
+        },
+        "Empty hexes": {
+          "msiebert": "10",
+          "marksbrt": "11",
+          "siebert23": "9",
+          "AstroHood": "17"
+        },
+        "Upgraded action cards": {
+          "msiebert": "3",
+          "marksbrt": "4",
+          "siebert23": "4",
+          "AstroHood": "4"
+        },
+        "Upgraded Animals action card": {
+          "msiebert": "Yes",
+          "marksbrt": "Yes",
+          "siebert23": "Yes",
+          "AstroHood": "Yes"
+        },
+        "Upgraded Build action card": {
+          "msiebert": "No",
+          "marksbrt": "Yes",
+          "siebert23": "Yes",
+          "AstroHood": "Yes"
+        },
+        "Upgraded Cards action card": {
+          "msiebert": "No",
+          "marksbrt": "Yes",
+          "siebert23": "Yes",
+          "AstroHood": "Yes"
+        },
+        "Upgraded Sponsors action card": {
+          "msiebert": "Yes",
+          "marksbrt": "Yes",
+          "siebert23": "Yes",
+          "AstroHood": "No"
+        },
+        "Upgraded Association action card": {
+          "msiebert": "Yes",
+          "marksbrt": "No",
+          "siebert23": "No",
+          "AstroHood": "Yes"
+        },
+        "Africa icons": {
+          "msiebert": "3",
+          "marksbrt": "3",
+          "siebert23": "1",
+          "AstroHood": "7"
+        },
+        "Europe icons": {
+          "msiebert": "4",
+          "marksbrt": "2",
+          "siebert23": "6",
+          "AstroHood": "1"
+        },
+        "Asia icons": {
+          "msiebert": "3",
+          "marksbrt": "1",
+          "siebert23": "1",
+          "AstroHood": "3"
+        },
+        "Australia icons": {
+          "msiebert": "1",
+          "marksbrt": "2",
+          "siebert23": "1",
+          "AstroHood": "0"
+        },
+        "Americas icons": {
+          "msiebert": "2",
+          "marksbrt": "3",
+          "siebert23": "3",
+          "AstroHood": "0"
+        },
+        "Bird icons": {
+          "msiebert": "2",
+          "marksbrt": "1",
+          "siebert23": "1",
+          "AstroHood": "0"
+        },
+        "Predator icons": {
+          "msiebert": "2",
+          "marksbrt": "4",
+          "siebert23": "3",
+          "AstroHood": "1"
+        },
+        "Herbivore icons": {
+          "msiebert": "1",
+          "marksbrt": "1",
+          "siebert23": "2",
+          "AstroHood": "2"
+        },
+        "Bear icons": {
+          "msiebert": "0",
+          "marksbrt": "2",
+          "siebert23": "1",
+          "AstroHood": "0"
+        },
+        "Reptile icons": {
+          "msiebert": "4",
+          "marksbrt": "0",
+          "siebert23": "4",
+          "AstroHood": "5"
+        },
+        "Primate icons": {
+          "msiebert": "0",
+          "marksbrt": "0",
+          "siebert23": "1",
+          "AstroHood": "1"
+        },
+        "Petting Zoo icons": {
+          "msiebert": "3",
+          "marksbrt": "0",
+          "siebert23": "0",
+          "AstroHood": "2"
+        },
+        "Sea Animal icons": {
+          "msiebert": "2",
+          "marksbrt": "5",
+          "siebert23": "0",
+          "AstroHood": "0"
+        },
+        "Water icons": {
+          "msiebert": "5",
+          "marksbrt": "3",
+          "siebert23": "1",
+          "AstroHood": "2"
+        },
+        "Rock icons": {
+          "msiebert": "3",
+          "marksbrt": "3",
+          "siebert23": "4",
+          "AstroHood": "2"
+        },
+        "Science icons": {
+          "msiebert": "3",
+          "marksbrt": "7",
+          "siebert23": "5",
+          "AstroHood": "3"
+        }
+      },
+      "date": "2026-06-12"
     }
   ]
 }
