@@ -156,6 +156,7 @@
         renderGoldMedalCharts();
         renderLeaderboard();
         renderPerformanceMetric();
+        renderELOOverTime();
         renderTurnsOverTime();
         renderScoreKDE();
         renderScoreHistograms();
@@ -1359,6 +1360,48 @@
             return `${parseInt(month)}/${parseInt(day)}`;
         }
         return `Game ${index + 1}`;
+    }
+
+    function renderELOOverTime() {
+        const ctx = document.getElementById('elo-time-chart');
+        if (!ctx) return;
+
+        const sortedGames = sortGamesChronologically(gamesData);
+        const { history } = calculateELO(sortedGames);
+
+        const gameLabels = sortedGames.map((game, i) => formatGameLabel(game, i));
+
+        const datasets = TRACKED_PLAYERS.map(player => ({
+            label: getDisplayName(player),
+            data: sortedGames.map((_, i) => history[player][i + 1]),
+            borderColor: PLAYER_COLORS[player],
+            backgroundColor: 'transparent',
+            tension: 0.1,
+            pointRadius: 3,
+            pointHoverRadius: 6,
+            fill: false
+        }));
+
+        new Chart(ctx.getContext('2d'), {
+            type: 'line',
+            data: { labels: gameLabels, datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => `${ctx.dataset.label}: ${Math.round(ctx.parsed.y)}`
+                        }
+                    }
+                },
+                scales: {
+                    y: { title: { display: true, text: 'ELO Rating' } },
+                    x: { title: { display: true, text: 'Game' } }
+                }
+            }
+        });
     }
 
     // Turns per game over time
