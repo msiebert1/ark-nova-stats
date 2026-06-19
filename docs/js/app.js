@@ -150,6 +150,7 @@
 
     function renderAll() {
         renderSummary();
+        renderPowerRankings();
         renderRecentGameScoreOverTime();
         renderAccolades();
         renderGoldMedalCharts();
@@ -1246,6 +1247,94 @@
                     <td>${item.placements[3]}</td>
                     <td>${item.placements[4]}</td>
                     <td><strong>${item.score}</strong></td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    function calculateELO(sortedGames) {
+        const K = 16;
+        const ratings = {};
+        const history = {};
+        TRACKED_PLAYERS.forEach(p => { ratings[p] = 1000; history[p] = [1000]; });
+
+        for (const game of sortedGames) {
+            const results = game.stats['Game result'];
+            if (!results) continue;
+            const placements = {};
+            TRACKED_PLAYERS.forEach(p => {
+                const m = (results[p] || '').match(/^(\d)/);
+                placements[p] = m ? parseInt(m[1]) : 99;
+            });
+
+            const deltas = {};
+            TRACKED_PLAYERS.forEach(p => { deltas[p] = 0; });
+            for (let i = 0; i < TRACKED_PLAYERS.length; i++) {
+                for (let j = i + 1; j < TRACKED_PLAYERS.length; j++) {
+                    const a = TRACKED_PLAYERS[i], b = TRACKED_PLAYERS[j];
+                    const expected_a = 1 / (1 + Math.pow(10, (ratings[b] - ratings[a]) / 400));
+                    const actual_a = placements[a] < placements[b] ? 1
+                                   : placements[a] > placements[b] ? 0 : 0.5;
+                    const delta = K * (actual_a - expected_a);
+                    deltas[a] += delta;
+                    deltas[b] -= delta;
+                }
+            }
+            TRACKED_PLAYERS.forEach(p => {
+                ratings[p] += deltas[p];
+                history[p].push(ratings[p]);
+            });
+        }
+        return { ratings, history };
+    }
+
+    function buildELORankings(ratings, history) {
+        return TRACKED_PLAYERS.map(p => {
+            const hist = history[p];
+            const lastGameDelta = hist.length >= 2 ? hist[hist.length - 1] - hist[hist.length - 2] : 0;
+            return { player: p, displayName: getDisplayName(p), eloRating: ratings[p], lastGameDelta };
+        }).sort((a, b) => b.eloRating - a.eloRating);
+    }
+
+    function eloSparklineSVG(history, color) {
+        const last10 = history.slice(-10);
+        if (last10.length < 2) return '<span style="color: var(--text-muted)">—</span>';
+        const minE = Math.min(...last10), maxE = Math.max(...last10);
+        const range = maxE - minE || 1;
+        const pts = last10.map((e, i) => {
+            const x = (i / (last10.length - 1)) * 76 + 2;
+            const y = 28 - ((e - minE) / range) * 24;
+            return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(' ');
+        const lastPt = pts.split(' ').pop().split(',');
+        return `<svg width="80" height="30" viewBox="0 0 80 30" style="vertical-align:middle">` +
+            `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5"/>` +
+            `<circle cx="${lastPt[0]}" cy="${lastPt[1]}" r="2.5" fill="${color}"/>` +
+            `</svg>`;
+    }
+
+    function renderPowerRankings() {
+        const sortedGames = sortGamesChronologically(gamesData);
+        const { ratings, history } = calculateELO(sortedGames);
+        const rankings = buildELORankings(ratings, history);
+
+        const tbody = document.querySelector('#power-rankings-table tbody');
+        if (!tbody) return;
+
+        tbody.innerHTML = rankings.map((item, idx) => {
+            const rankClass = idx === 0 ? 'rank-1' : idx === 1 ? 'rank-2' : idx === 2 ? 'rank-3' : '';
+            const delta = item.lastGameDelta;
+            const deltaClass = delta > 0 ? 'trend-up' : delta < 0 ? 'trend-down' : 'trend-flat';
+            const deltaStr = delta > 0 ? `+${delta.toFixed(1)}` : delta < 0 ? delta.toFixed(1) : '—';
+            const color = PLAYER_COLORS[item.player] || '#666';
+            const sparkline = eloSparklineSVG(history[item.player], color);
+            return `
+                <tr>
+                    <td class="${rankClass}">${idx + 1}</td>
+                    <td style="color:${color}; font-weight:600">${item.displayName}</td>
+                    <td>${Math.round(item.eloRating)}</td>
+                    <td class="${deltaClass}">${deltaStr}</td>
+                    <td class="elo-sparkline">${sparkline}</td>
                 </tr>
             `;
         }).join('');

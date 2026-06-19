@@ -149,13 +149,21 @@ main {
 .recent-game-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
+    column-gap: 1.5rem;
+    row-gap: 0;
     margin-top: 1.5rem;
     align-items: start;
 }
 
 .recent-game-container .recent-game-summary {
     margin-top: 0;
+}
+
+.recent-game-container #recent-game-score-chart {
+    grid-row: span 2;
+    align-self: stretch;
+    height: auto;
+    min-height: 300px;
 }
 
 .recent-game-chart {
@@ -170,7 +178,8 @@ main {
         grid-template-columns: 1fr;
     }
 
-    .recent-game-chart {
+    .recent-game-container #recent-game-score-chart {
+        grid-row: span 1;
         height: 280px;
     }
 }
@@ -710,3 +719,51 @@ footer {
 .scrollable-table-container tbody tr.zero-plays td:last-child {
     color: #999;
 }
+
+/* ELO Rankings (inline in summary) */
+.recent-elo-rankings {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.recent-elo-rankings h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.recent-elo-rankings table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.recent-elo-rankings th {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    font-weight: 600;
+}
+
+.recent-elo-rankings td {
+    padding: 0.45rem 0.6rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recent-elo-rankings tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.recent-elo-rankings tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.trend-up   { color: #22c55e; font-weight: bold; }
+.trend-down { color: #ef4444; font-weight: bold; }
+.trend-flat { color: var(--text-muted); }
+
+.elo-sparkline { line-height: 0; }
