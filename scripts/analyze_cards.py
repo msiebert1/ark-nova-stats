@@ -7,6 +7,10 @@ from collections import defaultdict
 with open('./docs/data/detailed_game_logs.json', 'r') as f:
     logs_data = json.load(f)
 
+# Load game results for scoring card win analysis
+with open('./docs/data/detailed_games.json', 'r') as f:
+    games_data = json.load(f)
+
 tracked_players = ['msiebert', 'marksbrt', 'AstroHood', 'siebert23']
 
 # Track cards played per player
@@ -161,6 +165,65 @@ output['actionCardDraftLevelsByGame'] = {
     }
     for table_id, players in game_action_draft_levels.items()
 }
+
+# ── Scoring card analysis ──────────────────────────────────────────────────
+SCORING_CARDS = {
+    'Accessible Zoo', 'Aquatic Park', 'Architectural Zoo', 'Catered Picnic Areas',
+    'Climbing Park', 'Conservation Zoo', 'Designer Zoo', 'Diverse species Zoo',
+    'Favorite Zoo', 'International Zoo', 'Large Animal Zoo', "Naturalists' Zoo",
+    'Research Zoo', 'Small Animal Zoo', 'Specialized Habitat Zoo', 'Specialized Species Zoo',
+    'Sponsored Zoo'
+}
+
+# Build placement lookup from games data
+placement_lookup = {}
+for game in games_data['games']:
+    results = game['stats'].get('Game result', {})
+    placements = {}
+    for player, result in results.items():
+        m = re.match(r'^(\d)', result)
+        if m:
+            placements[player] = int(m.group(1))
+    placement_lookup[game['tableId']] = placements
+
+scoring_card_gain = re.compile(r'^(\w+) gains (\d+) conservation \((.+)\)$')
+scoring_card_stats = defaultdict(lambda: {'plays': 0, 'wins': 0, 'total_points': 0,
+                                          'point_dist': defaultdict(int)})
+
+for log in logs_data['logs']:
+    table_id = log['tableId']
+    if table_id not in placement_lookup or not log.get('logEntries'):
+        continue
+    placements = placement_lookup[table_id]
+    last_move = max(e['moveNumber'] for e in log['logEntries'])
+    for entry in log['logEntries']:
+        if entry['moveNumber'] != last_move:
+            continue
+        for action in entry.get('actions', []):
+            m = scoring_card_gain.match(action)
+            if m:
+                player, points, card = m.groups()
+                if card in SCORING_CARDS and player in placements:
+                    scoring_card_stats[card]['plays'] += 1
+                    scoring_card_stats[card]['total_points'] += int(points)
+                    scoring_card_stats[card]['point_dist'][int(points)] += 1
+                    if placements[player] == 1:
+                        scoring_card_stats[card]['wins'] += 1
+
+scoring_cards_output = []
+for card in sorted(SCORING_CARDS):
+    stats = scoring_card_stats[card]
+    plays = stats['plays']
+    scoring_cards_output.append({
+        'card': card,
+        'plays': plays,
+        'wins': stats['wins'],
+        'winFraction': round(stats['wins'] / plays, 4) if plays else 0,
+        'avgPoints': round(stats['total_points'] / plays, 2) if plays else 0,
+        'pointDistribution': {str(k): v for k, v in sorted(stats['point_dist'].items())}
+    })
+
+output['scoringCards'] = scoring_cards_output
 
 with open('./docs/data/card_analysis.json', 'w') as f:
     json.dump(output, f, indent=2)

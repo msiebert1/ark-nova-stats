@@ -10141,5 +10141,223 @@
         }
       }
     }
-  }
+  },
+  "scoringCards": [
+    {
+      "card": "Accessible Zoo",
+      "plays": 15,
+      "wins": 4,
+      "winFraction": 0.2667,
+      "avgPoints": 2.67,
+      "pointDistribution": {
+        "1": 2,
+        "2": 5,
+        "3": 4,
+        "4": 4
+      }
+    },
+    {
+      "card": "Aquatic Park",
+      "plays": 18,
+      "wins": 6,
+      "winFraction": 0.3333,
+      "avgPoints": 2.39,
+      "pointDistribution": {
+        "1": 5,
+        "2": 5,
+        "3": 4,
+        "4": 4
+      }
+    },
+    {
+      "card": "Architectural Zoo",
+      "plays": 14,
+      "wins": 6,
+      "winFraction": 0.4286,
+      "avgPoints": 3.0,
+      "pointDistribution": {
+        "1": 2,
+        "2": 4,
+        "4": 8
+      }
+    },
+    {
+      "card": "Catered Picnic Areas",
+      "plays": 24,
+      "wins": 9,
+      "winFraction": 0.375,
+      "avgPoints": 3.58,
+      "pointDistribution": {
+        "2": 3,
+        "3": 4,
+        "4": 17
+      }
+    },
+    {
+      "card": "Climbing Park",
+      "plays": 16,
+      "wins": 2,
+      "winFraction": 0.125,
+      "avgPoints": 2.88,
+      "pointDistribution": {
+        "1": 1,
+        "2": 7,
+        "3": 1,
+        "4": 7
+      }
+    },
+    {
+      "card": "Conservation Zoo",
+      "plays": 17,
+      "wins": 7,
+      "winFraction": 0.4118,
+      "avgPoints": 3.18,
+      "pointDistribution": {
+        "2": 2,
+        "3": 10,
+        "4": 5
+      }
+    },
+    {
+      "card": "Designer Zoo",
+      "plays": 16,
+      "wins": 4,
+      "winFraction": 0.25,
+      "avgPoints": 2.88,
+      "pointDistribution": {
+        "1": 2,
+        "2": 4,
+        "3": 4,
+        "4": 6
+      }
+    },
+    {
+      "card": "Diverse species Zoo",
+      "plays": 17,
+      "wins": 2,
+      "winFraction": 0.1176,
+      "avgPoints": 3.18,
+      "pointDistribution": {
+        "1": 1,
+        "2": 3,
+        "3": 5,
+        "4": 8
+      }
+    },
+    {
+      "card": "Favorite Zoo",
+      "plays": 31,
+      "wins": 10,
+      "winFraction": 0.3226,
+      "avgPoints": 3.03,
+      "pointDistribution": {
+        "1": 2,
+        "2": 9,
+        "3": 6,
+        "4": 14
+      }
+    },
+    {
+      "card": "International Zoo",
+      "plays": 17,
+      "wins": 3,
+      "winFraction": 0.1765,
+      "avgPoints": 2.53,
+      "pointDistribution": {
+        "1": 2,
+        "2": 5,
+        "3": 9,
+        "4": 1
+      }
+    },
+    {
+      "card": "Large Animal Zoo",
+      "plays": 27,
+      "wins": 7,
+      "winFraction": 0.2593,
+      "avgPoints": 3.37,
+      "pointDistribution": {
+        "2": 5,
+        "3": 7,
+        "4": 15
+      }
+    },
+    {
+      "card": "Naturalists' Zoo",
+      "plays": 12,
+      "wins": 5,
+      "winFraction": 0.4167,
+      "avgPoints": 2.75,
+      "pointDistribution": {
+        "1": 1,
+        "2": 4,
+        "3": 4,
+        "4": 3
+      }
+    },
+    {
+      "card": "Research Zoo",
+      "plays": 25,
+      "wins": 6,
+      "winFraction": 0.24,
+      "avgPoints": 2.8,
+      "pointDistribution": {
+        "1": 2,
+        "2": 7,
+        "3": 10,
+        "4": 6
+      }
+    },
+    {
+      "card": "Small Animal Zoo",
+      "plays": 19,
+      "wins": 4,
+      "winFraction": 0.2105,
+      "avgPoints": 3.05,
+      "pointDistribution": {
+        "1": 3,
+        "2": 2,
+        "3": 5,
+        "4": 9
+      }
+    },
+    {
+      "card": "Specialized Habitat Zoo",
+      "plays": 16,
+      "wins": 5,
+      "winFraction": 0.3125,
+      "avgPoints": 3.12,
+      "pointDistribution": {
+        "1": 2,
+        "2": 3,
+        "3": 2,
+        "4": 9
+      }
+    },
+    {
+      "card": "Specialized Species Zoo",
+      "plays": 19,
+      "wins": 4,
+      "winFraction": 0.2105,
+      "avgPoints": 2.89,
+      "pointDistribution": {
+        "1": 2,
+        "2": 5,
+        "3": 5,
+        "4": 7
+      }
+    },
+    {
+      "card": "Sponsored Zoo",
+      "plays": 20,
+      "wins": 7,
+      "winFraction": 0.35,
+      "avgPoints": 2.5,
+      "pointDistribution": {
+        "2": 11,
+        "3": 8,
+        "4": 1
+      }
+    }
+  ]
 }

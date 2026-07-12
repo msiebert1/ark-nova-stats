@@ -767,3 +767,123 @@ footer {
 .trend-flat { color: var(--text-muted); }
 
 .elo-sparkline { line-height: 0; }
+
+/* ── Final Scoring Cards table ───────────────────────────────────────────── */
+#scoring-cards-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+#scoring-cards-table th {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+#scoring-cards-table th.sc-sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+#scoring-cards-table th.sc-sortable:hover {
+    background: var(--primary-dark, #4338ca);
+}
+
+#scoring-cards-table td {
+    padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+#scoring-cards-table tbody tr:last-child td { border-bottom: none; }
+#scoring-cards-table tbody tr:nth-child(even) { background: rgba(0,0,0,0.02); }
+
+.sc-card-name { font-weight: 500; white-space: nowrap; }
+.sc-num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.sc-win-high { color: #22c55e; font-weight: 700; }
+.sc-win-mid  { color: var(--text-color); }
+.sc-win-low  { color: #ef4444; }
+
+.sc-pts-high { color: #22c55e; font-weight: 700; }
+.sc-pts-mid  { color: var(--text-color); }
+.sc-pts-low  { color: #f97316; }
+
+.sc-dist { min-width: 180px; }
+
+.sc-pt-bar {
+    display: flex;
+    height: 12px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: var(--border-color);
+    margin-bottom: 3px;
+}
+
+.sc-pt-seg {
+    height: 100%;
+    transition: opacity 0.15s;
+}
+
+.sc-pt-seg:hover { opacity: 0.8; }
+
+.sc-pt-legend {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    font-size: 0.72rem;
+}
+
+.sc-pt-label { font-variant-numeric: tabular-nums; }
+
+/* ── History table compact layout ────────────────────────────────────────── */
+#history-table {
+    font-size: 0.82rem;
+}
+
+#history-table th,
+#history-table td {
+    padding: 0.35rem 0.5rem;
+    vertical-align: top;
+}
+
+.history-date { white-space: nowrap; color: var(--text-muted); }
+.history-map  { max-width: 160px; }
+.history-num  { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.history-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.history-result {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+
+.history-result-first {
+    font-weight: 600;
+}
+
+.history-rank {
+    font-weight: 700;
+    width: 1rem;
+    flex-shrink: 0;
+    color: var(--text-muted);
+}
+
+.history-result-first .history-rank {
+    color: var(--gold, #f59e0b);
+}
+
+.history-score {
+    font-variant-numeric: tabular-nums;
+}

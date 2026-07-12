@@ -617,6 +617,28 @@
                 </div>
             </section>
 
+            <section id="scoring-cards" class="stats-section">
+                <h2>Final Scoring Cards</h2>
+                <p class="section-desc">Conservation points and win rate for each final scoring card (kept after the discard at 10 conservation). Expected win rate is 25%.</p>
+                <div class="scrollable-table-container">
+                    <table id="scoring-cards-table">
+                        <thead>
+                            <tr>
+                                <th class="sc-sortable" data-col="card" data-dir="asc">Card <span class="sc-sort-icon">↕</span></th>
+                                <th class="sc-sortable" data-col="plays" data-dir="asc">Used <span class="sc-sort-icon">↕</span></th>
+                                <th class="sc-sortable" data-col="winFraction" data-dir="asc">Win % <span class="sc-sort-icon">↕</span></th>
+                                <th class="sc-sortable" data-col="avgPoints" data-dir="asc">Avg Pts <span class="sc-sort-icon">↕</span></th>
+                                <th>Points Distribution</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scoring-cards-tbody"></tbody>
+                    </table>
+                </div>
+                <div class="chart-container" style="height:400px; margin-top: 2rem;">
+                    <canvas id="scoring-cards-scatter"></canvas>
+                </div>
+            </section>
+
             <section id="action-card-drafts" class="stats-section">
                 <h2>Action Card Draft Choices</h2>
                 <p class="section-desc">Which action cards each player chose to upgrade during the draft phase (2 picks per game)</p>
@@ -663,6 +685,7 @@
                             <th>Map</th>
                             <th>Times Played</th>
                             <th>Wins</th>
+                            <th>Win %</th>
                             <th>Avg Placement</th>
                             <th>Avg Score</th>
                         </tr>
@@ -731,9 +754,9 @@
                             <th>Date</th>
                             <th>Map</th>
                             <th>Turns</th>
-                            <th>Winner</th>
+                            <th>Total</th>
                             <th>Results</th>
-                            <th>Link</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

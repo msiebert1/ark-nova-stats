@@ -180,6 +180,7 @@
         renderMaps();
         renderMapSelectionTotal();
         renderMapSelectionByPlayer();
+        renderScoringCards();
         renderTopCards();
         renderHistory();
     }
@@ -3061,12 +3062,14 @@
         tbody.innerHTML = sorted.map(([map, stats]) => {
             const avgPlacement = (stats.totalPlacement / stats.timesPlayed).toFixed(2);
             const avgScore = Math.round(stats.totalScore / stats.timesPlayed);
+            const winPct = (stats.wins / stats.timesPlayed * 100).toFixed(1) + '%';
 
             return `
                 <tr>
                     <td>${map}</td>
                     <td>${stats.timesPlayed}</td>
                     <td>${stats.wins}</td>
+                    <td>${winPct}</td>
                     <td>${avgPlacement}</td>
                     <td>${avgScore}</td>
                 </tr>
@@ -3291,52 +3294,95 @@
             }
         });
 
+        // Build color scale helper: t=0 → red, t=1 → green
+        function heatColor(t) {
+            const r = Math.round(239 - t * (239 - 34));
+            const g = Math.round(68  + t * (197 - 68));
+            const b = Math.round(68  - t * 68);
+            return `rgb(${r},${g},${b})`;
+        }
+        function scaleColor(val, min, max, invert = false) {
+            const t = max === min ? 0.5 : (val - min) / (max - min);
+            return heatColor(invert ? 1 - t : t);
+        }
+
+        // Pre-compute totals, turn counts, and all individual scores across displayed games
+        const totalScores = games.map(game => {
+            const results = game.stats['Game result'] || {};
+            return Object.values(results).reduce((sum, r) => {
+                const m = r.match(/\((\d+)\)/);
+                return sum + (m ? parseInt(m[1]) : 0);
+            }, 0);
+        });
+        const turnCounts = games.map(game => {
+            const val = Object.values(game.stats['Number of turns'] || {})[0];
+            return val ? parseInt(val) : null;
+        });
+
+        let allScores = [];
+        games.forEach(game => {
+            Object.values(game.stats['Game result'] || {}).forEach(r => {
+                const m = r.match(/\((\d+)\)/);
+                if (m) allScores.push(parseInt(m[1]));
+            });
+        });
+        const minTotal = Math.min(...totalScores), maxTotal = Math.max(...totalScores);
+        const minTurns  = Math.min(...turnCounts.filter(v => v !== null));
+        const maxTurns  = Math.max(...turnCounts.filter(v => v !== null));
+        const minScore  = Math.min(...allScores), maxScore = Math.max(...allScores);
+
+        // Reverse lookup: displayName -> username for color
+        const nameToPlayer = {};
+        TRACKED_PLAYERS.forEach(p => { nameToPlayer[getDisplayName(p)] = p; });
+
         const tbody = document.querySelector('#history-table tbody');
-        tbody.innerHTML = games.map(game => {
+        tbody.innerHTML = games.map((game, idx) => {
             const results = game.stats['Game result'] || {};
             const maps = game.stats['Map'] || {};
-            const turns = game.stats['Number of turns'] || {};
 
             const map = Object.values(maps)[0] || 'Unknown';
-            const turnCount = Object.values(turns)[0] || '?';
+            const rawTurns = turnCounts[idx];
+            const turnsColor = rawTurns !== null ? scaleColor(rawTurns, minTurns, maxTurns, true) : '';
+            const turnsHtml = rawTurns !== null
+                ? `<span style="font-weight:700;color:${turnsColor}">${rawTurns}</span>`
+                : '?';
 
-            // Find winner
-            let winner = '';
-            let winnerScore = 0;
-            Object.entries(results).forEach(([player, result]) => {
-                if (result.startsWith('1st')) {
-                    winner = player;
-                    const match = result.match(/\((\d+)\)/);
-                    if (match) winnerScore = match[1];
-                }
-            });
-
-            // Build results summary
+            // Build compact results list sorted by placement
             const resultsList = Object.entries(results)
                 .map(([player, result]) => {
                     const placeMatch = result.match(/^(\d)/);
                     const scoreMatch = result.match(/\((\d+)\)/);
-                    const place = placeMatch ? placeMatch[1] : '?';
-                    const score = scoreMatch ? scoreMatch[1] : '?';
-                    const isFirst = result.startsWith('1st');
-                    return `<span class="result-pill ${isFirst ? 'first' : ''}">
-                        <span class="result-rank">${place}.</span>
-                        ${getDisplayName(player)} (${score})
-                    </span>`;
+                    const scoreVal = scoreMatch ? parseInt(scoreMatch[1]) : null;
+                    const scoreColor = scoreVal !== null ? scaleColor(scoreVal, minScore, maxScore) : '';
+                    const playerColor = PLAYER_COLORS[player] || 'inherit';
+                    return {
+                        place: placeMatch ? parseInt(placeMatch[1]) : 99,
+                        scoreVal,
+                        scoreColor,
+                        playerColor,
+                        name: getDisplayName(player),
+                        isFirst: result.startsWith('1st')
+                    };
                 })
+                .sort((a, b) => a.place - b.place)
+                .map(r => `<div class="history-result ${r.isFirst ? 'history-result-first' : ''}">` +
+                    `<span class="history-rank">${r.place}.</span>` +
+                    `<span style="color:${r.playerColor}">${r.name}</span> ` +
+                    `<span class="history-score" style="color:${r.scoreColor};font-weight:700">${r.scoreVal ?? '?'}</span>` +
+                    `</div>`)
                 .join('');
 
-            // Extract date from tableId or use placeholder
-            const date = game.tableId.slice(0, 4) + '-' + game.tableId.slice(4, 6) + '-' + game.tableId.slice(6, 8);
+            const total = totalScores[idx];
+            const totalColor = scaleColor(total, minTotal, maxTotal);
 
             return `
                 <tr>
-                    <td>${game.tableId}</td>
-                    <td>${map}</td>
-                    <td>${turnCount}</td>
-                    <td><span class="winner-badge">${getDisplayName(winner)} (${winnerScore})</span></td>
-                    <td><div class="results-summary">${resultsList}</div></td>
-                    <td><a href="${game.url}" target="_blank" class="game-link">View</a></td>
+                    <td class="history-date">${game.date}</td>
+                    <td class="history-map">${map}</td>
+                    <td class="history-num">${turnsHtml}</td>
+                    <td class="history-num" style="font-weight:700;color:${totalColor}">${total}</td>
+                    <td><div class="history-results">${resultsList}</div></td>
+                    <td><a href="${game.url}" target="_blank" class="game-link">↗</a></td>
                 </tr>
             `;
         }).join('');
@@ -3359,6 +3405,180 @@
         const turns = game.stats['Number of turns'] || {};
         const val = Object.values(turns)[0];
         return val ? parseInt(val) : 999;
+    }
+
+    // Final scoring cards table
+    async function renderScoringCards() {
+        try {
+            const response = await fetch('data/card_analysis.json?v=' + Date.now());
+            const data = await response.json();
+            const scoringCards = data.scoringCards || [];
+            if (!scoringCards.length) return;
+
+            const tbody = document.getElementById('scoring-cards-tbody');
+            if (!tbody) return;
+
+            let currentSort = { col: 'plays', dir: 'desc' };
+
+            function ptDistBar(dist) {
+                const total = Object.values(dist).reduce((a, b) => a + b, 0);
+                if (!total) return '';
+                const colors = { '1': '#ef4444', '2': '#f97316', '3': '#eab308', '4': '#22c55e' };
+                const labels = { '1': '1pt', '2': '2pt', '3': '3pt', '4': '4pt' };
+                let segments = '';
+                [1, 2, 3, 4].forEach(pt => {
+                    const count = dist[String(pt)] || 0;
+                    if (!count) return;
+                    const pct = (count / total * 100).toFixed(1);
+                    segments += `<div class="sc-pt-seg" style="width:${pct}%;background:${colors[pt]}" title="${labels[pt]}: ${count} (${pct}%)"></div>`;
+                });
+                const legend = [1, 2, 3, 4].map(pt => {
+                    const count = dist[String(pt)] || 0;
+                    if (!count) return '';
+                    return `<span class="sc-pt-label" style="color:${colors[pt]}">${pt}×${count}</span>`;
+                }).join('');
+                return `<div class="sc-pt-bar">${segments}</div><div class="sc-pt-legend">${legend}</div>`;
+            }
+
+            function renderRows(cards) {
+                tbody.innerHTML = cards.map(sc => {
+                    const winPct = (sc.winFraction * 100).toFixed(1);
+                    const winClass = sc.winFraction >= 0.35 ? 'sc-win-high' : sc.winFraction >= 0.25 ? 'sc-win-mid' : 'sc-win-low';
+                    const ptsClass = sc.avgPoints >= 3.2 ? 'sc-pts-high' : sc.avgPoints >= 2.7 ? 'sc-pts-mid' : 'sc-pts-low';
+                    return `<tr>
+                        <td class="sc-card-name">${sc.card}</td>
+                        <td class="sc-num">${sc.plays}</td>
+                        <td class="sc-num ${winClass}">${winPct}%</td>
+                        <td class="sc-num ${ptsClass}">${sc.avgPoints.toFixed(1)}</td>
+                        <td class="sc-dist">${ptDistBar(sc.pointDistribution)}</td>
+                    </tr>`;
+                }).join('');
+            }
+
+            function sortAndRender() {
+                const sorted = [...scoringCards].sort((a, b) => {
+                    let va = a[currentSort.col], vb = b[currentSort.col];
+                    if (typeof va === 'string') va = va.toLowerCase(), vb = vb.toLowerCase();
+                    if (va < vb) return currentSort.dir === 'asc' ? -1 : 1;
+                    if (va > vb) return currentSort.dir === 'asc' ? 1 : -1;
+                    return 0;
+                });
+                renderRows(sorted);
+                document.querySelectorAll('#scoring-cards-table .sc-sort-icon').forEach(el => { el.textContent = '↕'; });
+                const activeHeader = document.querySelector(`#scoring-cards-table [data-col="${currentSort.col}"] .sc-sort-icon`);
+                if (activeHeader) activeHeader.textContent = currentSort.dir === 'asc' ? '↑' : '↓';
+            }
+
+            document.querySelectorAll('#scoring-cards-table .sc-sortable').forEach(th => {
+                th.addEventListener('click', () => {
+                    const col = th.dataset.col;
+                    if (currentSort.col === col) {
+                        currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
+                    } else {
+                        currentSort.col = col;
+                        currentSort.dir = col === 'card' ? 'asc' : 'desc';
+                    }
+                    sortAndRender();
+                });
+            });
+
+            sortAndRender();
+
+            // Scatter chart: avg pts vs win %
+            const scatterCtx = document.getElementById('scoring-cards-scatter');
+            if (scatterCtx) {
+                const pointLabelPlugin = {
+                    id: 'scPointLabels',
+                    afterDatasetsDraw(chart) {
+                        const ctx = chart.ctx;
+                        // Reference line at 25% (expected win rate)
+                        const yScale = chart.scales.y;
+                        const xScale = chart.scales.x;
+                        const y25 = yScale.getPixelForValue(25);
+                        ctx.save();
+                        ctx.setLineDash([5, 4]);
+                        ctx.strokeStyle = 'rgba(107,114,128,0.5)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(xScale.left, y25);
+                        ctx.lineTo(xScale.right, y25);
+                        ctx.stroke();
+                        ctx.setLineDash([]);
+                        ctx.font = '11px sans-serif';
+                        ctx.fillStyle = 'rgba(107,114,128,0.8)';
+                        ctx.textAlign = 'left';
+                        ctx.fillText('expected 25%', xScale.left + 4, y25 - 4);
+                        // Point labels
+                        chart.data.datasets[0].data.forEach((pt, i) => {
+                            const meta = chart.getDatasetMeta(0);
+                            const el = meta.data[i];
+                            if (!el) return;
+                            const { x, y } = el.getProps(['x', 'y'], true);
+                            ctx.font = '11px sans-serif';
+                            ctx.fillStyle = '#374151';
+                            ctx.textAlign = 'left';
+                            ctx.fillText(pt.label, x + 6, y + 4);
+                        });
+                        ctx.restore();
+                    }
+                };
+
+                new Chart(scatterCtx.getContext('2d'), {
+                    type: 'scatter',
+                    plugins: [pointLabelPlugin],
+                    data: {
+                        datasets: [{
+                            label: 'Scoring Cards',
+                            data: scoringCards.map(sc => ({
+                                x: sc.avgPoints,
+                                y: +(sc.winFraction * 100).toFixed(1),
+                                label: sc.card,
+                                plays: sc.plays
+                            })),
+                            backgroundColor: scoringCards.map(sc =>
+                                sc.winFraction >= 0.35 ? 'rgba(34,197,94,0.75)' :
+                                sc.winFraction >= 0.25 ? 'rgba(99,102,241,0.75)' :
+                                'rgba(239,68,68,0.75)'
+                            ),
+                            pointRadius: scoringCards.map(sc => 4 + sc.plays / 6),
+                            pointHoverRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        layout: { padding: { right: 140 } },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                callbacks: {
+                                    label: ctx => {
+                                        const pt = ctx.raw;
+                                        return [`${pt.label}`, `Avg pts: ${pt.x}`, `Win %: ${pt.y}%`, `Used: ${pt.plays}x`];
+                                    }
+                                }
+                            },
+                            annotation: undefined
+                        },
+                        scales: {
+                            x: {
+                                title: { display: true, text: 'Avg Conservation Points' },
+                                min: 1.8, max: 4.2,
+                                grid: { color: 'rgba(0,0,0,0.06)' }
+                            },
+                            y: {
+                                title: { display: true, text: 'Win %' },
+                                min: 0, max: 60,
+                                ticks: { callback: v => v + '%' },
+                                grid: { color: 'rgba(0,0,0,0.06)' }
+                            }
+                        }
+                    }
+                });
+            }
+        } catch (e) {
+            console.error('renderScoringCards error:', e);
+        }
     }
 
     // Top cards by player
