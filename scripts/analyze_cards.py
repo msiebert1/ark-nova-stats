@@ -13,6 +13,21 @@ with open('./docs/data/detailed_games.json', 'r') as f:
 
 tracked_players = ['msiebert', 'marksbrt', 'AstroHood', 'siebert23']
 
+
+def is_valid_game(game):
+    """Mirror isValidGame() in docs/js/app.js so card stats match what the site shows."""
+    if set(game.get('players', [])) != set(tracked_players):
+        return False
+    stats = game.get('stats', {})
+    if not stats.get('Map'):
+        return False
+    results = stats.get('Game result', {})
+    return all('not ranked' not in r for r in results.values())
+
+
+valid_table_ids = {g['tableId'] for g in games_data['games'] if is_valid_game(g)}
+logs_data['logs'] = [l for l in logs_data['logs'] if l['tableId'] in valid_table_ids]
+
 # Track cards played per player
 player_cards = defaultdict(lambda: defaultdict(int))
 
