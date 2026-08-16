@@ -1,6 +1,6 @@
 {
-  "exportedAt": "2026-08-02T09:54:50.634578Z",
-  "totalLogs": 83,
+  "exportedAt": "2026-08-16T13:45:06.307001Z",
+  "totalLogs": 84,
   "logs": [
     {
       "tableId": "791054483",
@@ -291444,6 +291444,4523 @@
         }
       ],
       "moveCount": 588
+    },
+    {
+      "tableId": "894967785",
+      "url": "https://boardgamearena.com/gamereview?table=894967785",
+      "collectedAt": "2026-08-16T17:43:26.893Z",
+      "players": [
+        "AstroHood",
+        "msiebert",
+        "siebert23",
+        "marksbrt"
+      ],
+      "logEntries": [
+        {
+          "moveNumber": 1,
+          "actions": [
+            "The colors of AstroHood, siebert23, msiebert have been chosen according to their preferences. Change my preferences."
+          ]
+        },
+        {
+          "moveNumber": 5,
+          "actions": [
+            "AstroHood will play Map 5a",
+            "siebert23 will play Map 4a",
+            "marksbrt will play Map 13",
+            "msiebert will play Map 11",
+            "Starting the first round of action cards draft phase."
+          ]
+        },
+        {
+          "moveNumber": 9,
+          "actions": [
+            "Starting the second round of action cards draft phase."
+          ]
+        },
+        {
+          "moveNumber": 17,
+          "actions": [
+            "You draw Chinese Water Dragon, (domestic) Goat, European Pond Turtle, Barred Owl Hut, Broad-snouted Caiman, Zooplankton, Zoo School, Northern Muriqui from the deck",
+            "You draw Aquatic Park, Specialized Species Zoo from the deck (scoring cards)",
+            "You draw Indian Rock Python, Bluespotted Ribbontail Ray, Secretary Bird, Thorny Devil, Mangalica, Eurasian Lynx, Blackside Hawkfish, Domestic Rabbit from the deck",
+            "You draw Architectural Zoo, Designer Zoo from the deck (scoring cards)",
+            "You draw Loggerhead Sea Turtle, Southern Blue-ringed Octopus, Tasmanian Devil, Medical Breakthrough, Greater Rhea, Lesser Flamingo, Adventure Playground, Common Wombat from the deck",
+            "You draw Sponsored Zoo, Catered Picnic Areas from the deck (scoring cards)",
+            "You draw Sumatran Tiger, Northern Plains Gray Langur, Japanese Macaque, Common European Adder, Primatologist, Excavation Site, Sponsorship: Vultures, Underwater Tunnel from the deck",
+            "You draw Climbing Park, Large Animal Zoo from the deck (scoring cards)",
+            "AstroHood will play with action cards: Build 3, Cards, Animals, Association 1 and Sponsors",
+            "siebert23 will play with action cards: Build, Cards 3, Animals 4, Association and Sponsors",
+            "marksbrt will play with action cards: Build 2, Cards, Animals, Association and Sponsors 1",
+            "msiebert will play with action cards: Build 1, Cards 2, Animals, Association and Sponsors",
+            "AstroHood draws 8 card(s) from the deck",
+            "AstroHood draws 2 scoring cards from the deck",
+            "siebert23 draws 8 card(s) from the deck",
+            "siebert23 draws 2 scoring cards from the deck",
+            "marksbrt draws 8 card(s) from the deck",
+            "marksbrt draws 2 scoring cards from the deck",
+            "msiebert draws 8 card(s) from the deck",
+            "msiebert draws 2 scoring cards from the deck"
+          ]
+        },
+        {
+          "moveNumber": 21,
+          "actions": [
+            "You discard Indian Rock Python, Secretary Bird, Mangalica, Domestic Rabbit",
+            "You discard (domestic) Goat, Barred Owl Hut, Zooplankton, Northern Muriqui",
+            "You discard Tasmanian Devil, Medical Breakthrough, Greater Rhea, Common Wombat",
+            "You discard Sumatran Tiger, Japanese Macaque, Sponsorship: Vultures, Underwater Tunnel",
+            "AstroHood discards 4 cards (initial selection)",
+            "siebert23 discards 4 cards (initial selection)",
+            "marksbrt discards 4 cards (initial selection)",
+            "msiebert discards 4 cards (initial selection)",
+            "The display is replenished with Predator breeding program, Meerkat Den, Shoebill, Collared Mangabey, Scarlet Macaw, Bennett's Wallaby"
+          ]
+        },
+        {
+          "moveNumber": 22,
+          "actions": [
+            "AstroHood chooses action card CardsI with strength 5",
+            "AstroHood advances break token of 2 space(s), now at 2/15"
+          ]
+        },
+        {
+          "moveNumber": 23,
+          "actions": [
+            "You draw Victory Column, Native Lizards, Giant Panda from the deck",
+            "AstroHood draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 24,
+          "actions": [
+            "You discard Giant Panda",
+            "AstroHood discards 1 card(s)",
+            "AstroHood places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 26,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 27,
+          "actions": [
+            "siebert23 takes a new Partner zoo",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 29,
+          "actions": [
+            "marksbrt chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 30,
+          "actions": [
+            "marksbrt takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 31,
+          "actions": [
+            "You draw Magnificent Sea Anemone for gaining a new university with",
+            "marksbrt draws 1 card for gaining a new university: Magnificent Sea Anemone",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 32,
+          "actions": [
+            "msiebert chooses action card AssociationI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 33,
+          "actions": [
+            "msiebert takes a new Partner zoo",
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 35,
+          "actions": [
+            "AstroHood chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 36,
+          "actions": [
+            "AstroHood plays Zoo School"
+          ]
+        },
+        {
+          "moveNumber": 38,
+          "actions": [
+            "AstroHood adds a unique building for free",
+            "AstroHood gains 1 xtoken (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 39,
+          "actions": [
+            "AstroHood gains 1 reputation (Zoo School)"
+          ]
+        },
+        {
+          "moveNumber": 40,
+          "actions": [
+            "AstroHood gains 1 conservation (Zoo School)"
+          ]
+        },
+        {
+          "moveNumber": 41,
+          "actions": [
+            "You draw Sloth Bear from the deck",
+            "AstroHood draws 1 card(s) from the deck",
+            "AstroHood places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 42,
+          "actions": [
+            "siebert23 chooses action card BuildI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 43,
+          "actions": [
+            "siebert23 pays 4 for building the small aquarium"
+          ]
+        },
+        {
+          "moveNumber": 45,
+          "actions": [
+            "You draw Moose from the deck",
+            "siebert23 draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 46,
+          "actions": [
+            "siebert23 places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 48,
+          "actions": [
+            "marksbrt chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 49,
+          "actions": [
+            "marksbrt pays 10 for building the large aquarium",
+            "marksbrt gains 2 money (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 51,
+          "actions": [
+            "marksbrt uses Build2 effect",
+            "marksbrt pays 3 for building a Kiosk",
+            "marksbrt gains 2 money (placement bonus)",
+            "marksbrt places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 53,
+          "actions": [
+            "msiebert chooses action card CardsI with strength 5",
+            "msiebert advances break token of 2 space(s), now at 4/15"
+          ]
+        },
+        {
+          "moveNumber": 54,
+          "actions": [
+            "You dig Primatologist from your hand",
+            "You draw Conference On Australia from the deck",
+            "msiebert digs 1 card from their hand",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 55,
+          "actions": [
+            "You draw Bald Eagle, Veterinarian, Siberian Tiger from the deck",
+            "msiebert draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 56,
+          "actions": [
+            "You discard Conference On Australia",
+            "msiebert discards 1 card(s)",
+            "msiebert places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 58,
+          "actions": [
+            "AstroHood chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 59,
+          "actions": [
+            "AstroHood takes a new Partner zoo",
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 64,
+          "actions": [
+            "siebert23 chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 65,
+          "actions": [
+            "siebert23 advances break token of 5 space(s), now at 9/15",
+            "siebert23 gains 5 money",
+            "siebert23 places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 67,
+          "actions": [
+            "marksbrt chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 69,
+          "actions": [
+            "marksbrt plays Adventure Playground"
+          ]
+        },
+        {
+          "moveNumber": 70,
+          "actions": [
+            "marksbrt gains 4 appeal (Adventure Playground)"
+          ]
+        },
+        {
+          "moveNumber": 71,
+          "actions": [
+            "marksbrt adds a unique building for free"
+          ]
+        },
+        {
+          "moveNumber": 72,
+          "actions": [
+            "marksbrt places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 74,
+          "actions": [
+            "msiebert chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 75,
+          "actions": [
+            "msiebert pays 8 for building a size-4 enclosure",
+            "msiebert gains 5 money (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 76,
+          "actions": [
+            "msiebert uses Build1 effect",
+            "msiebert pays 3 for building a pavilion",
+            "msiebert gains 1 appeal (building a pavilion)",
+            "msiebert gains 1 xtoken (placement bonus)",
+            "msiebert places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 78,
+          "actions": [
+            "AstroHood chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 79,
+          "actions": [
+            "AstroHood pays 4 for building a size-2 enclosure",
+            "AstroHood places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 81,
+          "actions": [
+            "siebert23 chooses action card CardsI with strength 5",
+            "siebert23 advances break token of 2 space(s), now at 11/15"
+          ]
+        },
+        {
+          "moveNumber": 82,
+          "actions": [
+            "You draw Expert On The Americas, Saltwater Crocodile, Devil Firefish from the deck",
+            "siebert23 draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 83,
+          "actions": [
+            "You discard Moose",
+            "siebert23 discards 1 card(s)",
+            "siebert23 places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 85,
+          "actions": [
+            "You sell Expert On The Americas cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 87,
+          "actions": [
+            "marksbrt chooses action card CardsI with strength 5",
+            "marksbrt advances break token of 2 space(s), now at 13/15"
+          ]
+        },
+        {
+          "moveNumber": 88,
+          "actions": [
+            "marksbrt snaps Scarlet Macaw from the display",
+            "marksbrt places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 89,
+          "actions": [
+            "The display is replenished with Field Research Type D Orcas",
+            "Removing 1 cards of the display due to Wave icons reveal: Predator breeding program",
+            "The display is replenished with Low Mountain Range"
+          ]
+        },
+        {
+          "moveNumber": 90,
+          "actions": [
+            "msiebert chooses action card AnimalsI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 91,
+          "actions": [
+            "msiebert plays Northern Plains Gray Langur for 13 and places it in a size-4 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 92,
+          "actions": [
+            "msiebert gains 6 appeal (Northern Plains Gray Langur)",
+            "msiebert advances break token of 3 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "msiebert gains 1 xtoken (triggering break)",
+            "msiebert gains 3 money (Jumping action)",
+            "msiebert places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 93,
+          "actions": [
+            "Starting a new break"
+          ]
+        },
+        {
+          "moveNumber": 97,
+          "actions": [
+            "You discard Thorny Devil, Eurasian Lynx, Saltwater Crocodile",
+            "You discard Sloth Bear, Victory Column, Native Lizards",
+            "You discard Lesser Flamingo, Magnificent Sea Anemone",
+            "You discard Siberian Tiger, Bald Eagle",
+            "AstroHood discards 3 cards during break",
+            "siebert23 discards 3 cards during break",
+            "marksbrt discards 2 cards during break",
+            "msiebert discards 2 cards during break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Shoebill, Meerkat Den",
+            "The display is replenished with Basic Research, Orange Clownfish",
+            "Removing 1 cards of the display due to Wave icons reveal: Collared Mangabey",
+            "The display is replenished with Talented Communicator",
+            "msiebert gains 12 money (appeal income)",
+            "AstroHood gains 5 money (appeal income)",
+            "AstroHood gains 2 money (map income)",
+            "siebert23 gains 6 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 99,
+          "actions": [
+            "marksbrt gains 10 money (appeal income)",
+            "marksbrt gains 2 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 100,
+          "actions": [
+            "End of the break"
+          ]
+        },
+        {
+          "moveNumber": 101,
+          "actions": [
+            "AstroHood chooses action card BuildI with strength 1"
+          ]
+        },
+        {
+          "moveNumber": 102,
+          "actions": [
+            "AstroHood pays 4 for building a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 103,
+          "actions": [
+            "You draw Angthong national park from the deck",
+            "AstroHood draws 1 card(s) from the deck",
+            "AstroHood places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 104,
+          "actions": [
+            "siebert23 chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 105,
+          "actions": [
+            "siebert23 plays Blackside Hawkfish for 11 and places it in the small aquarium",
+            "siebert23 triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 106,
+          "actions": [
+            "siebert23 gains 4 appeal (Blackside Hawkfish)"
+          ]
+        },
+        {
+          "moveNumber": 107,
+          "actions": [
+            "siebert23 adds a Kiosk (Blackside Hawkfish)"
+          ]
+        },
+        {
+          "moveNumber": 108,
+          "actions": [
+            "siebert23 plays Bluespotted Ribbontail Ray for 13 and places it in the small aquarium",
+            "siebert23 triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 109,
+          "actions": [
+            "siebert23 gains 7 appeal (Bluespotted Ribbontail Ray)"
+          ]
+        },
+        {
+          "moveNumber": 111,
+          "actions": [
+            "siebert23 adds a pavilion (Blackside Hawkfish)",
+            "siebert23 gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 112,
+          "actions": [
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 113,
+          "actions": [
+            "siebert23 marks Orange Clownfish from display"
+          ]
+        },
+        {
+          "moveNumber": 115,
+          "actions": [
+            "marksbrt chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 116,
+          "actions": [
+            "marksbrt takes a new Partner zoo",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 118,
+          "actions": [
+            "msiebert chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 119,
+          "actions": [
+            "msiebert takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 120,
+          "actions": [
+            "msiebert gains 2 reputation ( from university)"
+          ]
+        },
+        {
+          "moveNumber": 121,
+          "actions": [
+            "msiebert upgrades BuildII",
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 123,
+          "actions": [
+            "AstroHood chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 124,
+          "actions": [
+            "AstroHood plays Chinese Water Dragon for 8 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 125,
+          "actions": [
+            "AstroHood gains 3 appeal (Chinese Water Dragon)"
+          ]
+        },
+        {
+          "moveNumber": 126,
+          "actions": [
+            "You sell Angthong national park cards for 4 money",
+            "AstroHood sells 1 card(s) for 4 money"
+          ]
+        },
+        {
+          "moveNumber": 127,
+          "actions": [
+            "AstroHood plays European Pond Turtle for 6 and places it in a size-2 enclosure",
+            "AstroHood gains 4 appeal (European Pond Turtle)",
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 129,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 130,
+          "actions": [
+            "siebert23 supports a conservation project on the third slot : Sea Animals"
+          ]
+        },
+        {
+          "moveNumber": 131,
+          "actions": [
+            "siebert23 gains 2 conservation (Sea Animals)"
+          ]
+        },
+        {
+          "moveNumber": 132,
+          "actions": [
+            "siebert23 gets 1 x upgrade-card"
+          ]
+        },
+        {
+          "moveNumber": 133,
+          "actions": [
+            "siebert23 upgrades SponsorsII"
+          ]
+        },
+        {
+          "moveNumber": 134,
+          "actions": [
+            "siebert23 snaps Talented Communicator from the display",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 135,
+          "actions": [
+            "The display is replenished with Komodo Dragon"
+          ]
+        },
+        {
+          "moveNumber": 136,
+          "actions": [
+            "marksbrt chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 137,
+          "actions": [
+            "marksbrt plays Southern Blue-ringed Octopus for 12 and places it in the large aquarium",
+            "marksbrt triggers its reef abilities",
+            "marksbrt gains 3 money (Southern Blue-ringed Octopus)"
+          ]
+        },
+        {
+          "moveNumber": 138,
+          "actions": [
+            "marksbrt uses Venom effect and gives Venom token(s) to AstroHood, siebert23, msiebert",
+            "marksbrt gains 4 appeal (Southern Blue-ringed Octopus)"
+          ]
+        },
+        {
+          "moveNumber": 139,
+          "actions": [
+            "marksbrt plays Scarlet Macaw for 13 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 141,
+          "actions": [
+            "marksbrt adds a pavilion (Scarlet Macaw)",
+            "marksbrt gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 142,
+          "actions": [
+            "marksbrt adds a pavilion (Scarlet Macaw)",
+            "marksbrt gains 1 appeal (building a pavilion)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 143,
+          "actions": [
+            "marksbrt adds a Kiosk (Scarlet Macaw)",
+            "marksbrt gains 1 xtoken (placement bonus)",
+            "marksbrt gains 4 appeal (Scarlet Macaw)",
+            "marksbrt places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 145,
+          "actions": [
+            "msiebert chooses action card CardsI with strength 4",
+            "msiebert advances break token of 2 space(s), now at 2/15"
+          ]
+        },
+        {
+          "moveNumber": 146,
+          "actions": [
+            "msiebert digs from the display",
+            "Orange Clownfish is not discarded and given to siebert23 (Mark effect)",
+            "The display is replenished with Muskox"
+          ]
+        },
+        {
+          "moveNumber": 147,
+          "actions": [
+            "You draw Alpaca, Anaconda from the deck",
+            "msiebert draws 2 card(s) from the deck",
+            "msiebert places action card Cards at position 1 (finishing action)",
+            "msiebert pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 148,
+          "actions": [
+            "AstroHood chooses action card CardsI with strength 5",
+            "AstroHood advances break token of 2 space(s), now at 4/15"
+          ]
+        },
+        {
+          "moveNumber": 149,
+          "actions": [
+            "AstroHood snaps Komodo Dragon from the display",
+            "AstroHood places action card Cards at position 1 (finishing action)",
+            "AstroHood pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 150,
+          "actions": [
+            "The display is replenished with Crested Porcupine"
+          ]
+        },
+        {
+          "moveNumber": 151,
+          "actions": [
+            "siebert23 chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 152,
+          "actions": [
+            "siebert23 pays 4 for building a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 153,
+          "actions": [
+            "You draw Ornithologist from the deck",
+            "siebert23 draws 1 card(s) from the deck",
+            "siebert23 places action card Build at position 1 (finishing action)",
+            "siebert23 pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 155,
+          "actions": [
+            "You sell Ornithologist cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 157,
+          "actions": [
+            "marksbrt chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 158,
+          "actions": [
+            "marksbrt pays 6 for building a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 159,
+          "actions": [
+            "marksbrt uses Build2 effect",
+            "marksbrt pays 3 for building a Kiosk",
+            "marksbrt gains 1 xtoken (placement bonus)",
+            "marksbrt places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 161,
+          "actions": [
+            "msiebert chooses action card BuildII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 162,
+          "actions": [
+            "msiebert pays 2 for building a Kiosk"
+          ]
+        },
+        {
+          "moveNumber": 163,
+          "actions": [
+            "msiebert pays 2 for building a size-1 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 164,
+          "actions": [
+            "msiebert pays 2 for building a pavilion",
+            "msiebert gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 165,
+          "actions": [
+            "msiebert takes 1 worker(s) back from the university zone to their notepad (Extra Shift effect)"
+          ]
+        },
+        {
+          "moveNumber": 166,
+          "actions": [
+            "msiebert uses Build1 effect",
+            "msiebert pays 2 for building a pavilion",
+            "msiebert gains 1 appeal (building a pavilion)",
+            "msiebert places action card Build at position 1 (finishing action)",
+            "msiebert pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 168,
+          "actions": [
+            "AstroHood pays 1 xtoken for increasing card strength",
+            "AstroHood chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 169,
+          "actions": [
+            "AstroHood supports a conservation project on the third slot : Europe"
+          ]
+        },
+        {
+          "moveNumber": 171,
+          "actions": [
+            "AstroHood adds the Reptile House for free"
+          ]
+        },
+        {
+          "moveNumber": 173,
+          "actions": [
+            "AstroHood moves European Pond Turtle into the the Reptile House and free a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 174,
+          "actions": [
+            "AstroHood moves Chinese Water Dragon into the the Reptile House and free a size-2 enclosure",
+            "AstroHood gains 1 reputation (placement bonus)",
+            "AstroHood gains 2 conservation (Europe)"
+          ]
+        },
+        {
+          "moveNumber": 175,
+          "actions": [
+            "AstroHood gets 1 x upgrade-card"
+          ]
+        },
+        {
+          "moveNumber": 176,
+          "actions": [
+            "AstroHood upgrades AnimalsII",
+            "AstroHood places action card Association at position 1 (finishing action)",
+            "AstroHood pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 178,
+          "actions": [
+            "siebert23 chooses action card SponsorsII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 179,
+          "actions": [
+            "siebert23 plays Talented Communicator",
+            "siebert23 gains a new Association worker",
+            "siebert23 places action card Sponsors at position 1 (finishing action)",
+            "siebert23 pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 181,
+          "actions": [
+            "marksbrt pays 1 xtoken for increasing card strength",
+            "marksbrt chooses action card CardsI with strength 5",
+            "marksbrt advances break token of 2 space(s), now at 6/15"
+          ]
+        },
+        {
+          "moveNumber": 182,
+          "actions": [
+            "You draw Predator Management Plan, Ring-tailed Lemur, Stoat from the deck",
+            "marksbrt draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 183,
+          "actions": [
+            "You discard Predator Management Plan",
+            "marksbrt discards 1 card(s)",
+            "marksbrt places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 185,
+          "actions": [
+            "msiebert pays 1 xtoken for increasing card strength",
+            "msiebert chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 186,
+          "actions": [
+            "msiebert takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 187,
+          "actions": [
+            "You draw Veiled Chameleon for gaining a new university with",
+            "msiebert draws 1 card for gaining a new university: Veiled Chameleon",
+            "msiebert places action card Association at position 1 (finishing action)",
+            "msiebert discards their Venom token"
+          ]
+        },
+        {
+          "moveNumber": 188,
+          "actions": [
+            "AstroHood chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 189,
+          "actions": [
+            "AstroHood advances break token of 5 space(s), now at 11/15",
+            "AstroHood gains 5 money",
+            "AstroHood places action card Sponsors at position 1 (finishing action)",
+            "AstroHood pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 191,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 192,
+          "actions": [
+            "siebert23 takes a new Partner zoo"
+          ]
+        },
+        {
+          "moveNumber": 193,
+          "actions": [
+            "siebert23 upgrades CardsII",
+            "siebert23 places action card Association at position 1 (finishing action)",
+            "siebert23 discards their Venom token"
+          ]
+        },
+        {
+          "moveNumber": 195,
+          "actions": [
+            "marksbrt chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 197,
+          "actions": [
+            "marksbrt advances break token of 5 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "marksbrt gains 1 xtoken (triggering break)",
+            "marksbrt gains 5 money"
+          ]
+        },
+        {
+          "moveNumber": 198,
+          "actions": [
+            "marksbrt trades 1 for (Trade effect)",
+            "marksbrt places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 199,
+          "actions": [
+            "Starting a new break"
+          ]
+        },
+        {
+          "moveNumber": 200,
+          "actions": [
+            "You discard Alpaca, Anaconda, Veiled Chameleon",
+            "msiebert discards 3 cards during break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Bennett's Wallaby, Field Research Type D Orcas",
+            "The display is replenished with Inland Taipan, Red Deer"
+          ]
+        },
+        {
+          "moveNumber": 201,
+          "actions": [
+            "marksbrt gets 0 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 202,
+          "actions": [
+            "marksbrt gains 15 money (appeal income)",
+            "marksbrt gains 5 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 203,
+          "actions": [
+            "msiebert gains 13 money (appeal income)",
+            "msiebert gains 2 money (kiosk income)",
+            "AstroHood gains 11 money (appeal income)",
+            "AstroHood gains 3 money (map income)"
+          ]
+        },
+        {
+          "moveNumber": 204,
+          "actions": [
+            "siebert23 gains 14 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 205,
+          "actions": [
+            "siebert23 gains 2 money (kiosk income)",
+            "siebert23 gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 206,
+          "actions": [
+            "siebert23 snaps Red Deer from the display"
+          ]
+        },
+        {
+          "moveNumber": 207,
+          "actions": [
+            "End of the break",
+            "The display is replenished with Greater Flamingo"
+          ]
+        },
+        {
+          "moveNumber": 208,
+          "actions": [
+            "msiebert chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 209,
+          "actions": [
+            "msiebert plays Excavation Site"
+          ]
+        },
+        {
+          "moveNumber": 210,
+          "actions": [
+            "msiebert adds a size-5 enclosure for free"
+          ]
+        },
+        {
+          "moveNumber": 211,
+          "actions": [
+            "msiebert gains 1 reputation (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 212,
+          "actions": [
+            "msiebert gains 1 reputation (placement bonus)",
+            "msiebert gets 1 x upgrade-card (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 213,
+          "actions": [
+            "msiebert upgrades AssociationII"
+          ]
+        },
+        {
+          "moveNumber": 215,
+          "actions": [
+            "You store Veterinarian from your hand (Map 11 Effect)",
+            "msiebert stores 1 card from their hand (Map 11 Effect)"
+          ]
+        },
+        {
+          "moveNumber": 219,
+          "actions": [
+            "You store Common European Adder from your hand (Map 11 Effect)",
+            "msiebert stores 1 card from their hand (Map 11 Effect)",
+            "msiebert places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 221,
+          "actions": [
+            "AstroHood chooses action card CardsI with strength 3",
+            "AstroHood advances break token of 2 space(s), now at 2/15"
+          ]
+        },
+        {
+          "moveNumber": 222,
+          "actions": [
+            "You draw Large Animals, Technology Institute from the deck",
+            "AstroHood draws 2 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 223,
+          "actions": [
+            "You discard Large Animals",
+            "AstroHood discards 1 card(s)",
+            "AstroHood places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 225,
+          "actions": [
+            "siebert23 chooses action card CardsII with strength 5",
+            "siebert23 advances break token of 2 space(s), now at 4/15"
+          ]
+        },
+        {
+          "moveNumber": 226,
+          "actions": [
+            "siebert23 snaps Crested Porcupine from the display"
+          ]
+        },
+        {
+          "moveNumber": 227,
+          "actions": [
+            "siebert23 snaps Greater Flamingo from the display",
+            "siebert23 places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 228,
+          "actions": [
+            "The display is replenished with Cougar, Red-shanked Douc"
+          ]
+        },
+        {
+          "moveNumber": 229,
+          "actions": [
+            "marksbrt chooses action card AnimalsI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 230,
+          "actions": [
+            "marksbrt plays Loggerhead Sea Turtle for 23 and places it in the large aquarium"
+          ]
+        },
+        {
+          "moveNumber": 231,
+          "actions": [
+            "You draw Great Hornbill, African Penguin, Archaeologist, Aquatic for scuba dive effect",
+            "You keep Archaeologist and discard Great Hornbill, African Penguin, Aquatic for scuba dive effect",
+            "marksbrt draws 4 cards for scuba dive effect",
+            "marksbrt keeps Archaeologist card and discard 3 card(s) for scuba dive effect"
+          ]
+        },
+        {
+          "moveNumber": 233,
+          "actions": [
+            "marksbrt pays 4 money for buying sponsor card",
+            "marksbrt plays Archaeologist",
+            "marksbrt gains 8 appeal (Loggerhead Sea Turtle)",
+            "marksbrt places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 235,
+          "actions": [
+            "msiebert pays 1 xtoken for increasing card strength",
+            "msiebert chooses action card CardsI with strength 5",
+            "msiebert advances break token of 2 space(s), now at 6/15"
+          ]
+        },
+        {
+          "moveNumber": 236,
+          "actions": [
+            "msiebert digs Basic Research from the display",
+            "The display is replenished with Common Agama"
+          ]
+        },
+        {
+          "moveNumber": 237,
+          "actions": [
+            "msiebert snaps Common Agama from the display",
+            "msiebert places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 238,
+          "actions": [
+            "The display is replenished with Northern Cassowary"
+          ]
+        },
+        {
+          "moveNumber": 239,
+          "actions": [
+            "AstroHood chooses action card AssociationI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 240,
+          "actions": [
+            "AstroHood takes a new Partner zoo"
+          ]
+        },
+        {
+          "moveNumber": 241,
+          "actions": [
+            "AstroHood upgrades CardsII",
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 243,
+          "actions": [
+            "siebert23 chooses action card BuildI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 244,
+          "actions": [
+            "siebert23 pays 6 for building a size-3 enclosure",
+            "siebert23 places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 246,
+          "actions": [
+            "marksbrt chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 247,
+          "actions": [
+            "marksbrt supports a conservation project on the third slot : Habitat Diversity"
+          ]
+        },
+        {
+          "moveNumber": 248,
+          "actions": [
+            "marksbrt gains 2 conservation (Habitat Diversity)"
+          ]
+        },
+        {
+          "moveNumber": 249,
+          "actions": [
+            "marksbrt gets 1 x upgrade-card"
+          ]
+        },
+        {
+          "moveNumber": 250,
+          "actions": [
+            "marksbrt upgrades BuildII",
+            "marksbrt gains a new Association worker",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 252,
+          "actions": [
+            "msiebert chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 253,
+          "actions": [
+            "msiebert plays Common Agama for 9 and places it in a size-1 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 254,
+          "actions": [
+            "msiebert gains 3 appeal (Common Agama)"
+          ]
+        },
+        {
+          "moveNumber": 256,
+          "actions": [
+            "msiebert places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 258,
+          "actions": [
+            "AstroHood gains 1 xtoken",
+            "AstroHood places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 260,
+          "actions": [
+            "siebert23 chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 261,
+          "actions": [
+            "siebert23 plays Red Deer for 9 and places it in a size-3 enclosure",
+            "siebert23 gains 5 appeal (Red Deer)"
+          ]
+        },
+        {
+          "moveNumber": 262,
+          "actions": [
+            "siebert23 plays Crested Porcupine for 5 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 263,
+          "actions": [
+            "siebert23 gains 3 appeal (Crested Porcupine)"
+          ]
+        },
+        {
+          "moveNumber": 264,
+          "actions": [
+            "siebert23 digs Inland Taipan from the display",
+            "The display is replenished with Quarantine Lab"
+          ]
+        },
+        {
+          "moveNumber": 265,
+          "actions": [
+            "siebert23 digs Quarantine Lab from the display",
+            "The display is replenished with Sand Tiger Shark",
+            "Removing 1 cards of the display due to Wave icons reveal: Low Mountain Range",
+            "The display is replenished with Proboscis Monkey",
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 266,
+          "actions": [
+            "siebert23 marks Sand Tiger Shark from display"
+          ]
+        },
+        {
+          "moveNumber": 268,
+          "actions": [
+            "marksbrt chooses action card SponsorsI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 270,
+          "actions": [
+            "marksbrt advances break token of 3 space(s), now at 9/15",
+            "marksbrt gains 3 money"
+          ]
+        },
+        {
+          "moveNumber": 271,
+          "actions": [
+            "marksbrt trades 1 for (Trade effect)",
+            "marksbrt places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 273,
+          "actions": [
+            "msiebert chooses action card BuildII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 274,
+          "actions": [
+            "msiebert pays 4 for building a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 275,
+          "actions": [
+            "msiebert pays 6 for building a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 276,
+          "actions": [
+            "msiebert takes Cougar in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 277,
+          "actions": [
+            "msiebert places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 278,
+          "actions": [
+            "The display is replenished with Eurasian Brown Bear"
+          ]
+        },
+        {
+          "moveNumber": 279,
+          "actions": [
+            "AstroHood chooses action card AnimalsII with strength 5",
+            "AstroHood gains 1 reputation (max strength Animals)"
+          ]
+        },
+        {
+          "moveNumber": 280,
+          "actions": [
+            "AstroHood plays Komodo Dragon for 11 and places it in the Reptile House"
+          ]
+        },
+        {
+          "moveNumber": 281,
+          "actions": [
+            "AstroHood gains 2 appeal (Komodo Dragon)",
+            "AstroHood gains 6 appeal (Iconic animal)"
+          ]
+        },
+        {
+          "moveNumber": 282,
+          "actions": [
+            "AstroHood plays Broad-snouted Caiman for 16 and places it in the Reptile House"
+          ]
+        },
+        {
+          "moveNumber": 283,
+          "actions": [
+            "AstroHood gains 6 appeal (Broad-snouted Caiman)"
+          ]
+        },
+        {
+          "moveNumber": 284,
+          "actions": [
+            "AstroHood snaps Sand Tiger Shark from the display",
+            "siebert23 gains 2 money for their mark on Sand Tiger Shark",
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 285,
+          "actions": [
+            "The display is replenished with Australian Dingo"
+          ]
+        },
+        {
+          "moveNumber": 286,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 287,
+          "actions": [
+            "siebert23 takes a new university",
+            "siebert23 gains 2 reputation ( from university)",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 289,
+          "actions": [
+            "marksbrt chooses action card BuildII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 290,
+          "actions": [
+            "marksbrt pays 8 for building a size-4 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 291,
+          "actions": [
+            "marksbrt pays 2 for building a pavilion",
+            "marksbrt gains 1 appeal (building a pavilion)",
+            "marksbrt gains 1 xtoken (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 295,
+          "actions": [
+            "marksbrt gains 1 reputation (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 296,
+          "actions": [
+            "marksbrt gets 1 x take-in-range-or-deck"
+          ]
+        },
+        {
+          "moveNumber": 297,
+          "actions": [
+            "marksbrt takes Red-shanked Douc in reputation range from the display",
+            "marksbrt places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 298,
+          "actions": [
+            "The display is replenished with Farm Cat"
+          ]
+        },
+        {
+          "moveNumber": 299,
+          "actions": [
+            "msiebert chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 300,
+          "actions": [
+            "msiebert supports a conservation project on the third slot : Reptiles"
+          ]
+        },
+        {
+          "moveNumber": 302,
+          "actions": [
+            "msiebert snaps Australian Dingo from the display",
+            "msiebert gains 2 conservation (Reptiles)"
+          ]
+        },
+        {
+          "moveNumber": 303,
+          "actions": [
+            "msiebert gets 1 x upgrade-card"
+          ]
+        },
+        {
+          "moveNumber": 304,
+          "actions": [
+            "msiebert upgrades AnimalsII"
+          ]
+        },
+        {
+          "moveNumber": 305,
+          "actions": [
+            "msiebert donates 2 money to get 1 conservation",
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 306,
+          "actions": [
+            "The display is replenished with Short-snouted Seahorse",
+            "Removing 1 cards of the display due to Wave icons reveal: Muskox",
+            "The display is replenished with Herbivore Management Plan"
+          ]
+        },
+        {
+          "moveNumber": 313,
+          "actions": [
+            "AstroHood pays 1 xtoken for increasing card strength",
+            "AstroHood chooses action card SponsorsI with strength 6"
+          ]
+        },
+        {
+          "moveNumber": 314,
+          "actions": [
+            "AstroHood advances break token of 6 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "AstroHood gains 1 xtoken (triggering break)",
+            "AstroHood gains 6 money",
+            "AstroHood places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 315,
+          "actions": [
+            "Starting a new break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Proboscis Monkey, Northern Cassowary",
+            "The display is replenished with Primate breeding program, Guinea Pig",
+            "AstroHood gains 17 money (appeal income)",
+            "AstroHood gains 3 money (map income)"
+          ]
+        },
+        {
+          "moveNumber": 316,
+          "actions": [
+            "siebert23 gains 17 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 317,
+          "actions": [
+            "siebert23 gains 3 money (kiosk income)",
+            "siebert23 gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 318,
+          "actions": [
+            "siebert23 snaps Short-snouted Seahorse from the display"
+          ]
+        },
+        {
+          "moveNumber": 319,
+          "actions": [
+            "The display is replenished with Dugong"
+          ]
+        },
+        {
+          "moveNumber": 320,
+          "actions": [
+            "marksbrt gains 18 money (appeal income)",
+            "marksbrt gains 5 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 321,
+          "actions": [
+            "marksbrt gets 2 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 1 reputation (Map 13 quarter bonus)",
+            "marksbrt gets 0 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 323,
+          "actions": [
+            "msiebert gains 15 money (appeal income)",
+            "msiebert gains 3 money (kiosk income)",
+            "msiebert gains 4 money (map income)",
+            "msiebert gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 324,
+          "actions": [
+            "msiebert snaps Primate breeding program from the display"
+          ]
+        },
+        {
+          "moveNumber": 325,
+          "actions": [
+            "End of the break",
+            "The display is replenished with Emu"
+          ]
+        },
+        {
+          "moveNumber": 326,
+          "actions": [
+            "siebert23 chooses action card SponsorsII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 327,
+          "actions": [
+            "siebert23 advances break token of 5 space(s), now at 5/15",
+            "siebert23 gains 10 money",
+            "siebert23 places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 329,
+          "actions": [
+            "marksbrt pays 1 xtoken for increasing card strength",
+            "marksbrt chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 330,
+          "actions": [
+            "marksbrt takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 331,
+          "actions": [
+            "marksbrt gains 2 reputation ( from university)",
+            "marksbrt gets 1 x upgrade-card (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 332,
+          "actions": [
+            "marksbrt upgrades AnimalsII"
+          ]
+        },
+        {
+          "moveNumber": 333,
+          "actions": [
+            "marksbrt upgrades CardsII",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 335,
+          "actions": [
+            "msiebert chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 337,
+          "actions": [
+            "You takes Veterinarian back into your hand (Map 11 Effect)",
+            "msiebert takes 1 stored card back into their hand (Map 11 Effect)"
+          ]
+        },
+        {
+          "moveNumber": 338,
+          "actions": [
+            "msiebert plays Veterinarian",
+            "msiebert gains 5 money (Veterinarian)",
+            "msiebert places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 340,
+          "actions": [
+            "AstroHood chooses action card CardsII with strength 5",
+            "AstroHood advances break token of 2 space(s), now at 7/15"
+          ]
+        },
+        {
+          "moveNumber": 341,
+          "actions": [
+            "You draw Herbivore breeding program, Blue mountains national park, Landscape Gardener, Mediterranean Rainbow Wrasse from the deck",
+            "AstroHood draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 342,
+          "actions": [
+            "You discard Landscape Gardener",
+            "AstroHood discards 1 card(s)",
+            "AstroHood places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 344,
+          "actions": [
+            "siebert23 chooses action card CardsII with strength 5",
+            "siebert23 advances break token of 2 space(s), now at 9/15"
+          ]
+        },
+        {
+          "moveNumber": 345,
+          "actions": [
+            "You draw Indian Peafowl, Western Green Mamba, Boa Constrictor, Reptile Management Plan from the deck",
+            "siebert23 draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 346,
+          "actions": [
+            "You discard Indian Peafowl",
+            "siebert23 discards 1 card(s)",
+            "siebert23 places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 348,
+          "actions": [
+            "marksbrt chooses action card CardsII with strength 5",
+            "marksbrt advances break token of 2 space(s), now at 11/15"
+          ]
+        },
+        {
+          "moveNumber": 349,
+          "actions": [
+            "marksbrt takes Eurasian Brown Bear in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 350,
+          "actions": [
+            "You draw Expert On Europe, Longcomb Sawfish, Panamanian White-faced Capuchin from the deck",
+            "marksbrt draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 351,
+          "actions": [
+            "You discard Eurasian Brown Bear",
+            "marksbrt discards 1 card(s)",
+            "marksbrt places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 352,
+          "actions": [
+            "The display is replenished with Slow Worm"
+          ]
+        },
+        {
+          "moveNumber": 353,
+          "actions": [
+            "msiebert chooses action card CardsI with strength 5",
+            "msiebert advances break token of 2 space(s), now at 13/15"
+          ]
+        },
+        {
+          "moveNumber": 354,
+          "actions": [
+            "msiebert digs Slow Worm from the display",
+            "The display is replenished with Geologist"
+          ]
+        },
+        {
+          "moveNumber": 355,
+          "actions": [
+            "You draw King Vulture, Expert In Small Animals, Hydrologist from the deck",
+            "msiebert draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 356,
+          "actions": [
+            "You discard King Vulture",
+            "msiebert discards 1 card(s)",
+            "msiebert places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 358,
+          "actions": [
+            "AstroHood chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 359,
+          "actions": [
+            "AstroHood supports a conservation project on the second slot : Reptiles"
+          ]
+        },
+        {
+          "moveNumber": 360,
+          "actions": [
+            "AstroHood gains 4 conservation (Reptiles)"
+          ]
+        },
+        {
+          "moveNumber": 361,
+          "actions": [
+            "AstroHood gets 1 x Fac"
+          ]
+        },
+        {
+          "moveNumber": 362,
+          "actions": [
+            "AstroHood gains 1 reputation ( from university)",
+            "AstroHood gets 1 x upgrade-card (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 366,
+          "actions": [
+            "AstroHood upgrades AssociationII"
+          ]
+        },
+        {
+          "moveNumber": 367,
+          "actions": [
+            "AstroHood snaps Dugong from the display",
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 368,
+          "actions": [
+            "The display is replenished with Wolverine"
+          ]
+        },
+        {
+          "moveNumber": 369,
+          "actions": [
+            "siebert23 chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 370,
+          "actions": [
+            "siebert23 pays 10 for building the large aquarium",
+            "siebert23 gains 1 xtoken (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 371,
+          "actions": [
+            "You draw Sheep from the deck",
+            "siebert23 draws 1 card(s) from the deck",
+            "siebert23 places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 373,
+          "actions": [
+            "You sell Sheep cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 375,
+          "actions": [
+            "marksbrt chooses action card AnimalsII with strength 5",
+            "marksbrt gains 1 reputation (max strength Animals)"
+          ]
+        },
+        {
+          "moveNumber": 376,
+          "actions": [
+            "marksbrt plays Red-shanked Douc for 17 and places it in a size-4 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 377,
+          "actions": [
+            "marksbrt gains 1 xtoken (Inventive)"
+          ]
+        },
+        {
+          "moveNumber": 378,
+          "actions": [
+            "marksbrt gains 1 reputation (Red-shanked Douc)",
+            "marksbrt gains 7 appeal (Red-shanked Douc)"
+          ]
+        },
+        {
+          "moveNumber": 379,
+          "actions": [
+            "marksbrt plays Ring-tailed Lemur for 12 and places it in a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 381,
+          "actions": [
+            "You sell Expert On Europe, Stoat cards for 8 money",
+            "marksbrt sells 2 card(s) for 8 money",
+            "marksbrt gains 6 appeal (Ring-tailed Lemur)",
+            "marksbrt places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 383,
+          "actions": [
+            "msiebert chooses action card AnimalsII with strength 5",
+            "msiebert gains 1 reputation (max strength Animals)"
+          ]
+        },
+        {
+          "moveNumber": 384,
+          "actions": [
+            "msiebert plays Cougar for 10 and places it in a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 385,
+          "actions": [
+            "msiebert gains 5 appeal (Cougar)",
+            "msiebert advances break token of 3 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "msiebert gains 1 xtoken (triggering break)",
+            "msiebert gains 3 money (Jumping action)"
+          ]
+        },
+        {
+          "moveNumber": 386,
+          "actions": [
+            "msiebert plays Australian Dingo for 13 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 387,
+          "actions": [
+            "msiebert gains 3 appeal (Australian Dingo)",
+            "msiebert gains 2 appeal (Pack action)",
+            "msiebert places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 388,
+          "actions": [
+            "Starting a new break"
+          ]
+        },
+        {
+          "moveNumber": 390,
+          "actions": [
+            "You discard Western Green Mamba, Boa Constrictor, Reptile Management Plan, Greater Flamingo",
+            "You discard Blue mountains national park",
+            "AstroHood discards 1 cards during break",
+            "siebert23 discards 4 cards during break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Herbivore Management Plan, Farm Cat",
+            "The display is replenished with Franchise Business, Coquerel's Sifaka"
+          ]
+        },
+        {
+          "moveNumber": 391,
+          "actions": [
+            "msiebert gains 18 money (appeal income)",
+            "msiebert gains 3 money (kiosk income)",
+            "msiebert gains 2 money (map income)",
+            "msiebert gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 392,
+          "actions": [
+            "msiebert snaps Wolverine from the display"
+          ]
+        },
+        {
+          "moveNumber": 393,
+          "actions": [
+            "The display is replenished with Jaguar"
+          ]
+        },
+        {
+          "moveNumber": 394,
+          "actions": [
+            "AstroHood gains 17 money (appeal income)",
+            "AstroHood gains 3 money (map income)",
+            "AstroHood gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 395,
+          "actions": [
+            "AstroHood snaps Geologist from the display"
+          ]
+        },
+        {
+          "moveNumber": 396,
+          "actions": [
+            "The display is replenished with Palette Surgeonfish",
+            "Removing 1 cards of the display due to Wave icons reveal: Guinea Pig",
+            "The display is replenished with Australian Sea Lion"
+          ]
+        },
+        {
+          "moveNumber": 397,
+          "actions": [
+            "siebert23 gains 17 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 398,
+          "actions": [
+            "siebert23 gains 4 money (kiosk income)",
+            "siebert23 gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 399,
+          "actions": [
+            "siebert23 snaps Palette Surgeonfish from the display"
+          ]
+        },
+        {
+          "moveNumber": 400,
+          "actions": [
+            "The display is replenished with Expert In Predators"
+          ]
+        },
+        {
+          "moveNumber": 401,
+          "actions": [
+            "marksbrt gains 22 money (appeal income)",
+            "marksbrt gains 8 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 402,
+          "actions": [
+            "marksbrt gets 2 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 1 reputation (Map 13 quarter bonus)",
+            "marksbrt gets 1 x add-worker (reputation track bonus)",
+            "marksbrt gains a new Association worker",
+            "marksbrt gets 0 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 403,
+          "actions": [
+            "End of the break"
+          ]
+        },
+        {
+          "moveNumber": 404,
+          "actions": [
+            "AstroHood chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 405,
+          "actions": [
+            "AstroHood pays 10 for building the large aquarium"
+          ]
+        },
+        {
+          "moveNumber": 407,
+          "actions": [
+            "AstroHood pays 5 money for buying sponsor card",
+            "AstroHood plays Technology Institute",
+            "AstroHood gains 1 xtoken (Technology Institute)"
+          ]
+        },
+        {
+          "moveNumber": 408,
+          "actions": [
+            "AstroHood places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 410,
+          "actions": [
+            "siebert23 chooses action card AnimalsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 411,
+          "actions": [
+            "siebert23 plays Devil Firefish for 13 and places it in the large aquarium",
+            "siebert23 triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 412,
+          "actions": [
+            "siebert23 uses Venom effect and gives Venom token(s) to marksbrt, msiebert"
+          ]
+        },
+        {
+          "moveNumber": 413,
+          "actions": [
+            "siebert23 gains 6 appeal (Devil Firefish)"
+          ]
+        },
+        {
+          "moveNumber": 415,
+          "actions": [
+            "siebert23 adds a Kiosk (Blackside Hawkfish)"
+          ]
+        },
+        {
+          "moveNumber": 416,
+          "actions": [
+            "siebert23 takes Franchise Business in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 417,
+          "actions": [
+            "siebert23 gains 1 xtoken (Inventive)"
+          ]
+        },
+        {
+          "moveNumber": 419,
+          "actions": [
+            "siebert23 plays Short-snouted Seahorse for 4 and places it in the large aquarium",
+            "siebert23 may ignore one condition for the next animal they play this turn (Camouflage effect)"
+          ]
+        },
+        {
+          "moveNumber": 420,
+          "actions": [
+            "siebert23 gains 2 appeal (Short-snouted Seahorse)"
+          ]
+        },
+        {
+          "moveNumber": 421,
+          "actions": [
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 422,
+          "actions": [
+            "siebert23 marks Coquerel's Sifaka from display"
+          ]
+        },
+        {
+          "moveNumber": 423,
+          "actions": [
+            "The display is replenished with Pygmy Hippopotamus"
+          ]
+        },
+        {
+          "moveNumber": 424,
+          "actions": [
+            "marksbrt chooses action card BuildII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 425,
+          "actions": [
+            "marksbrt pays 4 for building the small aquarium"
+          ]
+        },
+        {
+          "moveNumber": 429,
+          "actions": [
+            "marksbrt pays 4 for building a size-2 enclosure",
+            "marksbrt gains 1 appeal (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 430,
+          "actions": [
+            "marksbrt uses Build2 effect",
+            "marksbrt pays 2 for building a Kiosk",
+            "marksbrt places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 431,
+          "actions": [
+            "marksbrt places Sponsors at position 1 (Clever effect)",
+            "marksbrt pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 433,
+          "actions": [
+            "msiebert chooses action card AssociationII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 434,
+          "actions": [
+            "msiebert supports a conservation project on the first slot : Habitat Diversity"
+          ]
+        },
+        {
+          "moveNumber": 435,
+          "actions": [
+            "msiebert gains 5 conservation (Habitat Diversity)"
+          ]
+        },
+        {
+          "moveNumber": 437,
+          "actions": [
+            "msiebert gets 1 x size-3"
+          ]
+        },
+        {
+          "moveNumber": 438,
+          "actions": [
+            "msiebert adds a size-3 enclosure for free"
+          ]
+        },
+        {
+          "moveNumber": 439,
+          "actions": [
+            "You draw Australian Pelican from the deck",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 440,
+          "actions": [
+            "msiebert gets 1 x bonus-sponsor-gray",
+            "msiebert gains a new Association worker"
+          ]
+        },
+        {
+          "moveNumber": 441,
+          "actions": [
+            "msiebert uses 1 x bonus-sponsor-gray"
+          ]
+        },
+        {
+          "moveNumber": 442,
+          "actions": [
+            "msiebert pays 5 money for buying sponsor card",
+            "msiebert plays Hydrologist",
+            "msiebert gains 1 appeal (Hydrologist)"
+          ]
+        },
+        {
+          "moveNumber": 443,
+          "actions": [
+            "msiebert donates 5 money to get 1 conservation",
+            "msiebert places action card Association at position 1 (finishing action)",
+            "msiebert pays 2 money for Venom"
+          ]
+        },
+        {
+          "moveNumber": 445,
+          "actions": [
+            "AstroHood chooses action card SponsorsI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 446,
+          "actions": [
+            "AstroHood advances break token of 4 space(s), now at 4/15",
+            "AstroHood gains 4 money",
+            "AstroHood places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 448,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 449,
+          "actions": [
+            "siebert23 supports a conservation project on the second slot : Europe"
+          ]
+        },
+        {
+          "moveNumber": 450,
+          "actions": [
+            "siebert23 gains 4 conservation (Europe)",
+            "siebert23 gets 5 x money",
+            "siebert23 gains 5 money"
+          ]
+        },
+        {
+          "moveNumber": 452,
+          "actions": [
+            "siebert23 gains 1 reputation ( from university)"
+          ]
+        },
+        {
+          "moveNumber": 453,
+          "actions": [
+            "siebert23 upgrades AnimalsII",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 459,
+          "actions": [
+            "marksbrt chooses action card AnimalsII with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 460,
+          "actions": [
+            "marksbrt plays Panamanian White-faced Capuchin for 8 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 461,
+          "actions": [
+            "marksbrt gains 5 appeal (Panamanian White-faced Capuchin)"
+          ]
+        },
+        {
+          "moveNumber": 463,
+          "actions": [
+            "marksbrt plays Longcomb Sawfish for 21 and places it in the large aquarium, the small aquarium"
+          ]
+        },
+        {
+          "moveNumber": 464,
+          "actions": [
+            "marksbrt gains 1 conservation (Longcomb Sawfish)"
+          ]
+        },
+        {
+          "moveNumber": 465,
+          "actions": [
+            "marksbrt gains 9 appeal (Longcomb Sawfish)"
+          ]
+        },
+        {
+          "moveNumber": 466,
+          "actions": [
+            "marksbrt places action card Animals at position 1 (finishing action)",
+            "marksbrt discards their Venom token"
+          ]
+        },
+        {
+          "moveNumber": 471,
+          "actions": [
+            "msiebert chooses action card AnimalsII with strength 2"
+          ]
+        },
+        {
+          "moveNumber": 472,
+          "actions": [
+            "msiebert plays Wolverine for 12 and places it in a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 473,
+          "actions": [
+            "msiebert gains 5 appeal (Wolverine)",
+            "msiebert gains 1 reputation (Wolverine)",
+            "msiebert places action card Animals at position 1 (finishing action)",
+            "msiebert discards their Venom token"
+          ]
+        },
+        {
+          "moveNumber": 474,
+          "actions": [
+            "msiebert places Association at position 5 (Boost effect)"
+          ]
+        },
+        {
+          "moveNumber": 476,
+          "actions": [
+            "AstroHood chooses action card AnimalsII with strength 5",
+            "AstroHood gains 1 reputation (max strength Animals)"
+          ]
+        },
+        {
+          "moveNumber": 477,
+          "actions": [
+            "AstroHood plays Sand Tiger Shark for 32 and places it in the large aquarium"
+          ]
+        },
+        {
+          "moveNumber": 479,
+          "actions": [
+            "AstroHood discards Jaguar, Emu for the Shark Attack effect",
+            "AstroHood gains 7 appeal (Shark Attack)"
+          ]
+        },
+        {
+          "moveNumber": 480,
+          "actions": [
+            "AstroHood gains 8 appeal (Sand Tiger Shark)",
+            "AstroHood gains 1 conservation (Sand Tiger Shark)"
+          ]
+        },
+        {
+          "moveNumber": 481,
+          "actions": [
+            "AstroHood gets 1 x bonus-icon"
+          ]
+        },
+        {
+          "moveNumber": 482,
+          "actions": [
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 483,
+          "actions": [
+            "The display is replenished with Water Playground, Expert On Asia"
+          ]
+        },
+        {
+          "moveNumber": 484,
+          "actions": [
+            "siebert23 chooses action card SponsorsII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 485,
+          "actions": [
+            "siebert23 plays Franchise Business"
+          ]
+        },
+        {
+          "moveNumber": 486,
+          "actions": [
+            "siebert23 adds a Kiosk for free",
+            "siebert23 places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 488,
+          "actions": [
+            "marksbrt chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 489,
+          "actions": [
+            "marksbrt supports a conservation project on the first slot : Sea Animals"
+          ]
+        },
+        {
+          "moveNumber": 491,
+          "actions": [
+            "marksbrt snaps Water Playground from the display",
+            "marksbrt gains 5 conservation (Sea Animals)",
+            "marksbrt gets 5 x money",
+            "marksbrt gains 5 money",
+            "marksbrt gets 5 x money",
+            "marksbrt gains 5 money",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 492,
+          "actions": [
+            "The display is replenished with Rock Monitor"
+          ]
+        },
+        {
+          "moveNumber": 493,
+          "actions": [
+            "msiebert chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 494,
+          "actions": [
+            "msiebert takes a new Partner zoo"
+          ]
+        },
+        {
+          "moveNumber": 495,
+          "actions": [
+            "msiebert takes 1 worker(s) back from the conservation project zone to their notepad (Extra Shift effect)"
+          ]
+        },
+        {
+          "moveNumber": 496,
+          "actions": [
+            "msiebert increases reputation",
+            "msiebert gains 2 reputation (association board)",
+            "msiebert gets 1 x add-worker (reputation track bonus)",
+            "msiebert gains a new Association worker"
+          ]
+        },
+        {
+          "moveNumber": 497,
+          "actions": [
+            "msiebert upgrades CardsII"
+          ]
+        },
+        {
+          "moveNumber": 498,
+          "actions": [
+            "msiebert donates 5 money to get 1 conservation"
+          ]
+        },
+        {
+          "moveNumber": 499,
+          "actions": [
+            "msiebert triggers scoring card discard by reaching 10 conservation points"
+          ]
+        },
+        {
+          "moveNumber": 500,
+          "actions": [
+            "You discard Sponsored Zoo (scoring card)",
+            "marksbrt discards 1 scoring card"
+          ]
+        },
+        {
+          "moveNumber": 501,
+          "actions": [
+            "You discard Large Animal Zoo (scoring card)",
+            "msiebert discards 1 scoring card"
+          ]
+        },
+        {
+          "moveNumber": 502,
+          "actions": [
+            "You discard Specialized Species Zoo (scoring card)",
+            "AstroHood discards 1 scoring card"
+          ]
+        },
+        {
+          "moveNumber": 503,
+          "actions": [
+            "You discard Architectural Zoo (scoring card)",
+            "siebert23 discards 1 scoring card",
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 504,
+          "actions": [
+            "AstroHood pays 1 xtoken for increasing card strength",
+            "AstroHood chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 505,
+          "actions": [
+            "AstroHood supports a conservation project on the second slot : Habitat Diversity",
+            "AstroHood gains 5 money (map bonus space)",
+            "AstroHood gains 3 conservation (Habitat Diversity)"
+          ]
+        },
+        {
+          "moveNumber": 506,
+          "actions": [
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 508,
+          "actions": [
+            "siebert23 chooses action card CardsII with strength 5",
+            "siebert23 advances break token of 2 space(s), now at 6/15"
+          ]
+        },
+        {
+          "moveNumber": 509,
+          "actions": [
+            "You draw Geological, Leopard, Bird breeding program, Sponsorship: Primates from the deck",
+            "siebert23 draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 510,
+          "actions": [
+            "You discard Sponsorship: Primates",
+            "siebert23 discards 1 card(s)",
+            "siebert23 places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 512,
+          "actions": [
+            "marksbrt chooses action card SponsorsI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 514,
+          "actions": [
+            "marksbrt plays Water Playground"
+          ]
+        },
+        {
+          "moveNumber": 516,
+          "actions": [
+            "marksbrt adds a unique building for free",
+            "marksbrt gains 1 appeal (placement bonus)",
+            "marksbrt gains 4 appeal (Water Playground)"
+          ]
+        },
+        {
+          "moveNumber": 517,
+          "actions": [
+            "marksbrt places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 519,
+          "actions": [
+            "msiebert chooses action card BuildII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 520,
+          "actions": [
+            "msiebert pays 4 for building a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 521,
+          "actions": [
+            "You store Expert In Small Animals from your hand (Map 11 Effect)",
+            "msiebert stores 1 card from their hand (Map 11 Effect)",
+            "msiebert places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 523,
+          "actions": [
+            "AstroHood chooses action card AnimalsII with strength 2"
+          ]
+        },
+        {
+          "moveNumber": 524,
+          "actions": [
+            "AstroHood plays Mediterranean Rainbow Wrasse for 5 and places it in the large aquarium"
+          ]
+        },
+        {
+          "moveNumber": 525,
+          "actions": [
+            "AstroHood selects Sand Tiger Shark to gain one effect (Symbiosis effect)"
+          ]
+        },
+        {
+          "moveNumber": 526,
+          "actions": [
+            "AstroHood discards Australian Sea Lion for the Shark Attack effect",
+            "Coquerel's Sifaka is not discarded and given to siebert23 (Mark effect)",
+            "AstroHood gains 7 appeal (Shark Attack)",
+            "AstroHood gains 3 appeal (Mediterranean Rainbow Wrasse)",
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 527,
+          "actions": [
+            "The display is replenished with Explorer, Native Seabirds"
+          ]
+        },
+        {
+          "moveNumber": 528,
+          "actions": [
+            "siebert23 pays 1 xtoken for increasing card strength",
+            "siebert23 chooses action card AnimalsII with strength 5",
+            "siebert23 gains 1 reputation (max strength Animals)",
+            "siebert23 gets 1 x upgrade-card (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 529,
+          "actions": [
+            "siebert23 upgrades BuildII"
+          ]
+        },
+        {
+          "moveNumber": 530,
+          "actions": [
+            "siebert23 plays Orange Clownfish for 10 and places it in the large aquarium",
+            "siebert23 triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 531,
+          "actions": [
+            "siebert23 gains 3 appeal (Orange Clownfish)"
+          ]
+        },
+        {
+          "moveNumber": 532,
+          "actions": [
+            "siebert23 gains 2 appeal (Orange Clownfish)"
+          ]
+        },
+        {
+          "moveNumber": 533,
+          "actions": [
+            "siebert23 gains 1 xtoken (Inventive)"
+          ]
+        },
+        {
+          "moveNumber": 535,
+          "actions": [
+            "siebert23 adds a pavilion (Blackside Hawkfish)",
+            "siebert23 gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 536,
+          "actions": [
+            "You dig Leopard from your hand",
+            "You draw Aquarium from the deck",
+            "siebert23 digs 1 card from their hand",
+            "siebert23 draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 537,
+          "actions": [
+            "siebert23 plays Palette Surgeonfish for 6 and places it in the large aquarium",
+            "siebert23 triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 538,
+          "actions": [
+            "siebert23 gains 4 appeal (Palette Surgeonfish)"
+          ]
+        },
+        {
+          "moveNumber": 539,
+          "actions": [
+            "siebert23 gains 2 appeal (Orange Clownfish)"
+          ]
+        },
+        {
+          "moveNumber": 540,
+          "actions": [
+            "siebert23 gains 1 xtoken (Inventive)"
+          ]
+        },
+        {
+          "moveNumber": 542,
+          "actions": [
+            "siebert23 adds a pavilion (Blackside Hawkfish)",
+            "siebert23 gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 544,
+          "actions": [
+            "siebert23 trades for 1 (Trade effect)"
+          ]
+        },
+        {
+          "moveNumber": 545,
+          "actions": [
+            "You dig Aquarium from your hand",
+            "You draw Waza Special Assignment from the deck",
+            "siebert23 digs 1 card from their hand",
+            "siebert23 draws 1 card(s) from the deck",
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 546,
+          "actions": [
+            "siebert23 marks Rock Monitor from display"
+          ]
+        },
+        {
+          "moveNumber": 548,
+          "actions": [
+            "You sell Geological cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 550,
+          "actions": [
+            "marksbrt chooses action card CardsII with strength 5",
+            "marksbrt advances break token of 2 space(s), now at 8/15"
+          ]
+        },
+        {
+          "moveNumber": 551,
+          "actions": [
+            "You draw Alpine Ibex, Cinereous Vulture, Sun Bear, Gould's Monitor from the deck",
+            "marksbrt draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 552,
+          "actions": [
+            "You discard Cinereous Vulture",
+            "marksbrt discards 1 card(s)",
+            "marksbrt places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 554,
+          "actions": [
+            "msiebert chooses action card CardsII with strength 4",
+            "msiebert advances break token of 2 space(s), now at 10/15"
+          ]
+        },
+        {
+          "moveNumber": 556,
+          "actions": [
+            "You takes Expert In Small Animals back into your hand (Map 11 Effect)",
+            "msiebert takes 1 stored card back into their hand (Map 11 Effect)"
+          ]
+        },
+        {
+          "moveNumber": 557,
+          "actions": [
+            "You dig Expert In Small Animals from your hand",
+            "You draw Guided School Tours from the deck",
+            "msiebert digs 1 card from their hand",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 558,
+          "actions": [
+            "msiebert digs from the display",
+            "Rock Monitor is not discarded and given to siebert23 (Mark effect)",
+            "The display is replenished with Brown Spider Monkey"
+          ]
+        },
+        {
+          "moveNumber": 559,
+          "actions": [
+            "You draw New Zealand Fur Seal, Dusky-leaf Monkey, Asian Elephant from the deck",
+            "msiebert draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 560,
+          "actions": [
+            "You discard Australian Pelican",
+            "msiebert discards 1 card(s)",
+            "msiebert places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 562,
+          "actions": [
+            "AstroHood chooses action card CardsII with strength 5",
+            "AstroHood advances break token of 2 space(s), now at 12/15"
+          ]
+        },
+        {
+          "moveNumber": 563,
+          "actions": [
+            "You draw Diversity Researcher, Herpetologist, Jungle, Cable Car from the deck",
+            "AstroHood draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 564,
+          "actions": [
+            "You discard Jungle",
+            "AstroHood discards 1 card(s)",
+            "AstroHood places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 566,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 567,
+          "actions": [
+            "siebert23 takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 568,
+          "actions": [
+            "siebert23 gains 1 conservation (university)"
+          ]
+        },
+        {
+          "moveNumber": 569,
+          "actions": [
+            "You draw Marabou for gaining a new university with",
+            "siebert23 draws 1 card for gaining a new university: Marabou",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 571,
+          "actions": [
+            "marksbrt chooses action card BuildII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 572,
+          "actions": [
+            "marksbrt pays 2 for building a pavilion",
+            "marksbrt gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 573,
+          "actions": [
+            "marksbrt pays 4 for building a size-2 enclosure",
+            "marksbrt gains 2 appeal (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 574,
+          "actions": [
+            "marksbrt pays 2 for building a size-1 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 575,
+          "actions": [
+            "You draw South American Coati from the deck",
+            "marksbrt draws 1 card(s) from the deck",
+            "marksbrt places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 576,
+          "actions": [
+            "msiebert chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 577,
+          "actions": [
+            "msiebert advances break token of 5 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "msiebert gains 1 xtoken (triggering break)",
+            "msiebert gains 5 money",
+            "msiebert places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 578,
+          "actions": [
+            "Starting a new break"
+          ]
+        },
+        {
+          "moveNumber": 581,
+          "actions": [
+            "You discard Herpetologist",
+            "You discard Gould's Monitor",
+            "You discard New Zealand Fur Seal, Guided School Tours",
+            "AstroHood discards 1 cards during break",
+            "marksbrt discards 1 cards during break",
+            "msiebert discards 2 cards during break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Pygmy Hippopotamus, Expert In Predators",
+            "The display is replenished with Polar Bear Exhibit, Blackbar Triggerfish",
+            "Removing 1 cards of the display due to Wave icons reveal: Expert On Asia",
+            "The display is replenished with White Rhinoceros"
+          ]
+        },
+        {
+          "moveNumber": 582,
+          "actions": [
+            "msiebert gains 20 money (appeal income)",
+            "msiebert gains 3 money (kiosk income)",
+            "msiebert gains 2 money (map income)",
+            "msiebert gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 583,
+          "actions": [
+            "msiebert snaps Explorer from the display"
+          ]
+        },
+        {
+          "moveNumber": 584,
+          "actions": [
+            "The display is replenished with Raccoon",
+            "AstroHood gets 5 x money (map bonus space)",
+            "AstroHood gains 5 money (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 585,
+          "actions": [
+            "AstroHood gains 24 money (appeal income)",
+            "AstroHood gains 5 money (map income)"
+          ]
+        },
+        {
+          "moveNumber": 586,
+          "actions": [
+            "AstroHood gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 587,
+          "actions": [
+            "AstroHood snaps Blackbar Triggerfish from the display",
+            "AstroHood gains 1 xtoken (Technology Institute)"
+          ]
+        },
+        {
+          "moveNumber": 588,
+          "actions": [
+            "The display is replenished with Small Animals"
+          ]
+        },
+        {
+          "moveNumber": 589,
+          "actions": [
+            "siebert23 gains 23 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 590,
+          "actions": [
+            "siebert23 gains 7 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 591,
+          "actions": [
+            "siebert23 gains 5 money (Franchise Business)",
+            "siebert23 gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 592,
+          "actions": [
+            "siebert23 snaps White Rhinoceros from the display"
+          ]
+        },
+        {
+          "moveNumber": 593,
+          "actions": [
+            "The display is replenished with Bavarian Forest national park"
+          ]
+        },
+        {
+          "moveNumber": 597,
+          "actions": [
+            "marksbrt gets 1 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 2 appeal (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 598,
+          "actions": [
+            "marksbrt gains 28 money (appeal income)",
+            "marksbrt gains 12 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 599,
+          "actions": [
+            "marksbrt gets 2 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 1 reputation (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 600,
+          "actions": [
+            "marksbrt gets 0 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)",
+            "marksbrt gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 601,
+          "actions": [
+            "marksbrt snaps Raccoon from the display"
+          ]
+        },
+        {
+          "moveNumber": 602,
+          "actions": [
+            "End of the break",
+            "The display is replenished with Sponsorship: Reptiles"
+          ]
+        },
+        {
+          "moveNumber": 603,
+          "actions": [
+            "AstroHood chooses action card BuildI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 604,
+          "actions": [
+            "AstroHood pays 10 for building a size-5 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 605,
+          "actions": [
+            "You draw Marine Research Expedition from the deck",
+            "AstroHood draws 1 card(s) from the deck",
+            "AstroHood places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 606,
+          "actions": [
+            "siebert23 pays 1 xtoken for increasing card strength",
+            "siebert23 chooses action card BuildII with strength 6"
+          ]
+        },
+        {
+          "moveNumber": 607,
+          "actions": [
+            "siebert23 pays 8 for building a size-4 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 608,
+          "actions": [
+            "siebert23 adds a multiplier token on action card CardsII"
+          ]
+        },
+        {
+          "moveNumber": 609,
+          "actions": [
+            "siebert23 pays 4 for building a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 610,
+          "actions": [
+            "siebert23 places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 612,
+          "actions": [
+            "marksbrt chooses action card AssociationI with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 613,
+          "actions": [
+            "marksbrt takes a new Partner zoo"
+          ]
+        },
+        {
+          "moveNumber": 614,
+          "actions": [
+            "marksbrt upgrades AssociationII",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 620,
+          "actions": [
+            "msiebert chooses action card AssociationII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 621,
+          "actions": [
+            "msiebert supports a conservation project on the first slot : Primate breeding program",
+            "msiebert plays a new conservation project: Primate breeding program",
+            "msiebert gains 12 money (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 622,
+          "actions": [
+            "msiebert gains 2 conservation (Primate breeding program)",
+            "msiebert gains 2 reputation (Primate breeding program)"
+          ]
+        },
+        {
+          "moveNumber": 623,
+          "actions": [
+            "msiebert gets 1 x conservation (reputation track bonus)",
+            "msiebert gains 1 conservation (reputation track bonus)",
+            "msiebert gets 1 x take-in-range-or-deck (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 624,
+          "actions": [
+            "msiebert takes Bavarian Forest national park in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 628,
+          "actions": [
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 629,
+          "actions": [
+            "The display is replenished with Lesser Bird-of-paradise"
+          ]
+        },
+        {
+          "moveNumber": 630,
+          "actions": [
+            "AstroHood chooses action card AssociationII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 631,
+          "actions": [
+            "AstroHood takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 632,
+          "actions": [
+            "AstroHood gains 1 reputation ( from university)"
+          ]
+        },
+        {
+          "moveNumber": 633,
+          "actions": [
+            "AstroHood upgrades SponsorsII"
+          ]
+        },
+        {
+          "moveNumber": 634,
+          "actions": [
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 636,
+          "actions": [
+            "siebert23 chooses action card CardsII with strength 4",
+            "siebert23 advances break token of 2 space(s), now at 2/15"
+          ]
+        },
+        {
+          "moveNumber": 637,
+          "actions": [
+            "siebert23 snaps Small Animals from the display"
+          ]
+        },
+        {
+          "moveNumber": 638,
+          "actions": [
+            "siebert23 chooses action card CardsII with strength 4",
+            "siebert23 uses a multiplier token",
+            "siebert23 advances break token of 2 space(s), now at 4/15"
+          ]
+        },
+        {
+          "moveNumber": 639,
+          "actions": [
+            "You draw Breeding Program, Long-billed Vulture, Yellow-throated Marten from the deck",
+            "siebert23 draws 3 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 640,
+          "actions": [
+            "You discard Breeding Program",
+            "siebert23 discards 1 card(s)",
+            "siebert23 places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 641,
+          "actions": [
+            "The display is replenished with American Whitespotted Filefish",
+            "Removing 1 cards of the display due to Wave icons reveal: Native Seabirds",
+            "The display is replenished with European Badger"
+          ]
+        },
+        {
+          "moveNumber": 642,
+          "actions": [
+            "marksbrt chooses action card AnimalsII with strength 5",
+            "marksbrt gains 1 reputation (max strength Animals)",
+            "marksbrt gets 1 x take-in-range-or-deck (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 643,
+          "actions": [
+            "marksbrt takes Brown Spider Monkey in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 644,
+          "actions": [
+            "marksbrt plays Raccoon for 8 and places it in a size-1 enclosure",
+            "marksbrt gains 4 appeal (Raccoon)"
+          ]
+        },
+        {
+          "moveNumber": 645,
+          "actions": [
+            "marksbrt plays Sun Bear for 13 and places it in a size-2 enclosure",
+            "marksbrt gains 5 appeal (Sun Bear)",
+            "marksbrt places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 647,
+          "actions": [
+            "marksbrt places Association at position 5 (Boost effect)"
+          ]
+        },
+        {
+          "moveNumber": 648,
+          "actions": [
+            "marksbrt chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 649,
+          "actions": [
+            "marksbrt takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 650,
+          "actions": [
+            "marksbrt gains 2 conservation (university)",
+            "marksbrt gains 1 reputation ( from university)",
+            "marksbrt gets 1 x conservation (reputation track bonus)",
+            "marksbrt gains 1 conservation (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 651,
+          "actions": [
+            "marksbrt donates 7 money to get 1 conservation",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 652,
+          "actions": [
+            "The display is replenished with Red Panda"
+          ]
+        },
+        {
+          "moveNumber": 653,
+          "actions": [
+            "msiebert pays 1 xtoken for increasing card strength",
+            "msiebert chooses action card BuildII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 654,
+          "actions": [
+            "msiebert pays 10 for building a size-5 enclosure",
+            "msiebert gains 2 money (Hydrologist)"
+          ]
+        },
+        {
+          "moveNumber": 655,
+          "actions": [
+            "You store Explorer from your hand (Map 11 Effect)",
+            "msiebert stores 1 card from their hand (Map 11 Effect)"
+          ]
+        },
+        {
+          "moveNumber": 656,
+          "actions": [
+            "msiebert uses Build1 effect",
+            "msiebert pays 2 for building a pavilion",
+            "msiebert gains 1 appeal (building a pavilion)",
+            "msiebert gains 1 xtoken (placement bonus)",
+            "msiebert places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 658,
+          "actions": [
+            "AstroHood chooses action card SponsorsII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 659,
+          "actions": [
+            "AstroHood plays Diversity Researcher",
+            "AstroHood gains 12 money (Diversity Researcher)",
+            "AstroHood places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 661,
+          "actions": [
+            "siebert23 chooses action card AnimalsII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 662,
+          "actions": [
+            "siebert23 plays White Rhinoceros for 24 and places it in a size-4 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 663,
+          "actions": [
+            "siebert23 gains 9 appeal (White Rhinoceros)"
+          ]
+        },
+        {
+          "moveNumber": 664,
+          "actions": [
+            "You keep Asia with Assertion",
+            "siebert23 keeps 1 card with Assertion"
+          ]
+        },
+        {
+          "moveNumber": 665,
+          "actions": [
+            "siebert23 plays Yellow-throated Marten for 4 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 666,
+          "actions": [
+            "siebert23 gains 3 appeal (Yellow-throated Marten)"
+          ]
+        },
+        {
+          "moveNumber": 667,
+          "actions": [
+            "You draw Caribbean Reef Shark for hunter effect",
+            "You keep Caribbean Reef Shark for hunter effect",
+            "siebert23 draws 1 card(s) for hunter effect",
+            "siebert23 keeps Caribbean Reef Shark card for hunter effect",
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 669,
+          "actions": [
+            "You sell Rock Monitor cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 670,
+          "actions": [
+            "siebert23 marks American Whitespotted Filefish from display"
+          ]
+        },
+        {
+          "moveNumber": 672,
+          "actions": [
+            "marksbrt chooses action card CardsII with strength 4",
+            "marksbrt advances break token of 2 space(s), now at 6/15"
+          ]
+        },
+        {
+          "moveNumber": 673,
+          "actions": [
+            "marksbrt takes Polar Bear Exhibit in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 674,
+          "actions": [
+            "marksbrt takes Lesser Bird-of-paradise in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 675,
+          "actions": [
+            "You draw Gorilla Field Research from the deck",
+            "marksbrt draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 676,
+          "actions": [
+            "You discard Alpine Ibex",
+            "marksbrt discards 1 card(s)",
+            "marksbrt places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 677,
+          "actions": [
+            "The display is replenished with Foreign Institute, Horse Whisperer"
+          ]
+        },
+        {
+          "moveNumber": 678,
+          "actions": [
+            "msiebert chooses action card AnimalsII with strength 5",
+            "msiebert gains 1 reputation (max strength Animals)",
+            "msiebert gets 1 x xtoken (reputation track bonus)",
+            "msiebert gains 1 xtoken (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 679,
+          "actions": [
+            "msiebert plays Asian Elephant for 27 and places it in a size-5 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 680,
+          "actions": [
+            "msiebert gains 8 appeal (Asian Elephant)"
+          ]
+        },
+        {
+          "moveNumber": 681,
+          "actions": [
+            "msiebert gains 1 conservation (Asian Elephant)"
+          ]
+        },
+        {
+          "moveNumber": 682,
+          "actions": [
+            "You draw Accessible Zoo, Research Zoo for resistance effect",
+            "msiebert draws 2 scoring cards for resistance effect"
+          ]
+        },
+        {
+          "moveNumber": 683,
+          "actions": [
+            "You keep Research Zoo and discard Accessible Zoo for resistance effect",
+            "msiebert keeps 1 scoring card and discard 1 scoring card for resistance effect"
+          ]
+        },
+        {
+          "moveNumber": 684,
+          "actions": [
+            "msiebert buys European Badger from display for 5 and places it in a size-2 enclosure",
+            "msiebert gains 3 appeal (European Badger)",
+            "msiebert places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 686,
+          "actions": [
+            "The display is replenished with Bamboo Forest"
+          ]
+        },
+        {
+          "moveNumber": 687,
+          "actions": [
+            "AstroHood chooses action card AnimalsII with strength 5",
+            "AstroHood gains 1 reputation (max strength Animals)",
+            "AstroHood gets 1 x add-worker (reputation track bonus)",
+            "AstroHood gains a new Association worker"
+          ]
+        },
+        {
+          "moveNumber": 688,
+          "actions": [
+            "AstroHood plays Blackbar Triggerfish for 14 and places it in the large aquarium",
+            "AstroHood triggers its reef abilities"
+          ]
+        },
+        {
+          "moveNumber": 689,
+          "actions": [
+            "AstroHood uses Constriction effect and gives constriction token(s) to siebert23, marksbrt, msiebert"
+          ]
+        },
+        {
+          "moveNumber": 690,
+          "actions": [
+            "AstroHood gains 5 appeal (Blackbar Triggerfish)"
+          ]
+        },
+        {
+          "moveNumber": 691,
+          "actions": [
+            "AstroHood takes Red Panda in reputation range from the display"
+          ]
+        },
+        {
+          "moveNumber": 692,
+          "actions": [
+            "AstroHood plays Dugong for 25 and places it in a size-5 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 693,
+          "actions": [
+            "AstroHood gains 9 appeal (Dugong)"
+          ]
+        },
+        {
+          "moveNumber": 694,
+          "actions": [
+            "AstroHood gains 1 conservation (Dugong)"
+          ]
+        },
+        {
+          "moveNumber": 695,
+          "actions": [
+            "You dig Marine Research Expedition from your hand",
+            "You draw Laughing Kookaburra from the deck",
+            "AstroHood digs 1 card from their hand",
+            "AstroHood draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 696,
+          "actions": [
+            "AstroHood digs Bamboo Forest from the display",
+            "The display is replenished with African Ostrich, Expert On Africa"
+          ]
+        },
+        {
+          "moveNumber": 697,
+          "actions": [
+            "AstroHood digs Foreign Institute from the display",
+            "The display is replenished with Donkey"
+          ]
+        },
+        {
+          "moveNumber": 698,
+          "actions": [
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 700,
+          "actions": [
+            "siebert23 chooses action card AnimalsII with strength 1"
+          ]
+        },
+        {
+          "moveNumber": 701,
+          "actions": [
+            "siebert23 buys American Whitespotted Filefish from display for 14 and places it in the large aquarium",
+            "siebert23 triggers its reef abilities",
+            "siebert23 gains 2 money for their mark on American Whitespotted Filefish"
+          ]
+        },
+        {
+          "moveNumber": 702,
+          "actions": [
+            "siebert23 gains 1 reputation (Animals4 bonus)"
+          ]
+        },
+        {
+          "moveNumber": 703,
+          "actions": [
+            "siebert23 gains 5 appeal (American Whitespotted Filefish)"
+          ]
+        },
+        {
+          "moveNumber": 704,
+          "actions": [
+            "siebert23 gains 2 appeal (Orange Clownfish)"
+          ]
+        },
+        {
+          "moveNumber": 705,
+          "actions": [
+            "siebert23 gains 1 xtoken (Inventive)"
+          ]
+        },
+        {
+          "moveNumber": 707,
+          "actions": [
+            "siebert23 adds a Kiosk (Blackside Hawkfish)"
+          ]
+        },
+        {
+          "moveNumber": 709,
+          "actions": [
+            "You dig Caribbean Reef Shark from your hand",
+            "You draw Barbary Macaque from the deck",
+            "siebert23 digs 1 card from their hand",
+            "siebert23 draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 711,
+          "actions": [
+            "You sell Marabou cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 712,
+          "actions": [
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 714,
+          "actions": [
+            "siebert23 places Sponsors at position 1 (Clever effect)"
+          ]
+        },
+        {
+          "moveNumber": 715,
+          "actions": [
+            "siebert23 marks African Ostrich from display"
+          ]
+        },
+        {
+          "moveNumber": 716,
+          "actions": [
+            "The display is replenished with Senegal Bushbaby"
+          ]
+        },
+        {
+          "moveNumber": 717,
+          "actions": [
+            "marksbrt chooses action card SponsorsI with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 719,
+          "actions": [
+            "marksbrt plays Gorilla Field Research"
+          ]
+        },
+        {
+          "moveNumber": 720,
+          "actions": [
+            "marksbrt gains 2 reputation (Gorilla Field Research)",
+            "marksbrt gets 1 x xtoken (reputation track bonus)",
+            "marksbrt gains 1 xtoken (reputation track bonus)",
+            "marksbrt gets 1 x take-in-range-or-deck (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 721,
+          "actions": [
+            "You draw Golden Snub-nosed Monkey from the deck",
+            "marksbrt draws 1 card(s) from the deck",
+            "marksbrt gains 1 conservation (Gorilla Field Research)"
+          ]
+        },
+        {
+          "moveNumber": 722,
+          "actions": [
+            "marksbrt trades 1 for (Trade effect)",
+            "marksbrt places action card Sponsors at position 1 (finishing action)",
+            "marksbrt discards their Constriction token"
+          ]
+        },
+        {
+          "moveNumber": 724,
+          "actions": [
+            "msiebert chooses action card CardsII with strength 3",
+            "msiebert advances break token of 2 space(s), now at 8/15"
+          ]
+        },
+        {
+          "moveNumber": 726,
+          "actions": [
+            "You takes Explorer back into your hand (Map 11 Effect)",
+            "msiebert takes 1 stored card back into their hand (Map 11 Effect)"
+          ]
+        },
+        {
+          "moveNumber": 727,
+          "actions": [
+            "You dig Explorer from your hand",
+            "You draw Eurasian Eagle-owl from the deck",
+            "msiebert digs 1 card from their hand",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 728,
+          "actions": [
+            "You dig Eurasian Eagle-owl from your hand",
+            "You draw Mandrill from the deck",
+            "msiebert digs 1 card from their hand",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 729,
+          "actions": [
+            "You draw Red Kangaroo, Caracal from the deck",
+            "msiebert draws 2 card(s) from the deck",
+            "msiebert places action card Cards at position 1 (finishing action)",
+            "msiebert discards their Constriction token"
+          ]
+        },
+        {
+          "moveNumber": 730,
+          "actions": [
+            "AstroHood pays 2 xtoken for increasing card strength",
+            "AstroHood chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 731,
+          "actions": [
+            "AstroHood supports a conservation project on the second slot : Sea Animals",
+            "AstroHood uses 1 x bonus-icon",
+            "AstroHood gains 12 money (map bonus space)",
+            "AstroHood gains 4 conservation (Sea Animals)"
+          ]
+        },
+        {
+          "moveNumber": 732,
+          "actions": [
+            "AstroHood donates 7 money to get 1 conservation",
+            "AstroHood places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 734,
+          "actions": [
+            "siebert23 chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 735,
+          "actions": [
+            "siebert23 supports a conservation project on the first slot : Asia",
+            "siebert23 plays a new conservation project: Asia"
+          ]
+        },
+        {
+          "moveNumber": 736,
+          "actions": [
+            "siebert23 gains 5 conservation (Asia)",
+            "siebert23 gets 5 x money",
+            "siebert23 gains 5 money",
+            "siebert23 gains a new Association worker",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 738,
+          "actions": [
+            "You sell Barbary Macaque cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money"
+          ]
+        },
+        {
+          "moveNumber": 740,
+          "actions": [
+            "marksbrt pays 1 xtoken for increasing card strength",
+            "marksbrt chooses action card BuildII with strength 4"
+          ]
+        },
+        {
+          "moveNumber": 741,
+          "actions": [
+            "marksbrt pays 6 for building a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 742,
+          "actions": [
+            "marksbrt pays 2 for building a pavilion",
+            "marksbrt gains 1 appeal (building a pavilion)"
+          ]
+        },
+        {
+          "moveNumber": 743,
+          "actions": [
+            "marksbrt places action card Build at position 1 (finishing action)",
+            "marksbrt discards their Constriction token"
+          ]
+        },
+        {
+          "moveNumber": 744,
+          "actions": [
+            "marksbrt marks Senegal Bushbaby from display"
+          ]
+        },
+        {
+          "moveNumber": 746,
+          "actions": [
+            "msiebert chooses action card SponsorsI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 747,
+          "actions": [
+            "msiebert advances break token of 5 space(s), now at 13/15",
+            "msiebert gains 5 money",
+            "msiebert places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 749,
+          "actions": [
+            "AstroHood chooses action card CardsII with strength 5",
+            "AstroHood advances break token of 2 space(s) and reaches the last space of the Break track. At the end of the turn, all players must take a break",
+            "AstroHood gains 1 xtoken (triggering break)"
+          ]
+        },
+        {
+          "moveNumber": 750,
+          "actions": [
+            "You draw Marine Biologist, Conference On Europe, Breeding Cooperation, Reconstruction from the deck",
+            "AstroHood draws 4 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 751,
+          "actions": [
+            "You discard Marine Biologist",
+            "AstroHood discards 1 card(s)",
+            "AstroHood places action card Cards at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 752,
+          "actions": [
+            "Starting a new break"
+          ]
+        },
+        {
+          "moveNumber": 754,
+          "actions": [
+            "You discard Mandrill, Red Kangaroo",
+            "You discard Reconstruction, Breeding Cooperation, Conference On Europe",
+            "AstroHood discards 3 cards during break",
+            "msiebert discards 2 cards during break",
+            "All tokens are removed from player cards",
+            "All workers go back to each player's reserve",
+            "Replenishing partner zoos and universities",
+            "Removing first two cards of the display: Sponsorship: Reptiles, Horse Whisperer",
+            "The display is replenished with Barn Owl, Vietnamese Pot-bellied Pig",
+            "AstroHood gets 5 x money (map bonus space)",
+            "AstroHood gains 5 money (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 755,
+          "actions": [
+            "AstroHood gains 27 money (appeal income)",
+            "AstroHood gains 5 money (map income)"
+          ]
+        },
+        {
+          "moveNumber": 756,
+          "actions": [
+            "AstroHood gains 1 xtoken (Technology Institute)",
+            "AstroHood gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 757,
+          "actions": [
+            "AstroHood snaps Senegal Bushbaby from the display",
+            "marksbrt gains 2 money for their mark on Senegal Bushbaby"
+          ]
+        },
+        {
+          "moveNumber": 758,
+          "actions": [
+            "The display is replenished with Humphead Wrasse",
+            "Removing 0 cards of the display due to Wave icons reveal:",
+            "African Ostrich is not discarded and given to siebert23 (Mark effect)",
+            "The display is replenished with Brahminy Kite"
+          ]
+        },
+        {
+          "moveNumber": 759,
+          "actions": [
+            "siebert23 gains 28 money (appeal income)"
+          ]
+        },
+        {
+          "moveNumber": 760,
+          "actions": [
+            "siebert23 gains 8 money (kiosk income)"
+          ]
+        },
+        {
+          "moveNumber": 761,
+          "actions": [
+            "siebert23 gains 5 money (Franchise Business)",
+            "siebert23 gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 762,
+          "actions": [
+            "siebert23 snaps Barn Owl from the display"
+          ]
+        },
+        {
+          "moveNumber": 763,
+          "actions": [
+            "The display is replenished with Llama"
+          ]
+        },
+        {
+          "moveNumber": 764,
+          "actions": [
+            "marksbrt gets 1 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 2 appeal (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 765,
+          "actions": [
+            "marksbrt gets 2 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 1 reputation (Map 13 quarter bonus)",
+            "marksbrt gets 1 x conservation (reputation track bonus)",
+            "marksbrt gains 1 conservation (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 766,
+          "actions": [
+            "marksbrt gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 767,
+          "actions": [
+            "marksbrt snaps Llama from the display"
+          ]
+        },
+        {
+          "moveNumber": 768,
+          "actions": [
+            "marksbrt gains 30 money (appeal income)",
+            "marksbrt gains 13 money (kiosk income)",
+            "marksbrt gets 0 x MAP_13_INCOME (map bonus space)",
+            "marksbrt gains 3 money (Map 13 quarter bonus)"
+          ]
+        },
+        {
+          "moveNumber": 769,
+          "actions": [
+            "The display is replenished with Publications"
+          ]
+        },
+        {
+          "moveNumber": 770,
+          "actions": [
+            "msiebert gains 23 money (appeal income)",
+            "msiebert gains 3 money (kiosk income)",
+            "msiebert gains 2 money (map income)",
+            "msiebert gets 1 x Snapping (map bonus space)"
+          ]
+        },
+        {
+          "moveNumber": 771,
+          "actions": [
+            "msiebert snaps Publications from the display"
+          ]
+        },
+        {
+          "moveNumber": 772,
+          "actions": [
+            "End of the break",
+            "The display is replenished with New Zealand Sea Lion"
+          ]
+        },
+        {
+          "moveNumber": 773,
+          "actions": [
+            "siebert23 pays 2 xtoken for increasing card strength",
+            "siebert23 chooses action card BuildII with strength 7"
+          ]
+        },
+        {
+          "moveNumber": 774,
+          "actions": [
+            "siebert23 pays 10 for building the Large Bird Aviary"
+          ]
+        },
+        {
+          "moveNumber": 776,
+          "actions": [
+            "siebert23 pays 2 for building a pavilion",
+            "siebert23 gains 1 appeal (building a pavilion)",
+            "siebert23 gains 1 reputation (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 777,
+          "actions": [
+            "siebert23 pays 2 for building a Kiosk"
+          ]
+        },
+        {
+          "moveNumber": 779,
+          "actions": [
+            "You sell Barn Owl cards for 3 money",
+            "siebert23 sells 1 card(s) for 3 money",
+            "siebert23 places action card Build at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 780,
+          "actions": [
+            "siebert23 places Cards at position 1 (Clever effect)"
+          ]
+        },
+        {
+          "moveNumber": 782,
+          "actions": [
+            "marksbrt chooses action card AnimalsII with strength 5",
+            "marksbrt gains 1 reputation (max strength Animals)",
+            "marksbrt gets 1 x xtoken (reputation track bonus)",
+            "marksbrt gains 1 xtoken (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 783,
+          "actions": [
+            "marksbrt plays Lesser Bird-of-paradise for 15 and places it in a size-3 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 785,
+          "actions": [
+            "marksbrt adds a Kiosk (Lesser Bird-of-paradise)",
+            "marksbrt gains 5 appeal (Lesser Bird-of-paradise)"
+          ]
+        },
+        {
+          "moveNumber": 786,
+          "actions": [
+            "marksbrt places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 794,
+          "actions": [
+            "msiebert pays 3 xtoken for increasing card strength",
+            "msiebert chooses action card AssociationII with strength 8"
+          ]
+        },
+        {
+          "moveNumber": 795,
+          "actions": [
+            "msiebert supports a conservation project on the second slot : Asia"
+          ]
+        },
+        {
+          "moveNumber": 796,
+          "actions": [
+            "msiebert gains 3 conservation (Asia)"
+          ]
+        },
+        {
+          "moveNumber": 797,
+          "actions": [
+            "msiebert adds a size-2 enclosure for free"
+          ]
+        },
+        {
+          "moveNumber": 798,
+          "actions": [
+            "msiebert takes a new university"
+          ]
+        },
+        {
+          "moveNumber": 799,
+          "actions": [
+            "msiebert donates 10 money to get 1 conservation",
+            "msiebert places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 800,
+          "actions": [
+            "msiebert places Build at position 1 (Clever effect)"
+          ]
+        },
+        {
+          "moveNumber": 802,
+          "actions": [
+            "AstroHood chooses action card AnimalsII with strength 3"
+          ]
+        },
+        {
+          "moveNumber": 803,
+          "actions": [
+            "AstroHood plays Red Panda for 13 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 804,
+          "actions": [
+            "AstroHood gains 6 appeal (Red Panda)",
+            "AstroHood adds a multiplier token on action card SponsorsII"
+          ]
+        },
+        {
+          "moveNumber": 805,
+          "actions": [
+            "AstroHood places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 807,
+          "actions": [
+            "siebert23 chooses action card AnimalsII with strength 5",
+            "siebert23 gains 1 reputation (max strength Animals)",
+            "siebert23 gets 1 x add-worker (reputation track bonus)",
+            "siebert23 gains a new Association worker",
+            "siebert23 gains 1 conservation (last worker bonus)"
+          ]
+        },
+        {
+          "moveNumber": 808,
+          "actions": [
+            "siebert23 plays African Ostrich for 20 and places it in the Large Bird Aviary"
+          ]
+        },
+        {
+          "moveNumber": 809,
+          "actions": [
+            "siebert23 gains 8 appeal (African Ostrich)"
+          ]
+        },
+        {
+          "moveNumber": 810,
+          "actions": [
+            "You draw Ecuadorian Squirrel Monkey, Mountain Tapir for sprint effect",
+            "siebert23 draws 2 card(s) for sprint effect"
+          ]
+        },
+        {
+          "moveNumber": 811,
+          "actions": [
+            "siebert23 plays Long-billed Vulture for 17 and places it in the Large Bird Aviary"
+          ]
+        },
+        {
+          "moveNumber": 812,
+          "actions": [
+            "siebert23 gains 5 appeal (Long-billed Vulture)"
+          ]
+        },
+        {
+          "moveNumber": 813,
+          "actions": [
+            "siebert23 gains 1 conservation (Long-billed Vulture)"
+          ]
+        },
+        {
+          "moveNumber": 814,
+          "actions": [
+            "siebert23 gains 1 reputation (Long-billed Vulture)"
+          ]
+        },
+        {
+          "moveNumber": 815,
+          "actions": [
+            "You draw Geological, Underwater Tunnel, Rock Monitor from discard for scavenging effect",
+            "siebert23 draws 3 card(s) from discard for scavenging effect"
+          ]
+        },
+        {
+          "moveNumber": 816,
+          "actions": [
+            "You keep Underwater Tunnel and discard Geological, Rock Monitor for scavenging effect",
+            "siebert23 keeps 1 card and discards 2 card(s) for scavenging effect",
+            "siebert23 places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 817,
+          "actions": [
+            "siebert23 marks Brahminy Kite from display"
+          ]
+        },
+        {
+          "moveNumber": 819,
+          "actions": [
+            "marksbrt chooses action card AssociationII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 820,
+          "actions": [
+            "marksbrt supports a conservation project on the third slot : Asia",
+            "marksbrt gains 3 xtoken (map bonus space)",
+            "End of game triggered: everyone except marksbrt will get a last turn to play",
+            "marksbrt gains 2 conservation (Asia)"
+          ]
+        },
+        {
+          "moveNumber": 821,
+          "actions": [
+            "marksbrt donates 10 money to get 1 conservation",
+            "marksbrt places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 823,
+          "actions": [
+            "msiebert chooses action card AnimalsII with strength 5",
+            "msiebert gains 1 reputation (max strength Animals)",
+            "msiebert gets 1 x take-in-range-or-deck (reputation track bonus)"
+          ]
+        },
+        {
+          "moveNumber": 824,
+          "actions": [
+            "You draw Yosemite national park from the deck",
+            "msiebert draws 1 card(s) from the deck"
+          ]
+        },
+        {
+          "moveNumber": 825,
+          "actions": [
+            "msiebert plays Caracal for 9 and places it in a size-2 enclosure"
+          ]
+        },
+        {
+          "moveNumber": 826,
+          "actions": [
+            "msiebert gains 4 appeal (Caracal)"
+          ]
+        },
+        {
+          "moveNumber": 827,
+          "actions": [
+            "You draw Okapi Stable, Sponsorship: Lions for hunter effect",
+            "You discard Okapi Stable, Sponsorship: Lions (no animal)",
+            "msiebert draws 2 card(s) for hunter effect",
+            "msiebert discards all 2 card(s) of hunter effect (no animals)"
+          ]
+        },
+        {
+          "moveNumber": 828,
+          "actions": [
+            "msiebert places action card Animals at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 830,
+          "actions": [
+            "AstroHood pays 1 xtoken for increasing card strength",
+            "AstroHood chooses action card SponsorsII with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 831,
+          "actions": [
+            "AstroHood plays Cable Car"
+          ]
+        },
+        {
+          "moveNumber": 833,
+          "actions": [
+            "AstroHood adds a unique building for free",
+            "AstroHood gains 1 xtoken (placement bonus)"
+          ]
+        },
+        {
+          "moveNumber": 834,
+          "actions": [
+            "You draw White Stork from the deck",
+            "AstroHood draws 1 card(s) from the deck",
+            "AstroHood gains 4 appeal (Cable Car)"
+          ]
+        },
+        {
+          "moveNumber": 835,
+          "actions": [
+            "AstroHood chooses action card SponsorsII with strength 4",
+            "AstroHood uses a multiplier token"
+          ]
+        },
+        {
+          "moveNumber": 836,
+          "actions": [
+            "AstroHood plays Geologist"
+          ]
+        },
+        {
+          "moveNumber": 837,
+          "actions": [
+            "AstroHood gains 6 appeal (Geologist)",
+            "AstroHood gains 2 appeal (Cable Car)",
+            "AstroHood places action card Sponsors at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 839,
+          "actions": [
+            "siebert23 pays 1 xtoken for increasing card strength",
+            "siebert23 chooses action card AssociationI with strength 5"
+          ]
+        },
+        {
+          "moveNumber": 840,
+          "actions": [
+            "siebert23 supports a conservation project on the first slot : Small Animals",
+            "siebert23 plays a new conservation project: Small Animals"
+          ]
+        },
+        {
+          "moveNumber": 842,
+          "actions": [
+            "siebert23 adds a size-2 enclosure for free"
+          ]
+        },
+        {
+          "moveNumber": 843,
+          "actions": [
+            "siebert23 pays 4 money for buying sponsor card",
+            "siebert23 plays Underwater Tunnel"
+          ]
+        },
+        {
+          "moveNumber": 844,
+          "actions": [
+            "siebert23 gains 2 appeal (Underwater Tunnel)"
+          ]
+        },
+        {
+          "moveNumber": 845,
+          "actions": [
+            "siebert23 adds the underwater tunnel for free",
+            "siebert23 gains 4 conservation (Small Animals)",
+            "siebert23 places action card Association at position 1 (finishing action)"
+          ]
+        },
+        {
+          "moveNumber": 846,
+          "actions": [
+            "AstroHood gains 6 appeal (Diversity Researcher)",
+            "AstroHood gains 1 conservation (Geologist)",
+            "AstroHood gains 3 conservation (Aquatic Park)",
+            "siebert23 gains 1 conservation (Talented Communicator)",
+            "siebert23 gains 1 conservation (Franchise Business)",
+            "siebert23 gains 3 appeal (Underwater Tunnel)",
+            "siebert23 gains 2 conservation (Designer Zoo)",
+            "marksbrt gains 4 conservation (Catered Picnic Areas)",
+            "msiebert gains 1 conservation (Veterinarian)",
+            "msiebert gains 1 conservation (Hydrologist)",
+            "msiebert gains 1 conservation (Excavation Site)",
+            "msiebert gains 3 conservation (Research Zoo)",
+            "msiebert gains 2 conservation (Climbing Park)",
+            "AstroHood has 84 and scores 39 for having 21. AstroHood scores 123.",
+            "siebert23 has 80 and scores 42 for having 22. siebert23 scores 122.",
+            "marksbrt has 80 and scores 39 for having 21. marksbrt scores 119.",
+            "msiebert has 47 and scores 54 for having 26. msiebert scores 101.",
+            "End of game"
+          ]
+        }
+      ],
+      "moveCount": 647
     }
   ]
 }
