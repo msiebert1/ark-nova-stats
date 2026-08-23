@@ -17,17 +17,17 @@
         'Sloth Bear', 'Sun Bear', 'Yellow-throated Marten', 'Grizzly Bear', 'Jaguar', 'Cougar',
         'South American Coati', 'Raccoon', 'Eurasian Brown Bear', 'Wolf', 'Eurasian Lynx',
         'European Badger', 'Stoat', 'New Zealand Fur Seal', 'Australian Sea Lion', 'New Zealand Sea Lion',
-        'Australian Dingo', 'Tasmanian Devil', 'African Bush Elephant', 'White Rhinoceros', 'Giraffe',
+        'Australian Dingo', 'Tasmanian Devil', 'African Bush Elephant', 'White Rhinoceros', 'Northern Giraffe',
         'Grevy\'s Zebra', 'Pygmy Hippopotamus', 'Asian Elephant', 'Indian Rhinoceros', 'Giant Panda',
         'Red Panda', 'Malayan Tapir', 'American Bison', 'Muskox', 'Reindeer', 'Llama', 'Mountain Tapir',
         'European Bison', 'Moose', 'Red Deer', 'Alpine Ibex', 'Crested Porcupine', 'Dugong',
         'Red Kangaroo', 'Koala', 'Platypus', 'Common Wombat', 'Proboscis Monkey', 'Senegal Bushbaby',
         'Collared Mangabey', 'Ring-tailed Lemur', 'Mantled Guereza', 'Barbary Macaque', 'Mandrill',
-        'Japanese Macaque', 'Red-shanked Douc', 'Dusky Leaf Monkey', 'Horsfield\'s Tarsier',
+        'Japanese Macaque', 'Red-shanked Douc', 'Dusky-leaf Monkey', 'Horsfield\'s Tarsier',
         'Northern Plains Gray Langur', 'Panamanian White-faced Capuchin', 'Brown Spider Monkey',
         'Golden Lion Tamarin', 'Bolivian Red Howler', 'Ecuadorian Squirrel Monkey', 'Cotton-top Tamarin',
         'Nile Crocodile', 'Western Green Mamba', 'African Spurred Tortoise', 'Rock Monitor', 'Common Agama',
-        'Indian Rock Python', 'King Cobra', 'Komodo Dragon', 'Veiled Chameleon', 'Chinese Water Dragon',
+        'Indian Rock Python', 'King Cobra', 'Indian Cobra', 'Komodo Dragon', 'Veiled Chameleon', 'Chinese Water Dragon',
         'American Alligator', 'Broad-snouted Caiman', 'Galapagos Giant Tortoise', 'Anaconda',
         'Boa Constrictor', 'European Pond Turtle', 'Common European Adder', 'Common Wall Lizard',
         'European Grass Snake', 'Slow Worm', 'Saltwater Crocodile', 'Gould\'s Monitor', 'Frilled Lizard',
@@ -42,7 +42,7 @@
         'Sharknose Goby', 'Longhorn Cowfish', 'Blackbar Triggerfish', 'Devil Firefish',
         'American Whitespotted Filefish', 'Guineafowl Puffer', 'Bluespotted Ribbontail Ray',
         'Humphead Wrasse', 'Coastal Manta Ray', 'Caribbean Reef Shark', 'Longcomb Sawfish',
-        'Sand Tiger Shark', 'Mediterranean Rainbow', 'Lined Seahorse', 'Common Octopus',
+        'Sand Tiger Shark', 'Mediterranean Rainbow Wrasse', 'Lined Seahorse', 'Short-snouted Seahorse', 'Common Octopus',
         'Compass Jellyfish', 'Loggerhead Sea Turtle', 'Green Sea Turtle', 'Tambaqui', 'African Penguin',
         'Golden Snub-Nosed Monkey', 'Wolverine', 'Vietnamese Pot-Bellied Pig', 'Northern Muriqui',
         'Coquerel\'s Sifaka', 'Brahminy Kite'
@@ -55,7 +55,7 @@
         'Expert on Africa', 'Breeding Cooperation', 'Talented Communicator', 'Engineer',
         'Breeding Program', 'Diversity Researcher', 'Federal Grants', 'Archaeologist',
         'Release of Patents', 'Science Institute', 'Migration Recording', 'Quarantine Lab',
-        'Foreign Institute', 'WAZA Special Assignment', 'WAZA Small Animals Program',
+        'Foreign Institute', 'WAZA Special Assignment', 'WAZA Small Animal Program',
         'Expert in Small Animals', 'Expert in Large Animals', 'Sponsorship: Primates',
         'Sponsorship: Reptiles', 'Sponsorship: Vultures', 'Sponsorship: Lions', 'Sponsorship: Elephants',
         'Primatologist', 'Herpetologist', 'Ornithologist', 'Expert in Predators', 'Expert in Herbivores',
@@ -67,7 +67,8 @@
         'Franchise Business', 'Marine Biologist', 'Farm Cat', 'Conference on Europe',
         'Conference on Australia', 'Marine Research Expedition', 'Excavation Site', 'Expansion Area',
         'Publications', 'Mascot Statue', 'Horse Whisperer', 'Landscape Gardener',
-        'Field Research Type D Orcas', 'Amazon House', 'Underwater Tunnel', 'Reconstruction'
+        'Field Research Type D Orcas', 'Amazon House', 'Underwater Tunnel', 'Reconstruction',
+        'Victory Column', 'Arcade'
     ];
 
     const ALL_CARDS = [...ALL_ANIMAL_CARDS, ...ALL_SPONSOR_CARDS].sort();
