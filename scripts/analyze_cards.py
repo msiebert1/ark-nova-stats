@@ -160,7 +160,7 @@ for player in tracked_players:
     if player not in player_cards:
         continue
 
-    cards = [(name, count) for name, count in player_cards[player].items() if count >= 2]
+    cards = [(name, count) for name, count in player_cards[player].items()]
     cards.sort(key=lambda x: -x[1])
     output['topCardsByPlayer'][player] = [{'card': name, 'plays': count} for name, count in cards]
 

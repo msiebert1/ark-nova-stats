@@ -5144,6 +5144,106 @@
       {
         "card": "Expert On Asia",
         "plays": 2
+      },
+      {
+        "card": "Barn Owl",
+        "plays": 1
+      },
+      {
+        "card": "Proboscis Monkey",
+        "plays": 1
+      },
+      {
+        "card": "Moose",
+        "plays": 1
+      },
+      {
+        "card": "Bolivian Red Howler",
+        "plays": 1
+      },
+      {
+        "card": "Marine Biologist",
+        "plays": 1
+      },
+      {
+        "card": "Expert On Europe",
+        "plays": 1
+      },
+      {
+        "card": "Panamanian White-faced Capuchin",
+        "plays": 1
+      },
+      {
+        "card": "Mangalica",
+        "plays": 1
+      },
+      {
+        "card": "Horse Whisperer",
+        "plays": 1
+      },
+      {
+        "card": "Japanese Macaque",
+        "plays": 1
+      },
+      {
+        "card": "Engineer",
+        "plays": 1
+      },
+      {
+        "card": "Andean Condor",
+        "plays": 1
+      },
+      {
+        "card": "Native Farm Animals",
+        "plays": 1
+      },
+      {
+        "card": "Polar Bear Exhibit",
+        "plays": 1
+      },
+      {
+        "card": "Snowy Owl",
+        "plays": 1
+      },
+      {
+        "card": "Pygmy Hippopotamus",
+        "plays": 1
+      },
+      {
+        "card": "Science Institute",
+        "plays": 1
+      },
+      {
+        "card": "African Ostrich",
+        "plays": 1
+      },
+      {
+        "card": "Blackbar Triggerfish",
+        "plays": 1
+      },
+      {
+        "card": "Farm Cat",
+        "plays": 1
+      },
+      {
+        "card": "Barbary Macaque",
+        "plays": 1
+      },
+      {
+        "card": "Western Green Mamba",
+        "plays": 1
+      },
+      {
+        "card": "Waza Large Animal Program",
+        "plays": 1
+      },
+      {
+        "card": "Coastal Manta Ray",
+        "plays": 1
+      },
+      {
+        "card": "Mantled Guereza",
+        "plays": 1
       }
     ],
     "marksbrt": [
@@ -6010,6 +6110,50 @@
       {
         "card": "American Bison",
         "plays": 2
+      },
+      {
+        "card": "Sponsorship: Primates",
+        "plays": 1
+      },
+      {
+        "card": "European Pond Turtle",
+        "plays": 1
+      },
+      {
+        "card": "Eurasian Eagle-owl",
+        "plays": 1
+      },
+      {
+        "card": "Short-snouted Seahorse",
+        "plays": 1
+      },
+      {
+        "card": "Australian Pelican",
+        "plays": 1
+      },
+      {
+        "card": "Emu",
+        "plays": 1
+      },
+      {
+        "card": "Science Museum",
+        "plays": 1
+      },
+      {
+        "card": "Proboscis Monkey",
+        "plays": 1
+      },
+      {
+        "card": "Llama",
+        "plays": 1
+      },
+      {
+        "card": "Coastal Manta Ray",
+        "plays": 1
+      },
+      {
+        "card": "Waza Large Animal Program",
+        "plays": 1
       }
     ],
     "AstroHood": [
@@ -6804,6 +6948,134 @@
       {
         "card": "Sand Tiger Shark",
         "plays": 2
+      },
+      {
+        "card": "Expert In Small Animals",
+        "plays": 1
+      },
+      {
+        "card": "Migration Recording",
+        "plays": 1
+      },
+      {
+        "card": "Humphead Wrasse",
+        "plays": 1
+      },
+      {
+        "card": "Conference On Europe",
+        "plays": 1
+      },
+      {
+        "card": "Asian Elephant",
+        "plays": 1
+      },
+      {
+        "card": "Indian Peafowl",
+        "plays": 1
+      },
+      {
+        "card": "Snowy Owl",
+        "plays": 1
+      },
+      {
+        "card": "Bolivian Red Howler",
+        "plays": 1
+      },
+      {
+        "card": "Breeding Program",
+        "plays": 1
+      },
+      {
+        "card": "Vietnamese Pot-bellied Pig",
+        "plays": 1
+      },
+      {
+        "card": "Green Sea Turtle",
+        "plays": 1
+      },
+      {
+        "card": "Horse",
+        "plays": 1
+      },
+      {
+        "card": "Amazon House",
+        "plays": 1
+      },
+      {
+        "card": "Common Wall Lizard",
+        "plays": 1
+      },
+      {
+        "card": "Conference On Australia",
+        "plays": 1
+      },
+      {
+        "card": "Proboscis Monkey",
+        "plays": 1
+      },
+      {
+        "card": "Native Farm Animals",
+        "plays": 1
+      },
+      {
+        "card": "Landscape Gardener",
+        "plays": 1
+      },
+      {
+        "card": "Marine Research Expedition",
+        "plays": 1
+      },
+      {
+        "card": "New Zealand Sea Lion",
+        "plays": 1
+      },
+      {
+        "card": "Jaguar",
+        "plays": 1
+      },
+      {
+        "card": "Coastal Manta Ray",
+        "plays": 1
+      },
+      {
+        "card": "Compass Jellyfish",
+        "plays": 1
+      },
+      {
+        "card": "Native Seabirds",
+        "plays": 1
+      },
+      {
+        "card": "Expansion Area",
+        "plays": 1
+      },
+      {
+        "card": "Expert On Australia",
+        "plays": 1
+      },
+      {
+        "card": "Excavation Site",
+        "plays": 1
+      },
+      {
+        "card": "Native Lizards",
+        "plays": 1
+      },
+      {
+        "card": "King Vulture",
+        "plays": 1
+      },
+      {
+        "card": "Waza Large Animal Program",
+        "plays": 1
+      },
+      {
+        "card": "Victory Column",
+        "plays": 1
+      },
+      {
+        "card": "Siberian Tiger",
+        "plays": 1
       }
     ],
     "siebert23": [
@@ -7582,6 +7854,114 @@
       {
         "card": "Wolf",
         "plays": 2
+      },
+      {
+        "card": "Komodo Dragon",
+        "plays": 1
+      },
+      {
+        "card": "Sponsorship: Reptiles",
+        "plays": 1
+      },
+      {
+        "card": "Western Green Mamba",
+        "plays": 1
+      },
+      {
+        "card": "Compass Jellyfish",
+        "plays": 1
+      },
+      {
+        "card": "Cougar",
+        "plays": 1
+      },
+      {
+        "card": "Waza Large Animal Program",
+        "plays": 1
+      },
+      {
+        "card": "Marine Biologist",
+        "plays": 1
+      },
+      {
+        "card": "Longcomb Sawfish",
+        "plays": 1
+      },
+      {
+        "card": "Dugong",
+        "plays": 1
+      },
+      {
+        "card": "Free-range New World Monkeys",
+        "plays": 1
+      },
+      {
+        "card": "Geologist",
+        "plays": 1
+      },
+      {
+        "card": "Nile Crocodile",
+        "plays": 1
+      },
+      {
+        "card": "Sand Tiger Shark",
+        "plays": 1
+      },
+      {
+        "card": "Boa Constrictor",
+        "plays": 1
+      },
+      {
+        "card": "Native Lizards",
+        "plays": 1
+      },
+      {
+        "card": "Mandrill",
+        "plays": 1
+      },
+      {
+        "card": "Domestic Rabbit",
+        "plays": 1
+      },
+      {
+        "card": "Raccoon",
+        "plays": 1
+      },
+      {
+        "card": "Sea Turtle Tank",
+        "plays": 1
+      },
+      {
+        "card": "Sponsorship: Vultures",
+        "plays": 1
+      },
+      {
+        "card": "Fennec Fox",
+        "plays": 1
+      },
+      {
+        "card": "Grevy's Zebra",
+        "plays": 1
+      },
+      {
+        "card": "Expansion Area",
+        "plays": 1
+      },
+      {
+        "card": "Frilled Lizard",
+        "plays": 1
+      },
+      {
+        "card": "Okapi Stable",
+        "plays": 1
+      },
+      {
+        "card": "Talented Communicator",
+        "plays": 1
+      },
+      {
+        "card": "Underwater Tunnel",
+        "plays": 1
       }
     ]
   },
