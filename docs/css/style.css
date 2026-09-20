@@ -720,6 +720,26 @@ footer {
     color: #999;
 }
 
+/* Never played cards */
+.never-played-summary {
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.never-played-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.never-played-chips .chip {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.9rem;
+}
+
 /* ELO Rankings (inline in summary) */
 .recent-elo-rankings {
     background: var(--bg-color);

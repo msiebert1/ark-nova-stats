@@ -3601,6 +3601,32 @@
             const sortedCards = Object.entries(allCards)
                 .sort((a, b) => b[1] - a[1]);
 
+            // Never played cards: anything in the card database with zero plays across all players
+            const playedNamesLowerAll = new Set(Object.keys(allCards).map(c => c.toLowerCase()));
+            const neverPlayedAnimals = ALL_ANIMAL_CARDS.filter(c => !playedNamesLowerAll.has(c.toLowerCase())).sort();
+            const neverPlayedSponsors = ALL_SPONSOR_CARDS.filter(c => !playedNamesLowerAll.has(c.toLowerCase())).sort();
+
+            const summaryEl = document.getElementById('never-played-summary');
+            if (summaryEl) {
+                const totalNeverPlayed = neverPlayedAnimals.length + neverPlayedSponsors.length;
+                const totalCards = ALL_CARDS.length;
+                summaryEl.textContent = `${totalNeverPlayed} of ${totalCards} cards (${((totalNeverPlayed / totalCards) * 100).toFixed(1)}%) have never been played`;
+            }
+
+            const animalsEl = document.getElementById('never-played-animals');
+            if (animalsEl) {
+                animalsEl.innerHTML = neverPlayedAnimals.length
+                    ? neverPlayedAnimals.map(c => `<span class="chip">${c}</span>`).join('')
+                    : '<span class="chip">None — every animal card has been played</span>';
+            }
+
+            const sponsorsEl = document.getElementById('never-played-sponsors');
+            if (sponsorsEl) {
+                sponsorsEl.innerHTML = neverPlayedSponsors.length
+                    ? neverPlayedSponsors.map(c => `<span class="chip">${c}</span>`).join('')
+                    : '<span class="chip">None — every sponsor card has been played</span>';
+            }
+
             // Get top 20
             const overallTop20 = sortedCards.slice(0, 20);
 
